@@ -21,7 +21,7 @@ Meteor.methods({
         }
         Resolutions.update(resolution._id, {
             $set: {
-                complete: !resolution.complete          
+                complete: !resolution.complete
             }
         });
     },
@@ -39,7 +39,7 @@ Meteor.methods({
                 matches_returned: 10
         }});
         //console.log(data);
-      
+
     },
     getNewsData() {
         Meteor.http.call('GET', "http://bombers-hockey.com/posts.json").data.forEach(function(data){
@@ -53,8 +53,28 @@ Meteor.methods({
             });
         });
     },
-    getMatchData() {
-        Meteor
+    getLatestMatches() {
+      LastMatches.remove({});
+      Meteor.http.call('GET', "http://bombers-hockey.com/matches.json").data.forEach(function(data) {
+        console.log(data);
+        LastMatches.insert({
+          timestamp: data.timestamp,
+          awayteam: data.game_teams[0].name,
+          awayscore: data.game_teams[0].score,
+          hometeam: data.game_teams[1].name,
+          homescore: data.game_teams[1].score
+        })
+      })
+    },
+    checkMatch() {
+      let temp = LastMatches.find().fetch();
+      temp.forEach(function(data) {
+        console.log(data.timestamp);
+        console.log(data.awayteam);
+        console.log(data.awayscore);
+        console.log(data.hometeam);
+        console.log(data.homescore);
+      })
     }
 
 

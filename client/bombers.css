@@ -14,11 +14,11 @@ body {
 }
 
 a {
-    color: #FBB600;
+    color: #FBB600 !important;
 }
 
     a:hover {
-        color: #FBB600;
+        color: #FBB600 !important;
     }
 
 .b_border {
@@ -228,7 +228,7 @@ a.nav-login p {
 }
 
 .b_header {
-    background: url(/assets/head_bg.jpg) repeat-x;
+    background: url(/assets/head_bg.png) repeat-x;
     text-align: right;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;

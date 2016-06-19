@@ -236,3 +236,31 @@
     height: 22px;
     background: url(/assets/archive.png) no-repeat center;
 }
+
+.contentAnim-leave {
+  position: absolute;
+  opacity: 1;
+}
+.contentAnim-leave.contentAnim-leave-active {
+  position: absolute;
+  opacity: 0;
+  transition: opacity 500ms ease-in-out;
+}
+.contentAnim-enter {
+  position: absolute;
+  opacity: 0;
+}
+.contentAnim-enter.contentAnim-enter-active {
+  position: absolute;
+  opacity: 1;
+  transition: opacity 500ms ease-in-out 500ms;
+}
+.contentAnim-appear {
+  position: absolute;
+  opacity: 0;
+}
+.contentAnim-appear.contentAnim-appear-active {
+  position: absolute;
+  opacity: 1;
+  transition: opacity 500ms ease-in-out 500ms;
+}

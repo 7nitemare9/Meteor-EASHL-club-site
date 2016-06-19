@@ -4,7 +4,6 @@ import ResolutionsForm from './ResolutionsForm.jsx';
 import ResolutionSingle from './ResolutionSingle';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-Resolutions = new Mongo.Collection('resolutions');
 
 export default class ResolutionWrapper extends TrackerReact(React.Component) {
     constructor() {
@@ -47,4 +46,3 @@ export default class ResolutionWrapper extends TrackerReact(React.Component) {
         )
     }
 }
-

@@ -4,8 +4,6 @@ import Splash from './Splash.jsx';
 import Tray from './Tray.jsx';
 import OldNews from './OldNews.jsx';
 
-NewsPosts = new Mongo.Collection('newsPosts');
-
 export default class News extends TrackerReact(Component) {
     constructor() {
         super();
@@ -15,15 +13,16 @@ export default class News extends TrackerReact(Component) {
             }
         }
         Session.set('counter', 0);
-        Session.set('timer', setInterval(this.changeImage.bind(this), 3000));
+        Session.set('timer', Meteor.setInterval(this.changeImage.bind(this), 3000));
         this.test = [];
         // Session.set('timer', timer);
     }
 
     componentWillUnmount() {
         this.state.subscription.newsPosts.stop();
+        Meteor.clearInterval(Session.get('timer'));
     }
-    
+
     changeImage(){
         this.test = [];
         if (Session.get('counter') < 4) {
@@ -32,7 +31,7 @@ export default class News extends TrackerReact(Component) {
             Session.set('counter', 0);
         }
     }
-    
+
     youtubeToImage(image) {
         return (
             image.replace(
@@ -55,17 +54,17 @@ export default class News extends TrackerReact(Component) {
     }
 
     pause() {
-        clearInterval(Session.get('timer'));
+        Meteor.clearInterval(Session.get('timer'));
     }
 
     continue() {
-        Session.set('timer', setInterval(this.changeImage.bind(this), 3000));
+        Session.set('timer', Meteor.setInterval(this.changeImage.bind(this), 3000));
     }
 
     newsData() {
         return NewsPosts.find().fetch();
     }
-    
+
     render() {
         if(!this.state.subscription.newsPosts.ready()) {
             return (
@@ -73,19 +72,20 @@ export default class News extends TrackerReact(Component) {
             )
         }
         // Session.set('image', this.getImage(this.newsData()[Session.get('counter')]));
-        return (<div className="reset-box b_box" >
-                        <div className="b_box">
-                            <div className="news">
-                                <div className="post_image">
-                                    <div onMouseEnter={this.pause.bind(this)} onMouseLeave={this.continue.bind(this)}>
-                                        <Splash newsData={this.getImage(this.newsData()[Session.get('counter')])}  />
-                                        <Tray newsData={this.newsData()} />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>                        
-                        <OldNews newsData={this.newsData()} />
+        return (
+                <div key={'news-page'} className="reset-box b_box" >
+                  <div className="b_box">
+                    <div className="news">
+                      <div className="post_image">
+                        <div onMouseEnter={this.pause.bind(this)} onMouseLeave={this.continue.bind(this)}>
+                          <Splash newsData={this.getImage(this.newsData()[Session.get('counter')])}  />
+                          <Tray newsData={this.newsData()} />
+                        </div>
+                      </div>
                     </div>
+                  </div>
+                    <OldNews newsData={this.newsData()} />
+                </div>
         )
     }
 }

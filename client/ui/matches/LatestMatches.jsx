@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
 
-LastMatches = new Mongo.Collection('latestMatches');
 
 export default class LatestMatches extends TrackerReact(Component) {
 

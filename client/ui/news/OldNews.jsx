@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import News from './News.jsx';
 
 export default class OldNews extends Component {
-    
+
     youtubeToImage(image) {
         return (
             image.replace(
@@ -33,11 +33,11 @@ export default class OldNews extends Component {
                                 <img src={this.getImage(data)} />
                             </div>
                             <div className="old-news-title">
-                                <a href={`/${data.id}`} >{data.title.toUpperCase()}</a>
+                                <a href={`/news/${data._id}`} >{data.title.toUpperCase()}</a>
                             </div>
                         </div>
                 )})}
-                <div className="b_box archive-box"> 
+                <div className="b_box archive-box">
                     <a href="/archive">
                         <div className="col-lg-12 archive-image"></div>
                     </a>

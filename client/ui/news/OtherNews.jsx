@@ -5,7 +5,7 @@ export default class OtherNews extends Component {
     changeToThis(index) {
         Session.set('counter', index);
     }
-    
+
     render() {
         return (
             <div className="other_news">
@@ -22,7 +22,7 @@ export default class OtherNews extends Component {
                             >
                                 <div key={`${active}test${data._id}`} id={`${active}nl${index}`} onMouseOver={this.changeToThis.bind(this, index)}>
                                     <br/>
-                                    <a href={`/${data.id}`} id={`${active}anl${index}`} >
+                                    <a href={`/news/${data._id}`} id={`${active}anl${index}`} >
                                         {data.title}
                                     </a>
                                 </div>
@@ -38,7 +38,7 @@ export default class OtherNews extends Component {
                             >
                                 <div key={`${active}test${data._id}`} id={`${active}nl${index}`} onMouseOver={this.changeToThis.bind(this, index)}>
                                     <br/>
-                                    <a href={`/${data.id}`} id={`${active}anl${index}`} >
+                                    <a href={`/news/${data.id}`} id={`${active}anl${index}`} >
                                         {data.title}
                                     </a>
                                 </div>

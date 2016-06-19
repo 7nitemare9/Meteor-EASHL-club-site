@@ -1,8 +1,3 @@
-NewsPosts = new Mongo.Collection('newsPosts');
-LastMatches = new Mongo.Collection('latestMatches')
-Resolutions = new Mongo.Collection('resolutions');
-
-
 Meteor.publish('allResolutions', function() {
     return Resolutions.find();
 });

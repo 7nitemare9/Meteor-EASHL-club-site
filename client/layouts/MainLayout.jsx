@@ -3,6 +3,10 @@ import AccountsUI from '../AccountsUI.jsx';
 import Header from '../ui/Header.jsx';
 import Content from '../ui/Content.jsx';
 import LatestMatches from '../ui/matches/LatestMatches.jsx';
+import LatestInForum from '../ui/forum/LatestInForum.jsx';
+import Calendar from '../ui/calendar/Calendar.jsx';
+import Twitter from '../ui/twitter/Twitter.jsx';
+import Streaming from '../ui/streams/Streaming.jsx';
 
 export const MainLayout = ({content}) => (
 
@@ -11,8 +15,14 @@ export const MainLayout = ({content}) => (
             <div className="container-fluid">
                 <Header />
             </div>
-            <Content content={content} />
+            <div className="col-lg-6 col-md-8 b_img-responsive col-lg-push-3 b_bottom-padding" style={{minHeight: '530px'}}>
+              <Content content={content} />
+            </div>
             <LatestMatches />
+            <LatestInForum />
+            <Calendar />
+            <Twitter />
+            <Streaming />
         </div>
         )
 

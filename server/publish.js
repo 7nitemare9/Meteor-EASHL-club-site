@@ -8,8 +8,16 @@ Meteor.publish('allNews', function() {
 
 Meteor.publish('lastMatches', function() {
   return LastMatches.find();
-})
+});
 
 Meteor.publish('userResolutions', function() {
     return Resolutions.find({user: this.userId});
+});
+
+Meteor.publish('tweets', function() {
+  return Tweets.find({}, {sort: {created_at: -1}, limit: 5});
+});
+
+Meteor.publish('allStreams', function() {
+  return Streams.find();
 });

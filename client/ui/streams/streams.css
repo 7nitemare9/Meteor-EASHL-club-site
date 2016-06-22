@@ -1,0 +1,16 @@
+.stream-selector-active {
+  color: #fbb600;
+  text-align: center;
+  float: left;
+}
+
+.stream-selector-inactive {
+  cursor: pointer;
+  color: #966000;
+  text-align: center;
+  float: left;
+}
+
+.streams-holder {
+  color: #505050;
+}

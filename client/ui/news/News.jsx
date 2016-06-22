@@ -12,9 +12,9 @@ export default class News extends TrackerReact(Component) {
                 newsPosts: Meteor.subscribe('allNews')
             }
         }
+        this.secondsToWait = 5;
         Session.set('counter', 0);
-        Session.set('timer', Meteor.setInterval(this.changeImage.bind(this), 3000));
-        this.test = [];
+        Session.set('timer', Meteor.setInterval(this.changeImage.bind(this), this.secondsToWait * 1000));
         // Session.set('timer', timer);
     }
 
@@ -58,7 +58,7 @@ export default class News extends TrackerReact(Component) {
     }
 
     continue() {
-        Session.set('timer', Meteor.setInterval(this.changeImage.bind(this), 3000));
+        Session.set('timer', Meteor.setInterval(this.changeImage.bind(this), this.secondsToWait * 1000));
     }
 
     newsData() {

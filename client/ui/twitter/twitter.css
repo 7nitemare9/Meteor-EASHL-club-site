@@ -1,0 +1,37 @@
+.tweet-image {
+  height: 24px;
+  width: 24px;
+  border-top-right-radius: 4px;
+  vertical-align: middle;
+  margin-left: 2px;
+}
+
+.tweet-text {
+  text-align: left;
+  text-indent: 0%;
+}
+
+.tweet-text a {
+  font-size: 11px;
+  margin: 0.3% 3%;
+  display: inline-block;
+}
+
+table {
+  width: 99%;
+  margin: 0.5%;
+  border: 1px solid #484848; }
+
+tbody tr:nth-child(odd) {
+  background: #303030;
+  height: 21px; }
+
+tfoot tr:nth-child(even) {
+  background: #303030; }
+
+tbody tr:nth-child(even) {
+  background: #404040;
+  height: 21px; }
+
+tfoot tr:nth-child(odd) {
+  background: #404040; }

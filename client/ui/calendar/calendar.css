@@ -1,0 +1,83 @@
+.calendar {
+
+}
+
+.date-picker {
+  background: linear-gradient(#505050, #202020);
+  color: #fbb600;
+  border-radius: 4px;
+  border: 1px solid;
+}
+
+.cal-previous {
+  /*float:left;*/
+  margin-left: 20px;
+}
+
+.cal-next {
+  margin-right: 20px;
+  /*float:right;*/
+}
+
+.cal-month {
+  font-weight: bold;
+  color: #fbb600;
+  text-align: center;
+  display: inline-block;
+  width: 247px;
+}
+
+.cal-days {
+  color: #fbb600;
+}
+
+.cal-day {
+  text-align: center;
+  display: inline-block;
+  width: 42px;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.cal-date {
+  color: #fbb600;
+  padding: 2px;
+  text-align: right;
+  height: 30px;
+  width: 40px;
+  margin-left: 2px;
+  margin-bottom: 2px;
+  display: inline-block;
+  font-size: 9px;
+  font-weight: bold;
+  background: linear-gradient(#505050, #202020);
+}
+
+.cal-date-other-month {
+  color: #707070;
+  padding: 2px;
+  text-align: right;
+  height: 30px;
+  width: 40px;
+  margin-left: 2px;
+  margin-bottom: 2px;
+  display: inline-block;
+  font-size: 9px;
+  font-weight: bold;
+  background: linear-gradient(#505050, #202020);
+}
+
+.cal-today {
+  color: #fbb600;
+  border: 1px solid;
+  padding: 2px;
+  text-align: right;
+  height: 30px;
+  width: 40px;
+  margin-left: 2px;
+  margin-bottom: 2px;
+  display: inline-block;
+  font-size: 9px;
+  font-weight: bold;
+  background: linear-gradient(#505050, #202020);
+}

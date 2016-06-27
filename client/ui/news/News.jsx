@@ -3,6 +3,7 @@ import TrackerReact from 'meteor/ultimatejs:tracker-react';
 import Splash from './Splash.jsx';
 import Tray from './Tray.jsx';
 import OldNews from './OldNews.jsx';
+import * as NewsHelper from '../helpers/NewsHelper.js';
 
 export default class News extends TrackerReact(Component) {
     constructor() {
@@ -32,26 +33,7 @@ export default class News extends TrackerReact(Component) {
         }
     }
 
-    youtubeToImage(image) {
-        return (
-            image.replace(
-                image.substring(0,
-                    image.indexOf('embed/') + 6),
-                'http://img.youtube.com/vi/').concat('/0.jpg')
-        )
-    }
 
-    getImage(data) {
-        if (data) {
-            if (data.image.length != 0) {
-                return data.image[0];
-            } else if (data.youtube.length != 0) {
-                return this.youtubeToImage(data.youtube[0]);
-            } else {
-                return "test.jpg";
-            }
-        }
-    }
 
     pause() {
         Meteor.clearInterval(Session.get('timer'));
@@ -62,7 +44,7 @@ export default class News extends TrackerReact(Component) {
     }
 
     newsData() {
-        return NewsPosts.find().fetch();
+        return NewsPosts.find().fetch().reverse();
     }
 
     render() {
@@ -72,13 +54,16 @@ export default class News extends TrackerReact(Component) {
             )
         }
         // Session.set('image', this.getImage(this.newsData()[Session.get('counter')]));
+        this.newsData().forEach((data) => {
+          console.log(data._id);
+        })
         return (
                 <div key={'news-page'} className="reset-box b_box" >
                   <div className="b_box">
                     <div className="news">
                       <div className="post_image">
                         <div onMouseEnter={this.pause.bind(this)} onMouseLeave={this.continue.bind(this)}>
-                          <Splash newsData={this.getImage(this.newsData()[Session.get('counter')])}  />
+                          <Splash newsData={NewsHelper.getImage(this.newsData()[Session.get('counter')])}  />
                           <Tray newsData={this.newsData()} />
                         </div>
                       </div>

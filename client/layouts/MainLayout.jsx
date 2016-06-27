@@ -7,6 +7,8 @@ import LatestInForum from '../ui/forum/LatestInForum.jsx';
 import Calendar from '../ui/calendar/Calendar.jsx';
 import Twitter from '../ui/twitter/Twitter.jsx';
 import Streaming from '../ui/streams/Streaming.jsx';
+import ShoutBox from '../ui/shoutbox/ShoutBox.jsx';
+import Footer from '../ui/Footer.jsx';
 
 export const MainLayout = ({content}) => (
 
@@ -23,6 +25,8 @@ export const MainLayout = ({content}) => (
             <Calendar />
             <Twitter />
             <Streaming />
+            <ShoutBox />
+            <Footer />
         </div>
         )
 

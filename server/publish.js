@@ -15,9 +15,21 @@ Meteor.publish('userResolutions', function() {
 });
 
 Meteor.publish('tweets', function() {
-  return Tweets.find({}, {sort: {created_at: -1}, limit: 5});
+  return Tweets.find({}, {sort: {id: -1}, limit: 5});
 });
 
 Meteor.publish('allStreams', function() {
   return Streams.find();
+});
+
+Meteor.publish('allShouts', function() {
+  return Shouts.find();
+});
+
+Meteor.publish('allPlayers', function() {
+  return Players.find();
+});
+
+Meteor.publish('allOfFanZone', function() {
+  return Media.find();
 });

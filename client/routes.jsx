@@ -4,7 +4,11 @@ import { mount } from 'react-mounter';
 import { MainLayout } from './layouts/MainLayout.jsx';
 import News from './ui/news/News.jsx';
 import ShowNews from './ui/news/ShowNews.jsx';
-import About from './about/About.jsx';
+import Lineup  from './ui/lineup/Lineup.jsx';
+import ShowPlayer from './ui/lineup/ShowPlayer.jsx';
+import FanZone from './ui/fanzone/FanZone.jsx';
+import AdmFanZone from './ui/admin/FanZone.jsx';
+import AdmNews from './ui/admin/News.jsx';
 
 FlowRouter.route('/', {
     action() {
@@ -22,10 +26,42 @@ FlowRouter.route('/news/:id', {
     }
 });
 
-FlowRouter.route('/about', {
+FlowRouter.route('/lineup', {
+  action() {
+    mount(MainLayout, {
+      content: (<Lineup />)
+    })
+  }
+});
+
+FlowRouter.route('/lineup/:name', {
+  action(params) {
+    mount(MainLayout, {
+      content: (<ShowPlayer player={params.name} />)
+    })
+  }
+});
+
+FlowRouter.route('/fanzone', {
+  action() {
+    mount(MainLayout, {
+      content: (<FanZone />)
+    })
+  }
+});
+
+FlowRouter.route('/admin/fanzone', {
     action() {
         mount(MainLayout, {
-                content: (<About />)
+                content: (<AdmFanZone />)
+        })
+    }
+});
+
+FlowRouter.route('/admin/news', {
+    action() {
+        mount(MainLayout, {
+                content: (<AdmNews />)
         })
     }
 });

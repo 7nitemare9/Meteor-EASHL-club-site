@@ -15,6 +15,7 @@ export default class ShowStream extends TrackerReact(Component) {
         id="twitch"
         src={`http://player.twitch.tv/?channel=${Session.get('active_stream')}&html5`}
         autoplay="true"
+        muted="true"
         channel={Session.get('active_stream')}
         allowfullscreen
         height="188"

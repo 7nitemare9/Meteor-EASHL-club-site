@@ -18,11 +18,11 @@ export default class Navbar extends Component {
             <div className="collapse navbar-collapse nav-filler b_navigation" id="bs-example-navbar-collapse-1">
                 <ul className="nav navbar-nav">
                     <NavButton target="home" route="/" />
-                    <NavButton target="lineup" route="players" />
-                    <NavButton target="stats" route="statistics" />
-                    <NavButton target="media" route="medias" />
-                    <NavButton target="info" route="infos" />
-                    <NavButton target="results" route="matches" />
+                    <NavButton target="lineup" route="/lineup" />
+                    <NavButton target="stats" route="/statistics" />
+                    <NavButton target="media" route="/fanzone" />
+                    <NavButton target="info" route="/infos" />
+                    <NavButton target="results" route="/matches" />
                     <NavDropdown target="links" sites={sites} />
                     <NavButton target="forum" route="/forum" />
                     <NavLogin target="login" />
@@ -30,5 +30,5 @@ export default class Navbar extends Component {
             </div>
         )
     }
-    
+
 }

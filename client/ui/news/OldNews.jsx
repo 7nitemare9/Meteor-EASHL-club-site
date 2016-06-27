@@ -1,28 +1,9 @@
 import React, { Component } from 'react';
 import News from './News.jsx';
+import * as NewsHelper from '../helpers/NewsHelper.js';
 
 export default class OldNews extends Component {
 
-    youtubeToImage(image) {
-        return (
-            image.replace(
-                image.substring(0,
-                    image.indexOf('embed/') + 6),
-                'http://img.youtube.com/vi/').concat('/0.jpg')
-        )
-    }
-
-    getImage(data) {
-        if (data) {
-            if (data.image.length != 0) {
-                return data.image[0];
-            } else if (data.youtube.length != 0) {
-                return this.youtubeToImage(data.youtube[0]);
-            } else {
-                return "test.jpg";
-            }
-        }
-    }
     render() {
         return (
             <div className="border-box-set">
@@ -30,7 +11,7 @@ export default class OldNews extends Component {
                     return (
                         <div key={data._id} className="col-lg-4 visible-lg" style={{padding: "10px 5px 0px 5px"}}>
                             <div className="b_box old-news-box" >
-                                <img src={this.getImage(data)} />
+                                <img src={NewsHelper.getImage(data)} />
                             </div>
                             <div className="old-news-title">
                                 <a href={`/news/${data._id}`} >{data.title.toUpperCase()}</a>

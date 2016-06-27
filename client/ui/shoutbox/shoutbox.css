@@ -1,0 +1,35 @@
+.shout-list {
+  height:200px;
+  overflow: auto;
+}
+
+.shout-text {
+  width: 97%;
+  height: 70px;
+}
+
+.shout-name-tag {
+  color: #fbb600;
+  width: 24%;
+  display: inline;
+  margin: 2%;
+}
+
+#shout_name {
+  width: 50%;
+}
+
+.shout-name-td {
+  padding-left: 3px;
+  color: #fbb600;
+  font-size: small;
+}
+
+.shout-message-td {
+  font-size: small;
+}
+
+.shout-delete-td {
+  cursor: pointer;
+  font-size: xx-small;
+}

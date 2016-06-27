@@ -69,7 +69,7 @@ export default class ImageUpload extends Component {
       <p2>Image Upload</p2>
         <input id="inputFileToLoad" type="file" onChange={() => {this.encodeImageFileAsUrl(this.props.fn)}} />
         <img id="uploadedImage" src="test" />
-        <button id="delete" onClick={this.deleteImage}><p2>Delete</p2></button>
+        <button id="delete" onClick={this.deleteImage.bind(this)}><p2>Delete</p2></button>
         <br/>
         <br/>
         <br/>

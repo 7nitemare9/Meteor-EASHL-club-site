@@ -20,7 +20,6 @@ Meteor.methods({
       let following = ['50004938', '33936681', '25660180'];
       var st = new StreamTweets(TWITTERKEYS, false);
       st.stream({follow: following}, Meteor.bindEnvironment(function(result) {
-        console.log(result);
         console.log(result.text);
         if (following.indexOf(result.user.id.toString()) != -1 && !result.in_reply_to_user_id) {
           console.log('new tweet');

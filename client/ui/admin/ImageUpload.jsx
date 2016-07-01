@@ -15,7 +15,6 @@ export default class ImageUpload extends Component {
   }
 
   uploadImage(data, fn) {
-    console.log(this.apiKey);
     this.image = data.target.result;
     $("#uploadedImage")[0].src = this.image;
     Imgur.upload({

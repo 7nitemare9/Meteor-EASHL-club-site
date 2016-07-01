@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
+import TrackerReact from 'meteor/ultimatejs:tracker-react';
 import MonthPicker from './MonthPicker.jsx';
 import DayNames from './DayNames.jsx';
 import Weeks from './Weeks.jsx';
 
-export default class Calendar extends Component {
+export default class Calendar extends TrackerReact(Component) {
   constructor() {
     super();
     Session.set('today', moment().startOf('day').format('YYYY-MM-DD'));
+    Meteor.setTimeout(this.newDay, moment.duration(moment().add(1, 'day').startOf('day').diff(moment()))._milliseconds + 1000);
     Session.set('calendar-month', moment().startOf('month').format('MM-YYYY'));
+  }
+
+  newDay() {
+    Session.set('today', moment().startOf('day').format('YYYY-MM-DD'));
+    Meteor.setTimeout(this.newDay, moment.duration(moment().add(1, 'day').startOf('day').diff(moment()))._milliseconds + 1000);
   }
 
   render() {
@@ -20,7 +27,7 @@ export default class Calendar extends Component {
           <div className="calendar">
             <MonthPicker />
             <DayNames />
-            <Weeks />
+            <Weeks today={Session.get('today')}/>
           </div>
         </div>
       </div>

@@ -30,15 +30,15 @@ export default class Weeks extends TrackerReact(Component) {
       {this.createWeeks(moment(Session.get('calendar-month'), 'MM-YYYY').startOf('month')).map((data, index) => {
         if(index == 0 && data[0] > data[6]) {
           return (
-            <FirstWeek key={`week${index}`} week={data}/>
+            <FirstWeek key={`week${index}`} week={data} today={this.props.today}/>
           )
         } else if (index > 2 && data[0] > data[6]) {
           return (
-            <LastWeek key={`week${index}`}week={data}/>
+            <LastWeek key={`week${index}`}week={data} today={this.props.today}/>
           )
         }
         return (
-          <Week key={`week${index}`}week={data} />
+          <Week key={`week${index}`}week={data} today={this.props.today} />
         )
         })
       }

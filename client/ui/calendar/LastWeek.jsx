@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 export default class LastWeek extends Component {
 
   render() {
-    let today = moment(Session.get('today'), 'YYYY-MM-DD').format('YYYY-MM-DD');
+    let today = moment(this.props.today, 'YYYY-MM-DD').format('YYYY-MM-DD');
     return (
       <div>
         {this.props.week.map((day) => {

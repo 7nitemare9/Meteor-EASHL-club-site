@@ -7,6 +7,9 @@ import ShowNews from './ui/news/ShowNews.jsx';
 import Lineup  from './ui/lineup/Lineup.jsx';
 import ShowPlayer from './ui/lineup/ShowPlayer.jsx';
 import FanZone from './ui/fanzone/FanZone.jsx';
+import Matches from './ui/matches/Matches.jsx';
+import ShowMatch from './ui/matches/ShowMatch.jsx';
+import ListMatches from './ui/matches/ListMatches.jsx';
 import AdmFanZone from './ui/admin/FanZone.jsx';
 import AdmNews from './ui/admin/News.jsx';
 
@@ -46,6 +49,30 @@ FlowRouter.route('/fanzone', {
   action() {
     mount(MainLayout, {
       content: (<FanZone />)
+    })
+  }
+});
+
+FlowRouter.route('/matches', {
+  action() {
+    mount(MainLayout, {
+      content: (<Matches />)
+    })
+  }
+});
+
+FlowRouter.route('/matches/:id', {
+  action(params) {
+    mount(MainLayout, {
+      content: (<ShowMatch id={params.id} />)
+    })
+  }
+});
+
+FlowRouter.route('/matches/list/:page', {
+  action(params) {
+    mount(MainLayout, {
+      content: (<ListMatches page={params.page} />)
     })
   }
 });

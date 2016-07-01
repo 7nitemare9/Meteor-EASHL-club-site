@@ -1,0 +1,53 @@
+.away_name {
+  font: Arial;
+  font-size: 18px;
+  color: #fff;
+  position: absolute;
+  margin-left: 10%;
+  margin-top: 1.5%;
+}
+
+.away_score {
+  font: Arial;
+  font-size: 12px;
+  color: #fff;
+  position: absolute;
+  margin-left: 41%;
+  margin-top: 2%;
+}
+
+.home_score {
+  font: Arial;
+  font-size: 12px;
+  color: #fff;
+  position: absolute;
+  margin-left: 54%;
+  margin-top: 2%;
+}
+
+.home_name {
+  font: Arial;
+  font-size: 18px;
+  color: #fff;
+  position: absolute;
+  margin-left: 63%;
+  margin-top: 1.5%;
+}
+
+.tcenter {
+  display: inline-block;
+}
+
+.boxscore {
+  text-align: center;
+}
+
+.center-buttons {
+  text-align: center;
+}
+
+.match-button {
+  background: #505050;
+  border: 0px;
+  margin: 5px;
+}

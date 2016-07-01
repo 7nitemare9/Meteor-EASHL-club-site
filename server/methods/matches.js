@@ -8,21 +8,18 @@ Meteor.methods({
         //console.log(data);
 
     },
-    getLatestMatches() {
-      LastMatches.remove({});
+    getMatches() {
+      // Matches.remove({});
       Meteor.http.call('GET', "http://bombers-hockey.com/matches.json").data.forEach(function(data) {
-        console.log(data);
-        LastMatches.insert({
-          timestamp: data.timestamp,
-          awayteam: data.game_teams[0].name,
-          awayscore: data.game_teams[0].score,
-          hometeam: data.game_teams[1].name,
-          homescore: data.game_teams[1].score
-        })
+        console.log(data.timestamp);
+        if (!Matches.find(data.timestamp)) {
+          console.log(data);
+          Matches.insert()
+        }
       })
     },
     checkMatch() {
-      let temp = LastMatches.find().fetch();
+      let temp = Matches.find().fetch();
       temp.forEach(function(data) {
         console.log(data.timestamp);
         console.log(data.awayteam);

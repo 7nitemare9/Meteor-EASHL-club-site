@@ -18,23 +18,26 @@ export default class LatestMatches extends TrackerReact(Component) {
   }
 
   matchData() {
-    return LastMatches.find().fetch();
+    return Matches.find({}, {sort: {timestamp: -1}, limit: 5}).fetch();
   }
 
   shortenIfToLong(string) {
-    if (string.length > 14) {
-      return string.slice(0,11).concat('...');
+    if (typeof string === "string") {
+      if (string.length > 14) {
+        return string.slice(0,11).concat('...');
+      }
+      return string;
     }
-    return string;
+    return "deleted team";
   }
 
   winOrLoss(data) {
-    if (data.hometeam == "Bombers Hockey") {
-      if (data.homescore > data.awayscore) {
+    if (data.game_teams[1].name == "Bombers Hockey") {
+      if (data.game_teams[1].score > data.game_teams[0].score) {
         return "#4a4";
       }
     } else {
-      if (data.awayscore > data.homescore) {
+      if (data.game_teams[0].score > data.game_teams[1].score) {
         return "#4a4";
       }
     }
@@ -56,8 +59,8 @@ export default class LatestMatches extends TrackerReact(Component) {
             {this.matchData().map((data) => {
               return (
                 <li key={data._id} className="list-group-item">
-                  <a href={`/matches/${data._id}`}>{`${this.shortenIfToLong(data.awayteam)} - ${this.shortenIfToLong(data.hometeam)}`}</a>
-                  <span className="badge pull-right" style={{background: this.winOrLoss(data)}}>{`${data.awayscore} - ${data.homescore}`}</span>
+                  <a href={`/matches/${data._id}`}>{`${this.shortenIfToLong(data.game_teams[0].name)} - ${this.shortenIfToLong(data.game_teams[1].name)}`}</a>
+                  <span className="badge pull-right" style={{background: this.winOrLoss(data)}}>{`${data.game_teams[0].score} - ${data.game_teams[1].score}`}</span>
                 </li>
               )
             })}

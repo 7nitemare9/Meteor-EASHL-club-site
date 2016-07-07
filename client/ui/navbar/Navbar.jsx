@@ -25,7 +25,8 @@ export default class Navbar extends Component {
                     <NavButton target="results" route="/matches/list/0" />
                     <NavDropdown target="links" sites={sites} />
                     <NavButton target="forum" route="/forum" />
-                    <NavLogin target="login" />
+                    <NavLogin target="login" route="/login" />
+                    {/*<NavLogin target="login" />*/}
                 </ul>
             </div>
         )

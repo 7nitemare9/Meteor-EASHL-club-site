@@ -34,12 +34,20 @@ export default class ShowNews extends TrackerReact(Component) {
     return <div></div>
   }
 
+  deleteNews() {
+    Meteor.call('deleteNews', this.props.id);
+  }
+
   render() {
     if(!this.state.subscription.newsPosts.ready()) {
         return (
             <div>Loading...</div>
         )
     }
+    let edit = Roles.userIsInRole(Meteor.user(), ['Admin', 'News-poster'])
+    ? <div><a href={`/admin/newsedit/${this.props.id}`}>Edit</a>
+      <a href="#" onClick={this.deleteNews.bind(this)}>Delete</a></div>
+    : <br/>;
     return (<div className="b_box" >
                 <div className="b_box" >
                   <div className="content">
@@ -52,6 +60,7 @@ export default class ShowNews extends TrackerReact(Component) {
                       <br />
                       <div dangerouslySetInnerHTML={this.createHtml(this.newsPost().text)} ></div>
                     </p3>
+                    {edit}
                   </div>
                 </div>
             </div>

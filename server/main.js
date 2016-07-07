@@ -5,8 +5,8 @@ Meteor.startup(() => {
   // code to run on server at startup
   // Meteor.setInterval(function() {
   //   console.log('interval running on server');}, 5000);
-  var Streams = Meteor.setInterval(function() {
-  Meteor.call('getStreams');
-   }, 60000);
+  // var Streams = Meteor.setInterval(function() {
+  // Meteor.call('getStreams');
+  //  }, 60000);
   Meteor.call('getTweets2');
 });

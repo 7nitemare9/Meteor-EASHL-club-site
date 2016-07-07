@@ -4,3 +4,94 @@
 .latest-forum p {
   display: inline;
 }
+.category {
+  border: 1px solid #ffb600;
+  margin: 5px;
+  margin-bottom: 5px;
+  border-radius: 4px;
+  background: linear-gradient(#202020, #505050);
+  height: 45px;
+}
+.category-left {
+  float: left;
+  width: 50%;
+}
+.category-right {
+  text-align: right;
+  float: left;
+  width: 50%;
+}
+.category p {
+  margin-bottom: 0;
+}
+.category a {
+  font-family: myriad;
+  font-size: 20px;
+  margin-left: 5px;
+}
+.category-left p {
+  font-family: MYRIAD;
+  font-size: 12px;
+  margin-left: 5px;
+  margin-top: -2px;
+  color: #ffb600;
+}
+.category-right p {
+  font-family: MYRIAD;
+  font-size: 12px;
+  margin-right: 5px;
+  color: #ffb600;
+}
+.category-right a {
+  display: block;
+  font-family: myriad;
+  font-size: 12px;
+  margin-right: 5px;
+  margin-top: 11px;
+}
+
+.post-container {
+  margin: 5px;
+  border: 1px solid #fbb600;
+  border-radius: 4px;
+}
+.post-data {
+  border-bottom: 1px solid #fbb600;
+  background: linear-gradient(#202020, #505050);
+  color: #fbb600;
+  height: 20px;
+}
+.user-name {
+  text-indent: 5px;
+  float: left;
+  width: 50%;
+}
+.created-at {
+  text-align: right;
+  float: left;
+  width: 49%;
+}
+.post-message {
+  margin: 5px;
+  min-height: 50px;
+  background: #202020;
+  text-indent: 5px;
+  color: #aaaaaa;
+}
+.quote {
+  color: #ffffff;
+  font-style: italic;
+  background: #505050;
+  display: inline-block;
+  margin: 3px;
+  padding: 2px;
+  border: #707070 dotted 1px;
+}
+.quote-odd {
+  color: #aaaaaa;
+  font-style: italic;
+  background: #202020;
+  display: inline-block;
+  margin: 3px;
+  padding: 2px;
+}

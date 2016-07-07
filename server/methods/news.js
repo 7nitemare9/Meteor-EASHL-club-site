@@ -12,6 +12,27 @@ Meteor.methods({
         });
     },
     addNews(data) {
-      NewsPosts.insert(data);
+      if (Roles.userIsInRole(Meteor.user(), ['Admin', 'News-poster'])) {
+        NewsPosts.insert(data);
+      }
+    },
+    updateNews(id, data) {
+      if (Roles.userIsInRole(Meteor.user(), ['Admin', 'News-poster'])) {
+        NewsPosts.update({
+            _id: id
+        }, {
+            $set: {
+                title: data.title,
+                image: data.image,
+                youtube: data.youtube,
+                text: data.text
+            }
+        });
+      }
+    },
+    deleteNews(id) {
+      if (Roles.userIsInRole(Meteor.user(), ['Admin', 'News-poster'])) {
+        NewsPosts.remove({_id: id});
+      }
     }
-})
+  });

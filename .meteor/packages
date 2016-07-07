@@ -24,8 +24,14 @@ ultimatejs:tracker-react
 
 stolinski:stylus-multi
 
-accounts-ui
+std:accounts-ui
 accounts-password
+accounts-facebook
+accounts-google
+accounts-twitter
+mikael:accounts-merge
+
+alanning:roles
 
 themeteorchef:bert
 
@@ -41,3 +47,4 @@ momentjs:moment
 fortawesome:fontawesome
 froala:editor
 meteorhacks:picker
+service-configuration

@@ -26,6 +26,9 @@ export default class AdmFanZone extends Component {
   }
 
   render() {
+    if (!Roles.userIsInRole(Meteor.user(), ['Admin'])) {
+      return (<div>Access Denied, you don't have permission to add media.</div>);
+    }
     return (
       <div><p>FanZone upload</p>
         <ImageUpload fn={this.logImageLink} />

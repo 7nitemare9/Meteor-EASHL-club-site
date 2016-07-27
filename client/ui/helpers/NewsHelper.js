@@ -5,7 +5,6 @@ export function getImage(data) {
             if (data.image.length != 0) {
                 return data.image[0];
             } else if (data.youtube.length != 0) {
-                console.log(typeof data.youtube);
                 if(typeof data.youtube === "string") {
                   return Youtube.youtubeToImage(data.youtube);
                 }

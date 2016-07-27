@@ -10,7 +10,7 @@ export default class News extends TrackerReact(Component) {
         super();
         this.state = {
             subscription: {
-                newsPosts: Meteor.subscribe('allNews')
+                newsPosts: Meteor.subscribe('frontPageNews')
             }
         }
         this.secondsToWait = 5;
@@ -20,6 +20,7 @@ export default class News extends TrackerReact(Component) {
     }
 
     componentWillUnmount() {
+        console.log('news will unmount');
         this.state.subscription.newsPosts.stop();
         Meteor.clearInterval(Session.get('timer'));
     }
@@ -44,7 +45,8 @@ export default class News extends TrackerReact(Component) {
     }
 
     newsData() {
-        return NewsPosts.find().fetch().reverse();
+        // return NewsPosts.find().fetch().reverse();
+        return NewsPosts.find({}, {sort: {created_at: -1}, limit: 11}).fetch();
     }
 
     render() {
@@ -55,7 +57,6 @@ export default class News extends TrackerReact(Component) {
         }
         // Session.set('image', this.getImage(this.newsData()[Session.get('counter')]));
         this.newsData().forEach((data) => {
-          console.log(data._id);
         })
         return (
                 <div key={'news-page'} className="reset-box b_box" >

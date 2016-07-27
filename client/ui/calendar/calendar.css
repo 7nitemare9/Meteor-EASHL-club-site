@@ -81,3 +81,38 @@
   font-weight: bold;
   background: linear-gradient(#505050, #202020);
 }
+
+.cal-event {
+  color: #fbb600;
+  text-align: center;
+  height: 30px;
+  width: 40px;
+  margin-left: 2px;
+  display: inline-table;
+  font-size: 8px;
+  font-weight: bold;
+  background: linear-gradient(#505050, #202020);
+}
+
+.cal-event-today {
+  color: #fbb600;
+  border: 1px solid;
+  text-align: center;
+  height: 30px;
+  width: 40px;
+  margin-left: 2px;
+  display: inline-table;
+  font-size: 8px;
+  font-weight: bold;
+  background: linear-gradient(#505050, #202020);
+}
+
+.cal-event img {
+  height: 18px;
+  width: 40px;
+}
+
+.cal-event-today img {
+  height: 18px;
+  width: 40px;
+}

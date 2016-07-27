@@ -1,7 +1,5 @@
 
 export function youtubeToImage(image) {
-      console.log(image);
-      console.log(image.indexOf('watch?v='));
       if(image.indexOf('embed/') !== -1) {
         return (image.replace(image.substring(0, image.indexOf('embed/') + 6), 'http://img.youtube.com/vi/').concat('/0.jpg'));
       } else if (image.indexOf('.be/') !== -1) {
@@ -20,7 +18,6 @@ export function youtubeToImage(image) {
     } else {
       data = youtube;
     }
-    console.log(data);
     if (data.indexOf('embed') != -1) {
       return data;
     } else if (data.indexOf('.be/') != -1) {

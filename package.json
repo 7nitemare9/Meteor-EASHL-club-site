@@ -7,11 +7,13 @@
   "dependencies": {
     "dotenv": "^2.0.0",
     "meteor-node-stubs": "~0.2.0",
+    "moment": "^2.14.1",
     "multer": "^1.1.0",
     "react": "^15.1.0",
     "react-addons-css-transition-group": "^15.1.0",
     "react-dom": "^15.1.0",
     "react-mounter": "^1.2.0",
+    "simple-react-modal": "^0.4.9",
     "stream-tweets": "^1.1.0"
   }
 }

@@ -10,11 +10,11 @@ Meteor.methods({
     },
     getMatches() {
       // Matches.remove({});
-      Meteor.http.call('GET', "http://bombers-hockey.com/matches.json").data.forEach(function(data) {
+      Meteor.http.call('GET', "http://54.170.53.83/matches.json").data.forEach(function(data) {
         console.log(data.timestamp);
-        if (!Matches.find(data.timestamp)) {
+        if (Matches.find({timestamp: data.timestamp}).fetch().length < 1) {
           console.log(data);
-          Matches.insert()
+          Matches.insert(data);
         }
       })
     },

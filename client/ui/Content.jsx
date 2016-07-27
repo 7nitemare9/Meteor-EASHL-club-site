@@ -1,20 +1,42 @@
 import React, { Component } from 'react';
+import TrackerReact from 'meteor/ultimatejs:tracker-react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import Modal, { closeStyle } from 'simple-react-modal';
 
-export default class Content extends Component {
-    render() {
-        return (
-                <div className="b_main_content">
-                  <ReactCSSTransitionGroup
-                    transitionName="contentAnim"
-                    transitionEnterTimeout={1000}
-                    transitionAppearTimeout={1000}
-                    transitionLeaveTimeout={500}
-                    transitionAppear={true}
+export default class Content extends TrackerReact(Component) {
+  constructor() {
+    super();
+    Session.set('showModal', false);
+    Session.set('modalContent', '');
+  }
+
+  createHtml(data) {
+    return ({__html: data});
+  }
+
+  render() {
+      return (
+              <div className="b_main_content">
+                <Modal
+                  show={Session.get('showModal')}
+                  containerStyle={{width: '600px'}}
+                  closeOnOuterClick={true}
+                  onClose={() => {Session.set('showModal', false)}}
                   >
-                    <div key={this.props.content.type.name} style={{width: '636px'}}>{this.props.content}</div>
-                  </ReactCSSTransitionGroup>
-            </div>
-        )
+                  <a style={closeStyle} onClick={() => {Session.set('showModal', false)}}>X</a>
+                  <div dangerouslySetInnerHTML={this.createHtml(Session.get('modalContent'))}></div>
+                  </Modal>
+                <ReactCSSTransitionGroup
+                  transitionName="contentAnim"
+                  transitionEnterTimeout={500}
+                  transitionAppearTimeout={200}
+                  transitionLeaveTimeout={500}
+                  transitionAppear={true}
+                  style={{background: "#202020"}}
+                >
+                  <div key={this.props.content.type.name} style={{width: '636px'}}>{this.props.content}</div>
+                </ReactCSSTransitionGroup>
+          </div>
+      )
     }
 }

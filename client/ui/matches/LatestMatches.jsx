@@ -51,7 +51,7 @@ export default class LatestMatches extends TrackerReact(Component) {
       )
     } else {
       return (
-        <div className="col-lg-3 b_column col-lg-pull-6 col-md-3 col-sm-6 col-xs-12">
+        <div className="col-lg-3 b_column col-lg-pull-6 col-md-4 col-sm-6 col-xs-12">
           <div className="b_box">
             <div className="b_header">
               <img src="/assets/latestgames.png" />

@@ -25,6 +25,12 @@ export default class ShoutBox extends TrackerReact(Component) {
     return Shouts.find().fetch();
   }
 
+  userName() {
+    if (Meteor.user()) {
+      return Meteor.user().profile.gamertag || Meteor.user().profile.name;
+    }
+  }
+
   render() {
     return (
       <div className="col-lg-3 col-md-4 b_column col-sm-6 col-xs-12">
@@ -38,7 +44,7 @@ export default class ShoutBox extends TrackerReact(Component) {
               <input type="hidden"/>
               <textarea className="shout-text" ref="message" cols="30" rows="10"></textarea>
               <p className="shout-name-tag">Name:</p>
-              <input type="text" id="shout_name" ref="name"/>
+              <input type="text" id="shout_name" ref="name" value={this.userName()}/>
               <input type="submit" value="Send"/>
             </form>
           </div>

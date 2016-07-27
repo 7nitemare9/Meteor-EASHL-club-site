@@ -4,6 +4,7 @@ import { mount } from 'react-mounter';
 import { MainLayout } from './layouts/MainLayout.jsx';
 import News from './ui/news/News.jsx';
 import ShowNews from './ui/news/ShowNews.jsx';
+import NewsArchive from './ui/news/Archive.jsx';
 import Lineup  from './ui/lineup/Lineup.jsx';
 import ShowPlayer from './ui/lineup/ShowPlayer.jsx';
 import FanZone from './ui/fanzone/FanZone.jsx';
@@ -14,12 +15,18 @@ import Forum from './ui/forum/Forum.jsx';
 import ForumCategory from './ui/forum/ForumCategory.jsx';
 import ForumThread from './ui/forum/ForumThread.jsx';
 import EditPost from './ui/forum/EditPost.jsx';
+import EditThread from './ui/forum/EditThread.jsx';
+import TeamChat from './ui/teamchat/TeamChat.jsx';
 import { Accounts } from 'meteor/std:accounts-ui';
 import User from './ui/user/User.jsx';
+import Event from './ui/event/Event.jsx';
 import AdmFanZone from './ui/admin/FanZone.jsx';
 import AdmNews from './ui/admin/News.jsx';
 import AdmNewsEdit from './ui/admin/NewsEdit.jsx';
 import AdmUsers from './ui/admin/Users.jsx';
+import AdmForumCategory from './ui/admin/ForumCategory.jsx';
+import AdmSchedule  from './ui/admin/Schedule.jsx';
+import AdmEditEvent from './ui/admin/EditEvent.jsx';
 
 FlowRouter.route('/', {
     action() {
@@ -35,6 +42,14 @@ FlowRouter.route('/news/:id', {
             content: (<ShowNews id={params.id} />)
         })
     }
+});
+
+FlowRouter.route('/news/archive/:page', {
+  action(params) {
+    mount(MainLayout, {
+      content: (<NewsArchive page={params.page} />)
+    })
+  }
 });
 
 FlowRouter.route('/lineup', {
@@ -117,7 +132,31 @@ FlowRouter.route('/forum/editpost/:id', {
   }
 });
 
+FlowRouter.route('/forum/editthread/:id', {
+  action(params) {
+    mount(MainLayout, {
+      content: (<EditThread id={params.id} />)
+    })
+  }
+});
+
+FlowRouter.route('/teamchat', {
+  action() {
+    mount(MainLayout, {
+      content: (<TeamChat />)
+    })
+  }
+});
+
 FlowRouter.route('/login', {
+  action() {
+    mount(MainLayout, {
+      content: (<Accounts.ui.LoginForm />)
+    })
+  }
+});
+
+FlowRouter.route('/signout', {
   action() {
     mount(MainLayout, {
       content: (<Accounts.ui.LoginForm />)
@@ -129,6 +168,14 @@ FlowRouter.route('/user', {
   action() {
     mount(MainLayout, {
       content: (<User />)
+    })
+  }
+});
+
+FlowRouter.route('/event/:id', {
+  action(params) {
+    mount(MainLayout, {
+      content: (<Event id={params.id} />)
     })
   }
 });
@@ -161,6 +208,30 @@ FlowRouter.route('/admin/users', {
   action() {
     mount(MainLayout, {
       content: (<AdmUsers />)
+    })
+  }
+});
+
+FlowRouter.route('/admin/forumcategory', {
+  action() {
+    mount(MainLayout, {
+      content: (<AdmForumCategory />)
+    })
+  }
+});
+
+FlowRouter.route('/admin/schedule', {
+  action() {
+    mount(MainLayout, {
+      content: (<AdmSchedule />)
+    })
+  }
+});
+
+FlowRouter.route('/admin/editevent/:id', {
+  action(params) {
+    mount(MainLayout, {
+      content: (<AdmEditEvent id={params.id} />)
     })
   }
 });

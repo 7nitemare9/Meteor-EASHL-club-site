@@ -18,13 +18,6 @@ export default class AdmFanZone extends Component {
     }
   }
 
-  componentDidMount() {
-    $('#edit').froalaEditor({
-      imageUploadURL: '/admin/imageupload'
-    });
-
-  }
-
   render() {
     if (!Roles.userIsInRole(Meteor.user(), ['Admin'])) {
       return (<div>Access Denied, you don't have permission to add media.</div>);
@@ -37,7 +30,6 @@ export default class AdmFanZone extends Component {
         <form onSubmit={this.uploadImage.bind(this)}>
           <input type="text" ref="video"/>
           <input type="submit" value="Upload" />
-          <textarea id="edit" name="content" />
         </form>
       </div>
     )

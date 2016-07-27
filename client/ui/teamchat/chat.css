@@ -1,0 +1,143 @@
+.chat-list {
+  overflow-y: scroll;
+  max-height: 600px;
+  min-height: 150px;
+  margin-bottom: 10px;
+}
+
+.chat-list img {
+  max-width: 200px !important;
+  max-height: 200px !important;
+  min-width: 0px !important;
+  min-height: 0px !important;
+}
+
+form img {
+  max-width: 200px !important;
+  max-height: 200px !important;
+  min-width: 0px !important;
+  min-height: 0px !important;
+}
+
+.chat-profile {
+  float: left;
+  color: #fbb600;
+  font-size: small;
+  width: 60px;
+  padding-left: 5px;
+  text-indent: 0px;
+  margin-top: 1.5em;
+}
+
+.chat-profile img {
+  min-width: 0% !important;
+  max-width: 40px !important;
+  max-height: 40px !important;
+  border-radius: 50%;
+}
+
+.chat-container {
+  display: block;
+  min-width: 75%;
+}
+
+
+.chat-container p{
+  text-align: left !important;
+}
+
+.chat-name {
+  color: #fbb600;
+  font-size: x-small;
+  /*padding-left: 110px;*/
+  padding-left: 50px;
+  margin-top: 1em;
+  height: 14px;
+}
+
+.chat-time {
+  color: #fbb600;
+  font-size: x-small;
+  float: right;
+  margin-top: -1.2em;
+  padding-right: 14%;
+  text-align: right;
+}
+
+.chat-time-own {
+  color: #fbb600;
+  font-size: x-small;
+  float: right;
+  margin-top: -1.2em;
+  padding-right: 100px;
+  text-align: right;
+}
+
+.chat-message {
+  float: left;
+  width: 80%;
+  background: #464646;
+  position: relative;
+  padding: 5px;
+  padding-left: 10px;
+  margin: 0em 1em 0em 3em;
+  color: #ffffff;
+  border-radius: 10px;
+}
+
+.chat-message:after {
+  content: "";
+  position: absolute;
+  top: 1em;
+  left: -35px;
+  border-style: solid;
+  border-width: 15px 40px 0 0;
+  border-color: transparent #464646;
+}
+
+.chat-message-own {
+  float: left;
+  width: 70%;
+  background: #202020;
+  position: relative;
+  padding: 5px;
+  padding-left: 10px;
+  margin: 0em 1em 0em 6em;
+  color: #ffffff;
+  border-radius: 10px;
+}
+
+.chat-message-own:after {
+  content: "";
+  position: absolute;
+  top: 1em;
+  right: -35px;
+  border-style: solid;
+  border-width: 15px 0 0 40px;
+  border-color: transparent #202020;
+}
+
+
+.single-chat {
+  /*min-height: 80px;*/
+  display: flex;
+}
+
+.edit-delete {
+  font-size: x-small;
+  color: #fbb600;
+  float: right;
+  width: 600px;
+  /*margin-right: 95px;*/
+  margin-top: -14px;
+  /*margin-bottom: 35px;*/
+}
+
+.edit-chat {
+  float: right;
+  padding-right: 5px;
+}
+.delete-chat {
+  float: right;
+  padding-right: 5px;
+}

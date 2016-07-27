@@ -22,7 +22,6 @@ export default class Streaming extends TrackerReact(Component) {
             <div>Loading...</div>
         )
     }
-    console.log(this.getStreams());
     return (
       <div className="col-lg-3 col-md-4 col-lg-pull-6 b_column col-sm-6 col-xs-12">
         <div className="b_box">

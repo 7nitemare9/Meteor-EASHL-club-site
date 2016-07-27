@@ -1,0 +1,8 @@
+.user-form img {
+  min-width: 0% !important;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  float: left;
+  margin-left: 10px !important;
+}

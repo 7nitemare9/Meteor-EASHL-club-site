@@ -78,6 +78,9 @@
   text-indent: 5px;
   color: #aaaaaa;
 }
+.post-message ul {
+  margin-left: 20px;
+}
 .quote {
   color: #ffffff;
   font-style: italic;

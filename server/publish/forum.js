@@ -17,3 +17,18 @@ Meteor.publish('allPostsInThread', function(thread) {
 Meteor.publish('onePost', function(id) {
   return ForumPosts.find({_id: id});
 });
+
+Meteor.publish('latestThreads', function() {
+  if(Roles.userIsInRole(this.userId, ['Admin'])) {
+    return ForumThreads.find({}, {sort: {updatedAt: -1}, limit: 5});
+  }
+  if(Roles.userIsInRole(this.userId, ['Team-member'])) {
+    let categories = ForumCategories.find({available_to: {$ne: 'Admin'}}, {fields: {name: 1}}).fetch();
+    categories = categories.map(data => { return data.name });
+    return ForumThreads.find({category: {$in: categories}}, {sort: {updatedAt: -1}, limit: 5});
+  } else {
+    let categories = ForumCategories.find({available_to: {$nin: ['Team-member', 'Admin']}}, {fields: {name: 1}}).fetch();
+    categories = categories.map(data => { return data.name });
+    return ForumThreads.find({category: {$in: categories}}, {sort: {updatedAt: -1}, limit: 5});
+  }
+});

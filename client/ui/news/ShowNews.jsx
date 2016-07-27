@@ -1,23 +1,21 @@
 import React, { Component } from 'react';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
 import * as Youtube from '../helpers/Youtube.js';
+import SmallNewsBox from './SmallNewsBox.jsx';
 
 export default class ShowNews extends TrackerReact(Component) {
-  constructor() {
-      super();
-      this.state = {
-          subscription: {
-              newsPosts: Meteor.subscribe('allNews')
-          }
-      }
-  }
 
-  componentWillUnmount() {
-      this.state.subscription.newsPosts.stop();
-  }
 
   newsPost() {
     return NewsPosts.findOne(this.props.id);
+  }
+
+  prevPost() {
+    return NewsPosts.findOne({created_at: {$lt: this.newsPost().created_at}});
+  }
+
+  nextPost() {
+    return NewsPosts.findOne({created_at: {$gt: this.newsPost().created_at}});
   }
 
   createHtml(data) {
@@ -34,12 +32,28 @@ export default class ShowNews extends TrackerReact(Component) {
     return <div></div>
   }
 
+  onComplete(err, val) {
+    console.log('deleted news', err, val);
+    if (err) {
+      Bert.Alert(err, 'warning', 'fa-frown');
+    }
+    Bert.alert('News-post deleted', 'success', 'fa-check');
+    FlowRouter.go('/');
+  }
+
   deleteNews() {
-    Meteor.call('deleteNews', this.props.id);
+    Meteor.call('deleteNews', this.props.id, this.onComplete);
   }
 
   render() {
-    if(!this.state.subscription.newsPosts.ready()) {
+    this.state = {
+        subscription: {
+            currentPost: Meteor.subscribe('current', this.props.id)
+        }
+    }
+    this.state.subscription.previousPost = Meteor.subscribe('previous', this.props.id);
+    this.state.subscription.nextPost = Meteor.subscribe('next', this.props.id);
+    if(!this.state.subscription.currentPost.ready()) {
         return (
             <div>Loading...</div>
         )
@@ -58,9 +72,12 @@ export default class ShowNews extends TrackerReact(Component) {
                     <p3>
                       {this.imageOrYoutube()}
                       <br />
-                      <div dangerouslySetInnerHTML={this.createHtml(this.newsPost().text)} ></div>
+                      <div dangerouslySetInnerHTML={this.createHtml(this.newsPost().text)} >
+                      </div>
                     </p3>
                     {edit}
+                    <SmallNewsBox news={this.nextPost()} class="arrow-left" />
+                    <SmallNewsBox news={this.prevPost()} style={{float: "right"}} class="arrow-right"/>
                   </div>
                 </div>
             </div>

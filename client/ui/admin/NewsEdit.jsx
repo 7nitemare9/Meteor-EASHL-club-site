@@ -31,7 +31,15 @@ export default class AdmNewsEdit extends TrackerReact(Component) {
         image: this.image,
         youtube: videoLink,
         text: newsText
-    });
+    }, this.onComplete);
+  }
+
+  onComplete(err, val) {
+    if (err) {
+      Bert.alert(err, 'warning', 'fa-frown');
+    }
+    Bert.alert('News-post updated', 'success', 'fa-check');
+    FlowRouter.go('/');
   }
 
   componentDidUpdate() {

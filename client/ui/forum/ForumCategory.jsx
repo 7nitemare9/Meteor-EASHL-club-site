@@ -23,13 +23,22 @@ export default class ForumCategory extends TrackerReact(Component) {
     return ForumCategories.findOne({name: category});
   }
 
+  onComplete(err, id) {
+    console.log(err, id);
+    if (err) {
+      Bert.alert(err, 'warning', 'fa-frown');
+    }
+    Bert.alert('New thread created', 'success', 'fa-check');
+    FlowRouter.go(`/forum/thread/${id}`);
+  }
+
   addThread(event) {
     event.preventDefault();
     Meteor.call('addForumThread',
                 this.props.name,
                 this.refs.title.value,
                 this.refs.threadContent.value,
-                Meteor.user()._id);
+                Meteor.user()._id, this.onComplete.bind(this));
   }
 
   getUser(userId) {
@@ -67,7 +76,6 @@ export default class ForumCategory extends TrackerReact(Component) {
                 <div className="category">
                   <div className="category-left">
                     <a href={`/forum/thread/${thread._id}`}>{thread.title}</a>
-                    {/*<p>{category.description}</p>*/}
                   </div>
                   <div className="category-right">
                     <p>{`Number of Responses: ${thread.numPosts}`}</p>

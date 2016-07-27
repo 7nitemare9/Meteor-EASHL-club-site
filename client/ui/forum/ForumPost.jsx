@@ -8,7 +8,6 @@ export default class ForumPost extends TrackerReact(Component) {
   }
 
   setQuoteClass() {
-    console.log(this.state.subscription.users.ready());
     let selector = '.quote';
     let count = 0;
     while(true) {
@@ -53,8 +52,24 @@ export default class ForumPost extends TrackerReact(Component) {
 
   }
 
+  onComplete(err, val) {
+    if (err) {
+      Bert.alert(err, 'warning', 'fa-frown');
+    } else if (this.props.thread) {
+      Bert.alert('thread deleted', 'success', 'fa-check');
+      FlowRouter.go(`/forum/${val}`)
+    } else {
+      Bert.alert('post deleted', 'success', 'fa-check');
+      FlowRouter.go(`/forum/thread/${val}`);
+    }
+  }
+
   deletePost() {
-    Meteor.call('deleteForumPost', this.props.post._id);
+    if (this.props.thread) {
+      Meteor.call('deleteForumThread', this.props.post._id, this.onComplete.bind(this));
+    } else {
+      Meteor.call('deleteForumPost', this.props.post._id, this.onComplete.bind(this));
+    }
   }
 
   editLinks(currentUser, creator) {
@@ -62,10 +77,13 @@ export default class ForumPost extends TrackerReact(Component) {
       return (<div></div>);
     }
     if (currentUser._id === creator || Roles.userIsInRole(Meteor.user(), ['Admin'])) {
+      let editLink = this.props.post.category ?
+          <a href={`/forum/editthread/${this.props.post._id}`}>edit </a> :
+          <a href={`/forum/editpost/${this.props.post._id}`}>edit </a>
       return (
         <div>
-          <a href={`/forum/editpost/${this.props.post._id}`}>edit</a>
-          <a href="#" onClick={this.deletePost.bind(this)}>delete</a>
+          {editLink}
+          <a href="#" onClick={this.deletePost.bind(this)}> delete</a>
         </div>
       )
     }

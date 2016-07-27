@@ -10,7 +10,7 @@ export default class NavLogin extends TrackerReact(Component) {
         links.push(
             {link: '/admin/fanzone', name: 'Add Media'},
             {link: '/admin/users', name: 'Manage Users'},
-            {link: '/admin/forum', name: 'Add Forum Category'}
+            {link: '/admin/forumcategory', name: 'Add Forum Category'}
         );
       }
       if (Roles.userIsInRole(Meteor.user(), ['News-poster', 'Admin'])) {
@@ -23,11 +23,15 @@ export default class NavLogin extends TrackerReact(Component) {
             {link: '/admin/schedule', name: 'Schedule Event'}
         );
       }
+      if (Roles.userIsInRole(Meteor.user(), ['Team-member', 'Admin'])) {
+        links.push(
+          {link: '/teamchat', name: 'Team Chat'}
+        );
+      }
       links.push(
         {link: '/user', name: 'Edit Profile'},
-        {link: '/login', name: 'Sign Out'}
+        {link: '/signout', name: 'Sign Out'}
       );
-      console.log(links);
       return links;
     }
 

@@ -25,6 +25,7 @@ ultimatejs:tracker-react
 stolinski:stylus-multi
 
 std:accounts-ui
+std:accounts-bootstrap
 accounts-password
 accounts-facebook
 accounts-google
@@ -38,7 +39,7 @@ themeteorchef:bert
 check
 
 http
-twbs:bootstrap
+#twbs:bootstrap
 
 session
 
@@ -48,3 +49,6 @@ fortawesome:fontawesome
 froala:editor
 meteorhacks:picker
 service-configuration
+kadira:debug
+#lesshardtoofind:react-datepicker
+brentjanderson:buzz

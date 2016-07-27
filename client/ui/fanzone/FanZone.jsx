@@ -3,14 +3,13 @@ import TrackerReact from 'meteor/ultimatejs:tracker-react';
 import MediaImage from './MediaImage.jsx';
 
 export default class FanZone extends TrackerReact(Component) {
-  constructor() {
+  constructor () {
     super();
     this.state = {subscription:
       {media: Meteor.subscribe('allOfFanZone')}};
   }
 
   getMedia() {
-    console.log(Media.find().fetch());
     return Media.find().fetch();
   }
 

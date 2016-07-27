@@ -12,19 +12,24 @@ export default class AdmFanZone extends Component {
     this.image = data.link;
   }
 
+  onComplete(err, val) {
+    console.log(err, val);
+    if (err) {
+      Bert.alert(err, 'warning', 'fa-frown');
+    }
+    Bert.alert('News-post added', 'success', 'fa-check');
+    FlowRouter.go('/');
+  }
+
   uploadNews(event) {
     event.preventDefault();
     let title = this.refs.title.value.trim();
-    console.log(title);
     let videoLink = this.refs.video.value.trim();
-    console.log(videoLink);
     let newsText = this.refs.newsText.value.trim();
-    console.log(newsText);
-    console.log(this.image);
     Meteor.call('addNews', {title: title,
                             image: this.image,
                             youtube: videoLink,
-                            text: newsText});
+                            text: newsText}, this.onComplete.bind(this));
   }
 
   componentDidMount() {
@@ -36,6 +41,7 @@ export default class AdmFanZone extends Component {
   }
 
   render() {
+    console.log(Roles.userIsInRole(Meteor.user(), 'Admin'));
     if (!Roles.userIsInRole(Meteor.user(), ['Admin', 'News-poster'])) {
       return (<div>Access Denied, you don't have permission to post news.</div>);
     }

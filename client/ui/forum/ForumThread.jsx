@@ -74,7 +74,7 @@ export default class ForumThread extends TrackerReact(Component) {
                <p2><a href="/forum">FORUM</a> - <a href={`/forum/${thread.category}`}>{thread.category.toUpperCase()}</a>{` - ${thread.title.toUpperCase()}`}</p2>
              </p>
            </div>
-           <ForumPost post={thread} users={Meteor.users.find().fetch()} />
+           <ForumPost post={thread} users={Meteor.users.find().fetch()} thread={true}/>
            {posts.map((post) => {
              return (
                <ForumPost post={post} users={Meteor.users.find().fetch()}/>

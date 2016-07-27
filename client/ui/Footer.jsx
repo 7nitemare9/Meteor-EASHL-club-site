@@ -4,7 +4,7 @@ export default class Footer extends Component {
 
   render() {
     return (
-      <div className="col-lg-12 col-md-12 col-sm-12-col-xs-12 b_footer">
+      <div className="col-lg-12 col-md-12 col-sm-12-col-xs-12 b_footer b_column">
         <div className="b_box">
           <div className="col-lg-6 col-md-8 col-sm-12">
             <img src="/assets/EA_sports.jpg" width="101" alt=""/>

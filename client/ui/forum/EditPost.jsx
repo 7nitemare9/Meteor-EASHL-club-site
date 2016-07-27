@@ -19,10 +19,25 @@ export default class EditNews extends TrackerReact(Component) {
     $('#edit').froalaEditor('html.insert', this.getPost().message, true);
   }
 
+  componentDidMount() {
+    $('#edit').froalaEditor({
+      imageUploadURL: '/admin/imageupload',
+      height: 300
+    })
+    $('#edit').froalaEditor('html.insert', this.getPost().message, true);
+  }
+
+  onComplete(err, val) {
+    if (err) {
+      Bert.alert('Could not edit past', 'warning', 'fa-frown');
+    }
+    Bert.alert('Post edited', 'success', 'fa-check');
+    FlowRouter.go(`/forum/thread/${val}`);
+  }
+
   updateForumPost(event) {
     event.preventDefault();
-    console.log(this);
-    Meteor.call('updateForumPost', this.props.id, this.refs.postContent.value.trim());
+    Meteor.call('updateForumPost', this.props.id, this.refs.postContent.value.trim(), this.onComplete.bind(this));
   }
 
   getPost() {

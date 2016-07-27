@@ -17,6 +17,11 @@ a {
     color: #FBB600 !important;
 }
 
+/* overriding bootstrap .container and setting min-width for page */
+.container {
+  min-width: 696px !important;
+}
+
     a:hover {
         color: #FBB600 !important;
     }
@@ -212,6 +217,37 @@ input {
     margin-right: 0px;
     margin-left: 16px;
     padding: 0px !important;
+}
+
+.nav-profile {
+  color: #fdbd00;
+  font-family: myriad;
+  font-size: 10px;
+  text-shadow: -2px 1px black;
+  padding-top: 6px !important;
+  float: right;
+}
+
+@keyframes pulse {
+  from { color: #fbb600; text-shadow: -2px 1px black;}
+  50% {color: #fff; text-shadow: -1px 1px #fbb600; }
+  to { color: #fbb600; text-shadow: -2px 1px black; }
+}
+
+.missed {
+  animation-name: pulse;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  font-family: myriad;
+  font-size: 12px;
+  text-shadow: -2px 1px black;
+  margin-top: -9px;
+  float: right;
+}
+
+.ddprofile {
+  float: right !important;
+
 }
 
 a.nav-login p {
@@ -562,4 +598,8 @@ p3 iframe {
 iframe #header img {
     height: 0px;
     min-height: 0px;
+}
+
+form p {
+  text-align: left !important;
 }

@@ -6,17 +6,38 @@ Meteor.methods({
   },
   addEvent(date, image) {
     if (Roles.userIsInRole(Meteor.user(), ['Admin', 'Event-scheduler'])) {
-      Schedule.insert({date: date, image: image});
+      try {
+        Schedule.insert({date: date, image: image});
+      }
+      catch(err) {
+        throw new Meteor.Error(`could not add event: ${err}`);
+      }
+    } else {
+      throw new Meteor.Error("You're not logged in or don't have permission to add events");
     }
   },
   deleteEvent(id) {
-    if (Roles.userIsInRole(Meteor.user(), ['Adimn', 'Event-scheduler'])) {
-      Schedule.remove({_id: id});
+    if (Roles.userIsInRole(Meteor.user(), ['Admin', 'Event-scheduler'])) {
+      try {
+        Schedule.remove({_id: id});
+      }
+      catch(err) {
+        throw new Meteor.Error(`Could not delete event: ${err}`);
+      }
+    } else {
+      throw new Meteor.Error(`You're not logged in or don't have permission to delete events`);
     }
   },
   updateEvent(id, date, image) {
     if (Roles.userIsInRole(Meteor.user(), ['Admin', 'Event-scheduler'])) {
-      Schedule.update({_id: id}, {$set: {date: date, image: image}});
+      try {
+        Schedule.update({_id: id}, {$set: {date: date, image: image}});
+      }
+      catch(err) {
+        throw new Meteor.Error(`Could not update event: ${err}`);
+      }
+    } else {
+      throw new Meteor.Error(`You're not logged in or don't have permission to update events`);
     }
   }
 })

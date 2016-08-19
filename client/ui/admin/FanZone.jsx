@@ -3,17 +3,26 @@ import ImageUpload from './ImageUpload.jsx';
 
 export default class AdmFanZone extends Component {
 
+  onComplete(err, data) {
+    console.log(err, data);
+    if (err) {
+      Bert.alert(err.error, 'warning', 'fa-frown');
+    } else {
+      Bert.alert('Media added', 'success', 'fa-check');
+      FlowRouter.go('/admin/fanzone');
+    }
+  }
+
   logImageLink(data) {
-    console.log(data.link);
-    Meteor.call('insertImage', data.link);
+    Meteor.call('insertImage', data.link, this.onComplete.bind(this));
   }
 
   uploadImage(event) {
     event.preventDefault();
-    let videoLink = this.refs.video.value.trim();
+    var videoLink = this.refs.video.value.trim();
     console.log(videoLink);
     if (videoLink) {
-      Meteor.call('insertVideo', videoLink);
+      Meteor.call('insertVideo', videoLink, this.onComplete.bind(this));
       this.refs.video.value = "";
     }
   }
@@ -23,14 +32,26 @@ export default class AdmFanZone extends Component {
       return (<div>Access Denied, you don't have permission to add media.</div>);
     }
     return (
-      <div><p>FanZone upload</p>
-        <ImageUpload fn={this.logImageLink} />
-        <br />
-        <p>Video Upload</p>
-        <form onSubmit={this.uploadImage.bind(this)}>
-          <input type="text" ref="video"/>
-          <input type="submit" value="Upload" />
-        </form>
+      <div className="b_main_content">
+        <div className="b_box">
+          <div className="box">
+            <div className="content">
+              <p>
+                <img src="/assets/blank.jpg" alt=""/>
+                <p2>FanZone Upload</p2>
+              </p>
+              <div className="adm-content">
+                <ImageUpload fn={this.logImageLink} />
+                <br />
+                Video Upload
+                <form onSubmit={this.uploadImage.bind(this)}>
+                  <input type="text" ref="video"/>
+                  <input type="submit" value="Upload" />
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     )
   }

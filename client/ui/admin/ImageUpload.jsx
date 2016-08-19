@@ -64,13 +64,10 @@ export default class ImageUpload extends Component {
   render() {
     return (
       <div>
-      <br /><br />
-      <p2>Image Upload</p2>
+      Image Upload
         <input id="inputFileToLoad" type="file" onChange={() => {this.encodeImageFileAsUrl(this.props.fn)}} />
-        <img id="uploadedImage" src="test" />
+        <img id="uploadedImage" src={this.props.image} />
         <button id="delete" onClick={this.deleteImage.bind(this)}><p2>Delete</p2></button>
-        <br/>
-        <br/>
         <br/>
       </div>
     )

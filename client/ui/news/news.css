@@ -288,6 +288,7 @@
   position: absolute;
   width: 0px;
   border: 65px solid #707070;
+  border-left: 0px solid;
   border-right-color: transparent;
   margin-right: -70px;
   right: 100%;
@@ -302,6 +303,7 @@
   position: absolute;
   width: 0px;
   border: 65px solid #202020;
+  border-left: 0px solid;
   border-right-color: transparent;
   margin-right: -69px;
   right: 100%;
@@ -318,6 +320,7 @@
   position: absolute;
   width: 0px;
   border: 65px solid #707070;
+  border-right: 0px solid;
   border-left-color: transparent;
   margin-left: -70px;
   left: 100%;
@@ -332,6 +335,7 @@
   position: absolute;
   width: 0px;
   border: 65px solid #202020;
+  border-right: 0px solid;
   border-left-color: transparent;
   margin-left: -69px;
   left: 100%;

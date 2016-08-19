@@ -31,7 +31,7 @@ export default class AdmNewsEdit extends TrackerReact(Component) {
         image: this.image,
         youtube: videoLink,
         text: newsText
-    }, this.onComplete);
+    }, this.onComplete.bind(this));
   }
 
   onComplete(err, val) {
@@ -69,15 +69,15 @@ export default class AdmNewsEdit extends TrackerReact(Component) {
             <div className="content">
               <p>
                 <img src="/assets/blank.jpg" alt=""/>
-                <p2>Add News</p2>
+                <p2>Edit news</p2>
               </p>
-              <div style={{margin: "10px"}}>
+              <div className="adm-content">
                 <br />
                 <br />
                 <form onSubmit={this.updateNews.bind(this)}>
                   <p2>Title</p2>
                   <input type="text" ref="title" defaultValue={newsPost.title} />
-                  <ImageUpload fn={this.logImageLink.bind(this)} />
+                  <ImageUpload image={newsPost.image} fn={this.logImageLink.bind(this)} />
                   <p2>Video Upload</p2>
                   <input type="text" ref="video" defaultValue={newsPost.youtube}/>
                   <textarea id="edit" name="content" ref="newsText" />

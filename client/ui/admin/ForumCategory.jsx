@@ -16,18 +16,32 @@ export default class AdmForumCategory extends Component {
 
   render() {
     return (
-      <form onSubmit={this.addCategory.bind(this)}>
-      Category:
-        <input type="text" ref="category" />
-        Description:
-        <input type="text" ref="description" />
-        Restrict forum to
-        Admin:
-        <input type="checkbox" ref="Admin" />
-        Team-members:
-        <input type="checkbox" ref="TeamMember" />
-        <input type="submit" value="Submit" />
-      </form>
+      <div className="b_main_content">
+        <div className="b_box">
+          <div className="box">
+            <div className="content">
+              <p>
+                <img src="/assets/blank.jpg" alt=""/>
+                <p2>Add Forum Category</p2>
+              </p>
+              <div className="adm-content">
+                <form onSubmit={this.addCategory.bind(this)}>
+                Category:
+                  <input type="text" ref="category" />
+                  Description:
+                  <input type="text" ref="description" />
+                  <br/>Restrict forum to<br/>
+                  Admin:
+                  <input type="checkbox" ref="Admin" />
+                  Team-members:
+                  <input type="checkbox" ref="TeamMember" />
+                  <input type="submit" value="Submit" />
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     )
   }
 }

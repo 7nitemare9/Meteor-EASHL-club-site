@@ -5,6 +5,9 @@ export function youtubeToImage(image) {
       } else if (image.indexOf('.be/') !== -1) {
         return (image.replace(image.substring(0, image.indexOf('.be/') + 4), 'http://img.youtube.com/vi/').concat('/0.jpg'));
       } else if (image.indexOf('watch?v=') !== -1) {
+        if (image.indexOf('&list') !== -1) {
+          return (image.replace(image.substring(0, image.indexOf('ch?v=') + 5), 'http://img.youtube.com/vi/').replace(image.substring(image.indexOf('&list'), image.length), '').concat('/0.jpg'));
+        }
         return (image.replace(image.substring(0, image.indexOf('ch?v=') + 5), 'http://img.youtube.com/vi/').concat('/0.jpg'));
       } else {
         return "";

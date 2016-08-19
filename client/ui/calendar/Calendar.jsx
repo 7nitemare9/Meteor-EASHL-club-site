@@ -19,7 +19,7 @@ export default class Calendar extends TrackerReact(Component) {
 
   render() {
     return (
-      <div className="col-lg-3 col-lg-pull-6 col-md-4 b_column col-sm-6 col-xs-12">
+      <div className="col-lg-3 col-lg-pull-6 col-md-4 b_column col-sm-6 col-xs-6">
         <div className="b_box">
           <div className="b_header">
             <img src="/assets/calendar.png" alt=""/>

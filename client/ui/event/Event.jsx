@@ -7,8 +7,17 @@ export default class Event extends TrackerReact(Component) {
     return Schedule.findOne({_id: this.props.id});
   }
 
+  onComplete(err, data) {
+    if (err) {
+      Bert.alert(err, 'warning', 'fa-frown');
+    } else {
+      Bert.alert('Event deleted', 'success', 'fa-check');
+      FlowRouter.go('/');
+    }
+  }
+
   deleteEvent() {
-    Meteor.call('deleteEvent', this.props.id);
+    Meteor.call('deleteEvent', this.props.id, this.onComplete.bind(this));
   }
 
   render() {

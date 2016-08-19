@@ -17,6 +17,7 @@ import ForumThread from './ui/forum/ForumThread.jsx';
 import EditPost from './ui/forum/EditPost.jsx';
 import EditThread from './ui/forum/EditThread.jsx';
 import TeamChat from './ui/teamchat/TeamChat.jsx';
+import ClubInfo from './ui/clubinfo/ClubInfo.jsx';
 import { Accounts } from 'meteor/std:accounts-ui';
 import User from './ui/user/User.jsx';
 import Event from './ui/event/Event.jsx';
@@ -27,6 +28,9 @@ import AdmUsers from './ui/admin/Users.jsx';
 import AdmForumCategory from './ui/admin/ForumCategory.jsx';
 import AdmSchedule  from './ui/admin/Schedule.jsx';
 import AdmEditEvent from './ui/admin/EditEvent.jsx';
+import AdmClubInfo from './ui/admin/ClubInfo.jsx';
+import AdmEditClubInfo from './ui/admin/EditClubInfo.jsx';
+import AdmStreams from './ui/admin/Streams.jsx';
 
 FlowRouter.route('/', {
     action() {
@@ -148,6 +152,14 @@ FlowRouter.route('/teamchat', {
   }
 });
 
+FlowRouter.route('/clubinfo/:page', {
+  action(params) {
+    mount(MainLayout, {
+      content: (<ClubInfo page={params.page} />)
+    })
+  }
+})
+
 FlowRouter.route('/login', {
   action() {
     mount(MainLayout, {
@@ -232,6 +244,30 @@ FlowRouter.route('/admin/editevent/:id', {
   action(params) {
     mount(MainLayout, {
       content: (<AdmEditEvent id={params.id} />)
+    })
+  }
+});
+
+FlowRouter.route('/admin/clubinfo', {
+  action() {
+    mount(MainLayout, {
+      content: (<AdmClubInfo />)
+    })
+  }
+});
+
+FlowRouter.route('/admin/editclubinfo/:id', {
+  action(params) {
+    mount(MainLayout, {
+      content: (<AdmEditClubInfo id={params.id} />)
+    })
+  }
+});
+
+FlowRouter.route('/admin/streams', {
+  action() {
+    mount(MainLayout, {
+      content: (<AdmStreams />)
     })
   }
 });

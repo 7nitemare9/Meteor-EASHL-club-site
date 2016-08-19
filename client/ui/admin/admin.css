@@ -1,3 +1,7 @@
 .users-info p {
   float: left;
 }
+
+.adm-content {
+  margin: 10px;
+}

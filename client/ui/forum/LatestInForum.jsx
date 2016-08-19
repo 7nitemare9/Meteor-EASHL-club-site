@@ -15,7 +15,7 @@ export default class LatestInForum extends TrackerReact(Component) {
     let empty = [0, 0, 0, 0, 0];
     empty = empty.slice(0, 5 - this.getLatestThreads().length);
     return (
-      <div className="col-lg-3 b_column col-md-4 col-sm-6 col-xs-12">
+      <div className="col-lg-3 b_column col-md-4 col-sm-6 col-xs-6">
         <div className="b_box latest-forum">
           <div className="b_header">
             <img src="/assets/forumposts.png" />

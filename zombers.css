@@ -18,8 +18,32 @@ a {
 }
 
 /* overriding bootstrap .container and setting min-width for page */
+
 .container {
-  min-width: 696px !important;
+  min-width: 636px !important;
+}
+@media (max-width: 700px) {
+  .container {
+    min-width: 636px;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .col-lg-6 {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .col-xs-6 {
+    width: 317px;
+    padding-left: 7px;
+    padding-right: 7px;
+  }
+
 }
 
     a:hover {
@@ -602,4 +626,12 @@ iframe #header img {
 
 form p {
   text-align: left !important;
+}
+
+.navbar-collapse.in li {
+  width: 100%;
+}
+
+.navbar-nav {
+  margin: 0;
 }

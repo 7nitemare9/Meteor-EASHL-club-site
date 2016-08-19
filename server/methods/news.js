@@ -15,7 +15,8 @@ Meteor.methods({
       if (Roles.userIsInRole(Meteor.user(), ['Admin', 'News-poster'])) {
         try {
           data.created_at = new Date();
-          NewsPosts.insert(data);
+          const id = NewsPosts.insert(data);
+          Meteor.call('postTweet', `${data.title} http://bombers-hockey.com/news/${id}`);
           return true;
         }
         catch(err) {

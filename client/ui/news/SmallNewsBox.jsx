@@ -9,7 +9,7 @@ export default class SmallNewsBox extends Component {
       return (<div></div>)
     }
     return (
-      <div key={this.props.news._id} className={`col-lg-4 visible-lg ${this.props.class}`}
+      <div key={this.props.news._id} className={`col-lg-4 col-md-4 col-sm-4 col-xs-4 ${this.props.class}`}
       style={style} >
           <div className="b_box old-news-box" >
               <img src={NewsHelper.getImage(this.props.news)} />

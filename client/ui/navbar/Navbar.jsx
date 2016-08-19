@@ -21,7 +21,7 @@ export default class Navbar extends Component {
                     <NavButton target="lineup" route="/lineup" />
                     <NavButton target="stats" route="/statistics" />
                     <NavButton target="media" route="/fanzone" />
-                    <NavButton target="info" route="/infos" />
+                    <NavButton target="info" route="/clubinfo/0" />
                     <NavButton target="results" route="/matches/list/0" />
                     <NavDropdown target="links" sites={sites} />
                     <NavButton target="forum" route="/forum" />

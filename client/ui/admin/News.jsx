@@ -13,7 +13,6 @@ export default class AdmFanZone extends Component {
   }
 
   onComplete(err, val) {
-    console.log(err, val);
     if (err) {
       Bert.alert(err, 'warning', 'fa-frown');
     }
@@ -41,7 +40,6 @@ export default class AdmFanZone extends Component {
   }
 
   render() {
-    console.log(Roles.userIsInRole(Meteor.user(), 'Admin'));
     if (!Roles.userIsInRole(Meteor.user(), ['Admin', 'News-poster'])) {
       return (<div>Access Denied, you don't have permission to post news.</div>);
     }
@@ -54,7 +52,7 @@ export default class AdmFanZone extends Component {
                 <img src="/assets/blank.jpg" alt=""/>
                 <p2>Add News</p2>
               </p>
-              <div style={{margin: "10px"}}>
+              <div className="adm-content">
                 <br />
                 <br />
                 <form onSubmit={this.uploadNews.bind(this)}>

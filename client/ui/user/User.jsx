@@ -36,13 +36,16 @@ export default class User extends TrackerReact(Component) {
               <img src="/assets/blank.jpg" alt=""/>
               <p2>{`USER PROFILE FOR ${title.toUpperCase()}`}</p2>
             </p>
+            <div className="adm-content">
+              <form onSubmit={this.updateUser.bind(this)} className="user-form">
+                Name: <input type="text" ref="name" defaultValue={user.name} />
+                Gamertag: <input type="text" ref="gamertag" defaultValue={user.gamertag} />
+                <br/>
+                Profile image: <img src={user.image} width="64" height="64" /><br/><br/><ImageUpload fn={this.setImageLink.bind(this)}/>
+                <input type="submit" value="Update" />
+              </form>
+            </div>
           </div>
-          <form onSubmit={this.updateUser.bind(this)} className="user-form">
-            <p>Name: </p><input type="text" ref="name" defaultValue={user.name} />
-            <p>Gamertag: </p><input type="text" ref="gamertag" defaultValue={user.gamertag} />
-            <p>Profile image: </p><img src={user.image} width="64" height="64" /><br/><br/><ImageUpload fn={this.setImageLink.bind(this)}/>
-            <input type="submit" value="Update" />
-          </form>
         </div>
       </div>
     )

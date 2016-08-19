@@ -10,7 +10,7 @@ export default class OldNews extends Component {
             <div className="border-box-set">
                 {this.props.newsData.slice(5, 11).map((data) => {
                     return (
-                      <SmallNewsBox news={data} />
+                      <SmallNewsBox news={data} class="visible-lg"/>
                 )})}
                 <div className="b_box archive-box">
                     <a href="/news/archive/0">

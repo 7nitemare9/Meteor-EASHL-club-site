@@ -5,7 +5,7 @@ Picker.middleware( multerMid.any() );
 
 Picker.route( '/admin/imageupload', function( params, request, response, next ) {
   Imgur.upload({
-    apiKey: `Bearer ${process.env.IMGUR_ACCESS_TOKEN}`,
+    apiKey: `Bearer ${ImgurTokens.findOne({}).access}`,
     image: request.files[0].buffer.toString('base64'),
     album: "8Z4IE"
   }, (error, data) => {

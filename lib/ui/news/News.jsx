@@ -8,15 +8,21 @@ import * as NewsHelper from '../helpers/NewsHelper.js';
 export default class News extends TrackerReact(Component) {
     constructor() {
         super();
+        this.secondsToWait = 5;
+        Session.set('counter', 0);
+        console.log(Session.get('counter'));
+        if (Meteor.isClient) {
+          Session.set('timer', Meteor.setInterval(this.changeImage.bind(this), this.secondsToWait * 1000));
+        }
+        // Session.set('timer', timer);
         this.state = {
             subscription: {
                 newsPosts: Meteor.subscribe('frontPageNews')
             }
         }
-        this.secondsToWait = 5;
-        Session.set('counter', 0);
-        Session.set('timer', Meteor.setInterval(this.changeImage.bind(this), this.secondsToWait * 1000));
-        // Session.set('timer', timer);
+    }
+
+    componentDidMount() {
     }
 
     componentWillUnmount() {

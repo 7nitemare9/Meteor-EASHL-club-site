@@ -2,6 +2,7 @@ import StreamTweets from 'stream-tweets';
 import Request from 'request';
 
 Meteor.methods({
+  //get from old site.
     getTweets() {
       Meteor.http.call('GET', "http://bombers-hockey.com/tweets.json").data.forEach((data) => {
         if (!Tweets.findOne({id: data.id})) {

@@ -8,11 +8,15 @@ export default class ForumThread extends TrackerReact(Component) {
    }
 
    componentDidUpdate() {
-     $('#edit').froalaEditor({
-       imageUploadURL: '/admin/imageupload',
-       height: 300
-     });
-     $('#post-form').hide();
+    DocHead.loadScript('https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/froala_editor.pkgd.min.js', (err, data) => {
+      if(!err) {
+        $('#edit').froalaEditor({
+          imageUploadURL: '/admin/imageupload',
+          height: 300
+        });
+        $('#post-form').hide();
+      }
+    });
    }
 
    showForm() {

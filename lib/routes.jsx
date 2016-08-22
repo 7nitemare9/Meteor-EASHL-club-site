@@ -1,5 +1,6 @@
 import React from 'react';
 import { mount } from 'react-mounter';
+// import { render } from 'meteor/kadira:react-layout';
 
 import { MainLayout } from './layouts/MainLayout.jsx';
 import News from './ui/news/News.jsx';
@@ -31,6 +32,11 @@ import AdmEditEvent from './ui/admin/EditEvent.jsx';
 import AdmClubInfo from './ui/admin/ClubInfo.jsx';
 import AdmEditClubInfo from './ui/admin/EditClubInfo.jsx';
 import AdmStreams from './ui/admin/Streams.jsx';
+// const mount = render;
+
+if(Meteor.isServer) {
+  FlowRouter.setDeferScriptLoading(true);
+}
 
 FlowRouter.route('/', {
     action() {

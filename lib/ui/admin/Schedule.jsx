@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
-import 'react-date-picker/index.css'
-import { DateField, Calendar } from 'react-date-picker'
+// import 'react-date-picker/index.css';
+import { DateField, Calendar } from 'react-date-picker';
 
 export default class Schedule extends TrackerReact(Component) {
 

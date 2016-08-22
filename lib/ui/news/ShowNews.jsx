@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
 import * as Youtube from '../helpers/Youtube.js';
+import * as NewsHelper from '../helpers/NewsHelper.js';
 import SmallNewsBox from './SmallNewsBox.jsx';
 
 export default class ShowNews extends TrackerReact(Component) {
@@ -20,6 +21,11 @@ export default class ShowNews extends TrackerReact(Component) {
 
   createHtml(data) {
     return ({__html: data});
+  }
+
+  componentWillUnmount() {
+    console.log('show nows will unmount');
+    $('head').remove(this.newsPost().facebook);
   }
 
   imageOrYoutube() {
@@ -58,6 +64,10 @@ export default class ShowNews extends TrackerReact(Component) {
             <div>Loading...</div>
         )
     }
+    DocHead.addMeta({property: 'og:title', content: this.newsPost().title});
+    DocHead.addMeta({property: 'og:image', content: NewsHelper.getImage(this.newsPost())});
+    DocHead.addMeta({property: 'fb:app_id', content: '989352457849190'});
+    DocHead.addMeta({property: 'og:url', content: `http://bombers-hockey.com/news/${this.newsPost()._id}`});
     let edit = Roles.userIsInRole(Meteor.user(), ['Admin', 'News-poster'])
     ? <div><a href={`/admin/newsedit/${this.props.id}`}>Edit</a>
       <a href="#" onClick={this.deleteNews.bind(this)}>Delete</a></div>

@@ -55,3 +55,5 @@ service-configuration@1.0.10
 brentjanderson:buzz
 crosswalk@1.6.2
 shell-server
+practicalmeteor:mocha
+practicalmeteor:chai

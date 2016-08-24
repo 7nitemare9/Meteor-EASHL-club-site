@@ -25,7 +25,6 @@ export default class ShowNews extends TrackerReact(Component) {
 
   componentWillUnmount() {
     console.log('show nows will unmount');
-    $('head').remove(this.newsPost().facebook);
   }
 
   imageOrYoutube() {
@@ -68,7 +67,7 @@ export default class ShowNews extends TrackerReact(Component) {
     DocHead.addMeta({property: 'og:image', content: NewsHelper.getImage(this.newsPost())});
     DocHead.addMeta({property: 'fb:app_id', content: '989352457849190'});
     DocHead.addMeta({property: 'og:url', content: `http://bombers-hockey.com/news/${this.newsPost()._id}`});
-    let edit = Roles.userIsInRole(Meteor.user(), ['Admin', 'News-poster'])
+    const edit = Roles.userIsInRole(Meteor.user(), ['Admin', 'News-poster'])
     ? <div><a href={`/admin/newsedit/${this.props.id}`}>Edit</a>
       <a href="#" onClick={this.deleteNews.bind(this)}>Delete</a></div>
     : <br/>;

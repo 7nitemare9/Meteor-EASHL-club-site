@@ -20,15 +20,17 @@ export default class AdmEditEvent extends TrackerReact(Component) {
 
   updateEvent(event) {
     event.preventDefault();
-    Meteor.call('updateEvent', this.props.id, this.refs.dateAndTime.p.value, this.refs.image.value, this.onComplete.bind(this));
+    const eventObject = {
+      date: this.refs.dateAndTime.p.value,
+      image: this.refs.image.value,
+      description: this.refs.description.value.trim(),
+      signupable: this.refs.signupable.checked
+    }
+    Meteor.call('updateEvent', this.props.id, eventObject, this.onComplete.bind(this));
   }
 
   getEvent() {
-    return Schedule.findOne({_id: this.props.id}).date;
-  }
-
-  getImage() {
-    return Schedule.findOne({_id: this.props.id}).image;
+    return Schedule.findOne({_id: this.props.id});
   }
 
   setScheduleImages() {
@@ -52,6 +54,7 @@ export default class AdmEditEvent extends TrackerReact(Component) {
     if (!Session.get('images')) {
       return (<div>Loading images...</div>)
     }
+    console.log(this.getEvent());
     return (
       <div className="b_main_content">
         <div className="b_box">
@@ -66,16 +69,23 @@ export default class AdmEditEvent extends TrackerReact(Component) {
                 <DateField
                   ref="dateAndTime"
                   dateFormat="YYYY-MM-DD HH:mm"
-                  defaultValue={this.getEvent()}
+                  defaultValue={this.getEvent().date}
                   date={Date.now()}
                   />
-                  <select ref="image" defaultValue={this.getImage()}>
+                  <select ref="image" defaultValue={this.getEvent().image}>
                     {Session.get('images').map((image) => {
                     return (
                       <option value={`assets/schedule/${image}`}>{image.substring(0, image.length - 4)}</option>
                       )
                     })}
                   </select>
+                  <br/>
+                  description:
+                  <input type="text" ref="description" defaultValue={this.getEvent().description}/>
+                  <br/>
+                  Allow signing up to event:
+                  <input type="checkbox" ref="signupable" defaultChecked={this.getEvent().signupable}/>
+                  <br/>
                   <input type="submit" value="submit" />
                 </form>
               </div>

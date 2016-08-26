@@ -16,7 +16,13 @@ export default class Schedule extends TrackerReact(Component) {
 
   addEvent(event) {
     event.preventDefault();
-    Meteor.call('addEvent', this.refs.dateAndTime.p.value, this.refs.image.value, this.onComplete.bind(this));
+    let eventObject = {
+      date: this.refs.dateAndTime.p.value,
+      image: this.refs.image.value.trim(),
+      description: this.refs.description.value.trim(),
+      signupable: this.refs.signupable.checked
+    }
+    Meteor.call('addEvent', eventObject, this.onComplete.bind(this));
   }
 
   render() {
@@ -52,6 +58,13 @@ export default class Schedule extends TrackerReact(Component) {
                       )
                     })}
                   </select>
+                  <br/>
+                  description:
+                  <input type="text" ref="description" />
+                  <br/>
+                  Allow signing up to event:
+                  <input type="checkbox" ref="signupable" />
+                  <br/>
                   <input type="submit" value="submit" />
                 </form>
               </div>

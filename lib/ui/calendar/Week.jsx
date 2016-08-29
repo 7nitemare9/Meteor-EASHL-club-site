@@ -12,7 +12,7 @@ export default class Week extends TrackerReact(Component) {
       FlowRouter.go(`/event/${event._id}`);
     }
   }
-  
+
   render() {
     this.state = {subscription: {schedule: Meteor.subscribe('events')}}
     if (!this.state.subscription.schedule.ready()) {
@@ -27,14 +27,14 @@ export default class Week extends TrackerReact(Component) {
             let event = this.hasScheduledEvent(thisday);
             if (thisday === today) {
               return (
-                <span onClick={() => this.goToEvent(event)} key={`day${day}`} className="cal-event-today">
+                <span title={event.description} onClick={() => this.goToEvent(event)} key={`day${day}`} className="cal-event-today">
                   <img src={`/${event.image}`} />
                   {event.date.substring(event.date.length - 5, event.date.length)}
                 </span>
               )
             }
             return (
-              <span onClick={() => this.goToEvent(event)} key={`day${day}`} className="cal-event">
+              <span title={event.description} onClick={() => this.goToEvent(event)} key={`day${day}`} className="cal-event">
                 <img src={`/${event.image}`} />
                 {event.date.substring(event.date.length - 5, event.date.length)}
               </span>

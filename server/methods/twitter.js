@@ -17,8 +17,9 @@ Meteor.methods({
                      token: process.env.TW_TOKEN,
                      token_secret: process.env.TW_TOKEN_SECRET};
       const following = ['50004938', '33936681', '25660180'];
+      const languages = ['en', 'sv'];
       const st = new StreamTweets(TWITTERKEYS, false);
-      st.stream({follow: following}, Meteor.bindEnvironment(function(result) {
+      st.stream({follow: following,   language: languages}, Meteor.bindEnvironment(function(result) {
         if (following.indexOf(result.user.id.toString()) != -1 && !result.in_reply_to_user_id) {
             if (!Tweets.findOne({id: result.id})) {
               Tweets.insert(result);

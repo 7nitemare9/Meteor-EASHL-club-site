@@ -47,10 +47,9 @@ export default class Event extends TrackerReact(Component) {
             <div className="content">
               <p>
                 <img src="/assets/blank.jpg" alt=""/>
+                <p2>{ `${this.getEvent().date}  -  ${this.getEvent().description.toUpperCase()}`}</p2>
               </p>
               <div>
-                <p>{this.getEvent().date}</p>
-                <p3>{this.getEvent().description}</p3>
                 {registeredUsers}
                 {signupable}
                 {links}

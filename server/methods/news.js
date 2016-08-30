@@ -30,18 +30,6 @@ function youtubeToImage(image) {
 
 
 Meteor.methods({
-    getNewsData() {
-        Meteor.http.call('GET', "http://54.170.53.83/posts.json").data.forEach(function(data){
-            console.log(data.title);
-            NewsPosts.insert({
-                title: data.title,
-                image: data.image,
-                youtube: data.youtube,
-                text: data.text,
-                id: data.id
-            });
-        });
-    },
     addNews(data) {
       if (Roles.userIsInRole(Meteor.user(), ['Admin', 'News-poster'])) {
         try {

@@ -11,10 +11,15 @@ export default class LatestMatches extends TrackerReact(Component) {
         latestMatches: Meteor.subscribe('lastMatches')
       }
     }
+    this.state.subscription.settings = Meteor.subscribe('sharedSettings');
   }
 
   componentWillUnmount() {
     this.state.subscription.latestMatches.stop();
+  }
+
+  getSetting(setting) {
+    return SharedSettings.findOne({name: setting}).value;
   }
 
   matchData() {
@@ -32,7 +37,7 @@ export default class LatestMatches extends TrackerReact(Component) {
   }
 
   winOrLoss(data) {
-    if (data.game_teams[1].name == "Bombers Hockey") {
+    if (data.game_teams[1].name == this.getSetting('teamName')) {
       if (data.game_teams[1].score > data.game_teams[0].score) {
         return "#4a4";
       }

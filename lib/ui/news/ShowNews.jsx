@@ -50,6 +50,10 @@ export default class ShowNews extends TrackerReact(Component) {
     Meteor.call('deleteNews', this.props.id, this.onComplete);
   }
 
+  getSetting(setting) {
+    return SharedSettings.findOne({name: setting}).value;
+  }
+
   render() {
     this.state = {
         subscription: {
@@ -58,6 +62,7 @@ export default class ShowNews extends TrackerReact(Component) {
     }
     this.state.subscription.previousPost = Meteor.subscribe('previous', this.props.id);
     this.state.subscription.nextPost = Meteor.subscribe('next', this.props.id);
+    this.state.subscription.settings = Meteor.subscribe('sharedSettings');
     if(!this.state.subscription.currentPost.ready()) {
         return (
             <div>Loading...</div>
@@ -65,8 +70,8 @@ export default class ShowNews extends TrackerReact(Component) {
     }
     DocHead.addMeta({property: 'og:title', content: this.newsPost().title});
     DocHead.addMeta({property: 'og:image', content: NewsHelper.getImage(this.newsPost())});
-    DocHead.addMeta({property: 'fb:app_id', content: '989352457849190'});
-    DocHead.addMeta({property: 'og:url', content: `http://bombers-hockey.com/news/${this.newsPost()._id}`});
+    DocHead.addMeta({property: 'fb:app_id', content: this.getSetting('fbAppId')});
+    DocHead.addMeta({property: 'og:url', content: `${this.getSetting('url')}/news/${this.newsPost()._id}`});
     const edit = Roles.userIsInRole(Meteor.user(), ['Admin', 'News-poster'])
     ? <div><a href={`/admin/newsedit/${this.props.id}`}>Edit</a>
       <a href="#" onClick={this.deleteNews.bind(this)}>Delete</a></div>

@@ -20,8 +20,12 @@ export default class ListMatches extends TrackerReact(Component) {
     return Matches.find({}, {sort: {timestamp: -1}, skip: this.skipValue(), limit: 15}).fetch();
   }
 
+  getSetting(setting) {
+    return SharedSettings.findOne({name: setting}).value;
+  }
+
   resultColor(match) {
-    if (match.game_teams[0].name === "Bombers Hockey") {
+    if (match.game_teams[0].name === this.getSetting('teamName')) {
       if (match.game_teams[0].score > match.game_teams[1].score) {
         return "#4a4";
       }
@@ -36,6 +40,7 @@ export default class ListMatches extends TrackerReact(Component) {
   render() {
     this.state = {subscription:
       {matches: Meteor.subscribe('tenMatches', this.props.page * 15)}};
+    this.state.subscription.setting = Meteor.subscribe('sharedSettings');
     if (!this.state.subscription.matches.ready()) {
       return (<div>Loading...</div>);
     }

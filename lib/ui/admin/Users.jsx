@@ -14,7 +14,11 @@ export default class AdmUsers extends TrackerReact(Component) {
   }
 
   toggleRole(id, role) {
-    Meteor.call('toggleRole', id, role);
+    if (Meteor.user()._id === id && role === 'Admin') {
+      Bert.alert('You can not remove you own Admin right', 'warning', 'fixed-top', 'fa-warning');
+    } else {
+      Meteor.call('toggleRole', id, role);
+    }
   }
 
   checked(id, role) {
@@ -32,9 +36,6 @@ export default class AdmUsers extends TrackerReact(Component) {
     }
     if (!this.state.subscription.users.ready()) {
       return (<div>Users<p>Loading...</p></div>)
-    }
-    if (!Roles.userIsInRole(Meteor.user(), ['Admin'])) {
-      return (<div>Access Denied, you don't have permission to manage users.</div>);
     }
     return (
       <div className="b_main_content">

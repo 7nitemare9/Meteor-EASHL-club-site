@@ -88,6 +88,7 @@ export default class AdmUsers extends TrackerReact(Component) {
                   </thead>
                   <tbody>
                     {this.getUsers().map((user) => {
+                      const deletable = user._id === Meteor.user()._id ? <td></td> : <td><a href="" onClick={this.deleteUser.bind(this, user)}>delete</a></td>;
                       return (
                         <tr>
                           <td>{user.profile.gamertag || user.profile.name}</td>
@@ -95,7 +96,7 @@ export default class AdmUsers extends TrackerReact(Component) {
                           <td><input type="checkbox" readOnly={true} checked={this.checked(user._id, 'Team-member')} onClick={() => {this.toggleRole(user._id, 'Team-member')}} /></td>
                           <td><input type="checkbox" readOnly={true} checked={this.checked(user._id, 'News-poster')} onClick={() => {this.toggleRole(user._id, 'News-poster')}} /></td>
                           <td><input type="checkbox" readOnly={true} checked={this.checked(user._id, 'Event-scheduler')} onClick={() => {this.toggleRole(user._id, 'Event-scheduler')}} /></td>
-                          <td><a href="" onClick={this.deleteUser.bind(this, user)}>delete</a></td>
+                          {deletable}
                         </tr>
                       )
                     })}

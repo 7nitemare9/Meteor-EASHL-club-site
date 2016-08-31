@@ -7,10 +7,39 @@ export default class AdmUsers extends TrackerReact(Component) {
     this.state = {subscription: {
       users: Meteor.subscribe('allUsers')
     }}
+    this.state.subscription.deletedUsers = Meteor.subscribe('deletedUsers');
+  }
+  componentDidMount() {
+    $("#deleted-users").hide();
+  }
+
+  componentDidUpdate() {
+    console.log('component did update');
+    $("#deleted-users").hide();
   }
 
   getUsers() {
     return Meteor.users.find().fetch();
+  }
+
+  getDeletedUsers() {
+    return DeletedUsers.find().fetch();
+  }
+
+  onComplete(err, data) {
+    if (err) {
+      Bert.alert(err, 'warning');
+    } else {
+      Bert.alert(data, 'success');
+    }
+  }
+
+  deleteUser(user) {
+    Meteor.call('moveToDeleted', user, this.onComplete.bind(this));
+  }
+
+  reinsertUser(id) {
+    Meteor.call('returnDeletedUser', id, this.onComplete.bind(this));
   }
 
   toggleRole(id, role) {
@@ -19,6 +48,10 @@ export default class AdmUsers extends TrackerReact(Component) {
     } else {
       Meteor.call('toggleRole', id, role);
     }
+  }
+
+  toggleDeletedUsers() {
+    $("#deleted-users").toggle();
   }
 
   checked(id, role) {
@@ -62,11 +95,32 @@ export default class AdmUsers extends TrackerReact(Component) {
                           <td><input type="checkbox" readOnly={true} checked={this.checked(user._id, 'Team-member')} onClick={() => {this.toggleRole(user._id, 'Team-member')}} /></td>
                           <td><input type="checkbox" readOnly={true} checked={this.checked(user._id, 'News-poster')} onClick={() => {this.toggleRole(user._id, 'News-poster')}} /></td>
                           <td><input type="checkbox" readOnly={true} checked={this.checked(user._id, 'Event-scheduler')} onClick={() => {this.toggleRole(user._id, 'Event-scheduler')}} /></td>
+                          <td><a href="" onClick={this.deleteUser.bind(this, user)}>delete</a></td>
                         </tr>
                       )
                     })}
                   </tbody>
                 </table>
+                <div>
+                  <p3><a onClick={this.toggleDeletedUsers}>Deleted Users</a></p3>
+                  <table id="deleted-users">
+                    <thead>
+                      <tr>
+                        <td>Gamertag/Name</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {this.getDeletedUsers().map((user) => {
+                        return (
+                          <tr>
+                            <td>{user.profile.gamertag || user.profile.name}</td>
+                            <td><a href="" onClick={this.reinsertUser.bind(this, user._id)}>re-insert user</a></td>
+                          </tr>
+                        )
+                      })}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>

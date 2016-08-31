@@ -40,7 +40,7 @@ export default class AdmFanZone extends Component {
         });
       }
     });
-    
+
 
   }
 

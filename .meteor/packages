@@ -57,3 +57,6 @@ crosswalk@1.6.2
 shell-server
 practicalmeteor:mocha
 practicalmeteor:chai
+dburles:factory
+hwillson:stub-collections
+practicalmeteor:sinon

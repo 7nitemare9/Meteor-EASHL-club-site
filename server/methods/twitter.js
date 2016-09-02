@@ -20,7 +20,7 @@ Meteor.methods({
       const languages = ['en', 'sv'];
       const st = new StreamTweets(TWITTERKEYS, false);
       st.stream({follow: following,   language: languages}, Meteor.bindEnvironment(function(result) {
-        if (following.indexOf(result.user.id.toString()) != -1 && !result.in_reply_to_user_id) {
+        if (following.indexOf(result.user.id.toString()) != -1 && !result.in_reply_to_user_id && ~languages.indexOf(results.lang)) { //language check added as language filter seems not to work
             if (!Tweets.findOne({id: result.id})) {
               Tweets.insert(result);
             }

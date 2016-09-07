@@ -1,4 +1,4 @@
-import StreamTweets from 'stream-tweets';
+import Twitter from 'twit';
 import Request from 'request';
 
 Meteor.methods({
@@ -14,18 +14,20 @@ Meteor.methods({
     getTweets2() {
       const TWITTERKEYS = {consumer_key: process.env.TW_CONSUMER_KEY,
                      consumer_secret: process.env.TW_CONSUMER_SECRET,
-                     token: process.env.TW_TOKEN,
-                     token_secret: process.env.TW_TOKEN_SECRET};
+                     access_token: process.env.TW_TOKEN,
+                     access_token_secret: process.env.TW_TOKEN_SECRET,
+                     timeout_ms: 90000};
       const following = ['50004938', '33936681', '25660180'];
       const languages = ['en', 'sv'];
-      const st = new StreamTweets(TWITTERKEYS, false);
-      st.stream({follow: following,   language: languages}, Meteor.bindEnvironment(function(result) {
-        if (following.indexOf(result.user.id.toString()) != -1 && !result.in_reply_to_user_id && ~languages.indexOf(results.lang)) { //language check added as language filter seems not to work
+      const st = new Twitter(TWITTERKEYS);
+      const tStream = st.stream('statuses/filter', {follow: following,   language: languages});
+      tStream.on('tweet', Meteor.bindEnvironment(function(result) {
+        if (~following.indexOf(result.user.id.toString()) && !result.in_reply_to_user_id && ~languages.indexOf(result.lang)) { //language check added as language filter seems not to work
             if (!Tweets.findOne({id: result.id})) {
               Tweets.insert(result);
             }
         }
-      }, function(e) { throw e; }));
+      }));
     },
 
     postTweet(message) {

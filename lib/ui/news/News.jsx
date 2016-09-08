@@ -65,7 +65,7 @@ export default class News extends TrackerReact(Component) {
         this.newsData().forEach((data) => {
         })
         return (
-                <div key={'news-page'} className="reset-box b_box" >
+                 <div key={'news-page'} className="reset-box b_box" >
                   <div className="b_box">
                     <div className="news">
                       <div className="post_image">
@@ -75,9 +75,9 @@ export default class News extends TrackerReact(Component) {
                         </div>
                       </div>
                     </div>
-                  </div>
-                    <OldNews newsData={this.newsData()} />
-                </div>
+                   </div>
+                  <OldNews newsData={this.newsData()} />
+                 </div>
         )
     }
 }

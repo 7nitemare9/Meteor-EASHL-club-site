@@ -10,6 +10,7 @@
     "meteor-node-stubs": "^0.2.3",
     "moment": "^2.14.1",
     "multer": "^1.1.0",
+    "radium": "^0.18.1",
     "react": "^15.3.1",
     "react-addons-css-transition-group": "^15.1.0",
     "react-addons-test-utils": "^15.3.1",

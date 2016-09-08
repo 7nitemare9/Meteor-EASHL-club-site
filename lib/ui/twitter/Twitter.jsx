@@ -8,6 +8,10 @@ export default class Twitter extends TrackerReact(Component) {
     this.state = {subscription: {
       tweets: Meteor.subscribe('tweets')
     }};
+    this.style = {
+      width: '310px',
+      margin: '10px 0'
+    }
   }
 
   getTweets() {
@@ -21,8 +25,8 @@ export default class Twitter extends TrackerReact(Component) {
         )
     }
     return (
-      <div className="col-lg-3 col-md-4 b_column col-sm-6 col-xs-6">
-        <div className="b_box" style={{minHeight: '295px'}}>
+      // <div className="col-lg-3 col-md-4 b_column col-sm-6 col-xs-6">
+        <div className="b_box" style={this.style}>
           <div className="b_header">
             <img src="/assets/twitter.png" alt=""/>
           </div>
@@ -34,7 +38,7 @@ export default class Twitter extends TrackerReact(Component) {
             </tbody>
           </table>
         </div>
-      </div>
+      // </div>
     )
   }
 }

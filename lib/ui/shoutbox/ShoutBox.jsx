@@ -9,6 +9,10 @@ export default class ShoutBox extends TrackerReact(Component) {
     this.state = {subscription: {
       shouts: Meteor.subscribe('allShouts')
     }}
+    this.style = {
+      width: '310px',
+      margin: '10px 0'
+    }
   }
 
   addShout(event) {
@@ -33,8 +37,8 @@ export default class ShoutBox extends TrackerReact(Component) {
 
   render() {
     return (
-      <div className="col-lg-3 col-md-4 b_column col-sm-6 col-xs-6">
-        <div className="shouts">
+      // <div className="col-lg-3 col-md-4 b_column col-sm-6 col-xs-6">
+        <div className="shouts" style={this.style}>
           <div className="b_box">
             <div className="b_header">
               <img src="/assets/shout.png" alt=""/>
@@ -49,7 +53,7 @@ export default class ShoutBox extends TrackerReact(Component) {
             </form>
           </div>
         </div>
-      </div>
+      // </div>
     )
   }
 }

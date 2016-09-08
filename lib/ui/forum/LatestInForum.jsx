@@ -2,6 +2,13 @@ import React, { Component } from 'react';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
 
 export default class LatestInForum extends TrackerReact(Component) {
+  constructor() {
+    super();
+    this.style = {
+      width: '310px',
+      margin: '10px 0'
+    }
+  }
 
   getLatestThreads() {
     return ForumThreads.find({}, {sort: {updatedAt: -1}, limit: 5}).fetch();
@@ -15,8 +22,8 @@ export default class LatestInForum extends TrackerReact(Component) {
     let empty = [0, 0, 0, 0, 0];
     empty = empty.slice(0, 5 - this.getLatestThreads().length);
     return (
-      <div className="col-lg-3 b_column col-md-4 col-sm-6 col-xs-6">
-        <div className="b_box latest-forum">
+      // <div className="col-lg-3 b_column col-md-4 col-sm-6 col-xs-6">
+        <div className="b_box latest-forum" style={this.style}>
           <div className="b_header">
             <img src="/assets/forumposts.png" />
           </div>
@@ -39,7 +46,7 @@ export default class LatestInForum extends TrackerReact(Component) {
             )
           })}
         </div>
-      </div>
+      // </div>
     )
   }
 

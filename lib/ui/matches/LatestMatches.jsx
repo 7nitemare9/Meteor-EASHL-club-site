@@ -12,6 +12,10 @@ export default class LatestMatches extends TrackerReact(Component) {
       }
     }
     this.state.subscription.settings = Meteor.subscribe('sharedSettings');
+    this.style = {
+      width: '310px',
+      margin: '10px 0'
+    }
   }
 
   componentWillUnmount() {
@@ -56,8 +60,8 @@ export default class LatestMatches extends TrackerReact(Component) {
       )
     } else {
       return (
-        <div className="col-lg-3 b_column col-lg-pull-6 col-md-4 col-sm-6 col-xs-6">
-          <div className="b_box">
+        // <div className="col-lg-3 b_column col-lg-pull-6 col-md-4 col-sm-6 col-xs-6">
+          <div className="b_box" style={this.style}>
             <div className="b_header">
               <img src="/assets/latestgames.png" />
             </div>
@@ -70,7 +74,7 @@ export default class LatestMatches extends TrackerReact(Component) {
               )
             })}
           </div>
-        </div>
+        // </div>
       )
     }
   }

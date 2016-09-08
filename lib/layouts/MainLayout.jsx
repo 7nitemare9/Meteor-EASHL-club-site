@@ -1,4 +1,5 @@
 import React from 'react';
+import { StyleRoot } from 'radium';
 import Header from '../ui/Header.jsx';
 import Content from '../ui/Content.jsx';
 import LatestMatches from '../ui/matches/LatestMatches.jsx';
@@ -9,22 +10,52 @@ import Streaming from '../ui/streams/Streaming.jsx';
 import ShoutBox from '../ui/shoutbox/ShoutBox.jsx';
 import Footer from '../ui/Footer.jsx';
 
+const layoutStyle = {
+  background: 'url("/assets/background.png")',
+  backgroundSize: '100%',
+  maxWidth: '1362px',
+  margin: '0 auto',
+  display: 'flex',
+  justifyContent: 'center'
+};
+
+const flexStyle = {
+  display: 'flex',
+  flexWrap: 'wrap',
+  justifyContent: 'space-around',
+  maxWidth: '1325px',
+  margin: '0 -10px'
+};
+
+const bigRowStyle = {
+  display: 'flex',
+  flexFlow: 'column',
+  margin: '-5px 10px'
+}
+
 export const MainLayout = ({content}) => (
 
 
-        <div className="container">
-            <div className="container-fluid">
-                <Header />
+      <StyleRoot>
+        <div style={layoutStyle}>
+          <div style={flexStyle}>
+            <Header />
+            {/*<div className="col-lg-6 col-md-8 b_img-responsive col-lg-push-3 b_bottom-padding" style={{minHeight: '530px'}}>*/}
+            <div style={bigRowStyle}>
+              <LatestMatches />
+              <Calendar />
+              <Streaming />
             </div>
-            <div className="col-lg-6 col-md-8 b_img-responsive col-lg-push-3 b_bottom-padding" style={{minHeight: '530px'}}>
-              <Content content={content} />
+            <Content content={content} />
+            {/*</div>*/}
+            <div style={bigRowStyle}>
+              <LatestInForum />
+              <Twitter />
+              <ShoutBox />
             </div>
-            <LatestMatches />
-            <LatestInForum />
-            <Calendar />
-            <Twitter />
-            <Streaming />
-            <ShoutBox />
             <Footer />
+          </div>
         </div>
+      </StyleRoot>
+
         )

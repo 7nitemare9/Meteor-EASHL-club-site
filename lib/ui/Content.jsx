@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import Radium from 'radium';
 import Modal, { closeStyle } from 'simple-react-modal';
 
-export default class Content extends TrackerReact(Component) {
+class Content extends TrackerReact(Component) {
   constructor() {
     super();
     Session.set('showModal', false);
     Session.set('modalContent', '');
+    this.contentStyle = {
+      margin: '0 10px',
+      '@media (max-width: 1312px)': {
+        order: '-1'
+      }
+    }
   }
 
   createHtml(data) {
@@ -16,7 +23,8 @@ export default class Content extends TrackerReact(Component) {
 
   render() {
       return (
-              <div className="b_main_content">
+              // <div className="b_main_content">
+              <div style={this.contentStyle}>
                 <Modal
                   show={Session.get('showModal')}
                   containerStyle={{width: '600px'}}
@@ -40,3 +48,4 @@ export default class Content extends TrackerReact(Component) {
       )
     }
 }
+export default Content = Radium(Content);

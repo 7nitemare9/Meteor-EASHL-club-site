@@ -10,6 +10,10 @@ export default class Streaming extends TrackerReact(Component) {
       streams: Meteor.subscribe('allStreams')
     }}
     Session.set('active_stream', 'none');
+    this.style = {
+      width: '310px',
+      margin: '10px 0'
+    }
   }
 
   getStreams() {
@@ -23,8 +27,8 @@ export default class Streaming extends TrackerReact(Component) {
         )
     }
     return (
-      <div className="col-lg-3 col-md-4 col-lg-pull-6 b_column col-sm-6 col-xs-6">
-        <div className="b_box">
+      // <div className="col-lg-3 col-md-4 col-lg-pull-6 b_column col-sm-6 col-xs-6">
+        <div className="b_box" style={this.style}>
           <div className="b_header">
             <img src="/assets/livestream.png" alt=""/>
           </div>
@@ -34,7 +38,7 @@ export default class Streaming extends TrackerReact(Component) {
             {/*<img src="/assets/TwitchBG.png" width="288" height="162" alt=""/>*/}
           </div>
         </div>
-      </div>
+      // </div>
     )
   }
 }

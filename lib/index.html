@@ -1,5 +1,28 @@
 <head>
-    <meta name="viewport" content="width=636, user-scalable=no" />
+    <!-- <meta name="viewport" content="width=660, user-scalable=no" /> -->
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
     <link rel="shortcut icon" href="/assets/favicon.png"/>
     <title>Bombers Hockey - an EASHL Club</title>
+    <script>
+      //Hack for sizing for mobile.
+      $(document).ready(function fixMobile() {
+        var viewport = $("meta[name=viewport]");
+        var scale = 1;
+        function getWidth() {
+          return window.screen.orientation.angle == 0 ?
+            window.screen.width < window.screen.height ?
+              window.screen.width : window.screen.height :
+            window.screen.height > window.screen.width ?
+              window.screen.height : window.screen.width;
+        }
+        if (getWidth() < 660) {
+          scale = getWidth() / 700;
+        }
+        else if (getWidth() < 1050) {
+          scale = getWidth() / 1055;
+        }
+        window.screen.orientation.onchange = fixMobile;
+        viewport[0].content = `width=device-width, initial-scale=${scale}, user-scalable=0`;
+      });
+    </script>
 </head>

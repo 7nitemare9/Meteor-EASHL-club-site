@@ -24,7 +24,7 @@ class Content extends TrackerReact(Component) {
   render() {
       return (
               // <div className="b_main_content">
-              <div style={this.contentStyle}>
+              <div style={this.contentStyle} className="b_img-responsive">
                 <Modal
                   show={Session.get('showModal')}
                   containerStyle={{width: '600px'}}

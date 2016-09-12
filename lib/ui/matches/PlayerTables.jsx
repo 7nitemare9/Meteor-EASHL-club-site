@@ -28,7 +28,7 @@ export default class PlayerTables extends Component {
         </thead>
         <tbody>
           {this.props.players.map((player) => {
-            if (player.team === this.props.team) {
+            if (player.team == this.props.team) {
               if(player.position == 0) {
                 this.goalie = player;
               } else {

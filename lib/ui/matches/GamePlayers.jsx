@@ -13,7 +13,7 @@ export default class GamePlayers extends Component {
 
   setClass(hometeam, player) {
     let pos = this.numToPos(player.position);
-    if (hometeam === player.team) {
+    if (hometeam == player.team) {
       if (pos === 'rd') {
         if (this.secondHomeD) {
           pos = 'ld';

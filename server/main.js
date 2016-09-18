@@ -7,5 +7,8 @@ Meteor.startup(() => {
   let Streams = Meteor.setInterval(function() {
     Meteor.call('getStreams');
     }, 60000);
-    Meteor.call('getTweets2');
+  Meteor.call('getTweets2');
+  let eaData = Meteor.setInterval(function() {
+    Meteor.call('getEAData')
+  }, 900000);
 });

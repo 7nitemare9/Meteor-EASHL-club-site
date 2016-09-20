@@ -25,9 +25,8 @@ export default class ShowPlayer extends TrackerReact(Component) {
       )
     }
     let player = this.getPlayer(this.props.player);
-    console.log(player.player_team_stat.totalgp - player.player_team_stat.glgp);
-    const skaterStats = (player.player_team_stat.totalgp - player.player_team_stat.glgp > 0) ? <SkaterStats player={player.player_team_stat} /> : <div></div>
-    const goalieStats = (player.player_team_stat.glgp > 0) ? <GoalieStats player={player.player_team_stat} /> : <div></div>
+    const skaterStats = (player.gamesplayed - player.glgp > 0) ? <SkaterStats player={player} /> : <div></div>
+    const goalieStats = (player.glgp > 0) ? <GoalieStats player={player} /> : <div></div>
     return (
       <div className="b_main_content">
         <div className="b_box">

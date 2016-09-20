@@ -24,7 +24,7 @@ export default class SkaterStats extends Component {
         </thead>
         <tbody>
           <tr>
-            <td className="cr">{player.totalgp - player.glgp}</td>
+            <td className="cr">{player.gamesplayed - player.glgp}</td>
             <td className="cr">{player.skpoints}</td>
             <td className="cr">{player.skgoals}</td>
             <td className="cr">{player.skassists}</td>

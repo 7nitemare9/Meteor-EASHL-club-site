@@ -9,6 +9,9 @@ Meteor.startup(() => {
     }, 60000);
   Meteor.call('getTweets2');
   let eaData = Meteor.setInterval(function() {
-    Meteor.call('getEAData')
+    Meteor.call('getEAData');
   }, 900000);
+  let playerData = Meteor.setInterval(function() {
+    Meteor.call('getPlayers');
+  }, 60*60*1000);
 });

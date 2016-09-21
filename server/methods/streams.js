@@ -44,7 +44,7 @@ Meteor.methods({
 
     getStreams() {
       TwitchNames.find().fetch().forEach((data) => {
-        let result = Meteor.http.call('GET', `https://api.twitch.tv/kraken/streams/${data.name}`).data;
+        let result = Meteor.http.call('GET', `https://api.twitch.tv/kraken/streams/${data.name}?client_id=${process.env.TWTCH_ID}`).data;
         if (result.stream) {
           if (!Streams.findOne({name: data.name})) {
             Streams.insert({name: data.name});

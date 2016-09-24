@@ -7,6 +7,7 @@ import News from './ui/news/News.jsx';
 import ShowNews from './ui/news/ShowNews.jsx';
 import NewsArchive from './ui/news/Archive.jsx';
 import Lineup  from './ui/lineup/Lineup.jsx';
+import Statistics from './ui/statistics/statistics.jsx';
 import ShowPlayer from './ui/lineup/ShowPlayer.jsx';
 import FanZone from './ui/fanzone/FanZone.jsx';
 import Matches from './ui/matches/Matches.jsx';
@@ -66,6 +67,14 @@ FlowRouter.route('/lineup', {
   action() {
     mount(MainLayout, {
       content: (<Lineup />)
+    })
+  }
+});
+
+FlowRouter.route('/statistics', {
+  action() {
+    mount(MainLayout, {
+      content: (<Statistics />)
     })
   }
 });

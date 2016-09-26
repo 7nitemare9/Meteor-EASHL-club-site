@@ -26,12 +26,12 @@ export default class ListMatches extends TrackerReact(Component) {
 
   resultColor(match) {
     if (match.game_teams[0].name === this.getSetting('teamName')) {
-      if (match.game_teams[0].score > match.game_teams[1].score) {
+      if (parseInt(match.game_teams[0].score) > parseInt(match.game_teams[1].score)) {
         return "#4a4";
       }
       return "#a44";
     }
-    if (match.game_teams[1].score > match.game_teams[0].score) {
+    if (parseInt(match.game_teams[1].score) > parseInt(match.game_teams[0].score)) {
       return "#4a4";
     }
     return "#a44";

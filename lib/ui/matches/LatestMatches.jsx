@@ -38,11 +38,11 @@ export default class LatestMatches extends TrackerReact(Component) {
 
   winOrLoss(data) {
     if (data.game_teams[1].name == this.getSetting('teamName')) {
-      if (data.game_teams[1].score > data.game_teams[0].score) {
+      if (parseInt(data.game_teams[1].score) > parseInt(data.game_teams[0].score)) {
         return "#4a4";
       }
     } else {
-      if (data.game_teams[0].score > data.game_teams[1].score) {
+      if (parseInt(data.game_teams[0].score) > parseInt(data.game_teams[1].score)) {
         return "#4a4";
       }
     }

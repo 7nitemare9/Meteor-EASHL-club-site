@@ -31,7 +31,13 @@ const firstGame = function(player) {
 }
 
 export function playerStatsInGames() {
-  let members = Players.find().fetch().map(member => member.name);
+  const platform = process.env.PLATFORM;
+  const club = process.env.CLUB_ID;
+  let players = Meteor.http.call('GET', `http://www.easports.com/iframe/nhl14proclubs/api/platforms/${platform}/clubs/${club}/members`).data.raw[0];
+  let members = [];
+  for (player in players) {
+    members.push(players[player].name);
+  }
   let playerStats = {created_at: Date.now()};
   const matches = Matches.find().fetch();
   for (match in matches) {

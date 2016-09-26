@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 
 export default class Skaters extends Component {
 
+  twoDec(num) {
+    return Math.round(num * 100) / 100;
+  }
+
   render() {
     return (
       <div>
@@ -17,16 +21,17 @@ export default class Skaters extends Component {
             <td>Hits</td>
           </tr>
           {this.props.skaters.map(player => {
+            let divide = this.props.full ? 1 : player.skgp;
             return (
               <tr>
                 <td>{player.personaName}</td>
-                <td>{player.skgp}</td>
-                <td>{player.skgoals + player.skassists}</td>
-                <td>{player.skgoals}</td>
-                <td>{player.skassists}</td>
-                <td>{player.skpim}</td>
-                <td>{player.skplusmin}</td>
-                <td>{player.skhits}</td>
+                <td>{player.skgp / divide}</td>
+                <td>{this.twoDec((player.skgoals + player.skassists) / divide)}</td>
+                <td>{this.twoDec(player.skgoals / divide)}</td>
+                <td>{this.twoDec(player.skassists / divide)}</td>
+                <td>{this.twoDec(player.skpim / divide)}</td>
+                <td>{this.twoDec(player.skplusmin / divide)}</td>
+                <td>{this.twoDec(player.skhits / divide)}</td>
               </tr>
             )
           })}

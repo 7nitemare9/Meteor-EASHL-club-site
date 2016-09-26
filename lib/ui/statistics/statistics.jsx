@@ -4,6 +4,10 @@ import Skaters from './skaters.jsx';
 import Goalies from './goalies.jsx';
 
 export default class Statistics extends TrackerReact(Component) {
+  constructor() {
+    super();
+    Session.set('full', 1);
+  }
 
   getPlayerStats() {
     return PlayerStats.findOne()
@@ -31,12 +35,21 @@ export default class Statistics extends TrackerReact(Component) {
     return goalies;
   };
 
+  toggleFull() {
+    if (Session.get('full') === 1) {
+      Session.set('full', 0);
+    } else {
+      Session.set('full', 1);
+    }
+  }
+
   render() {
     this.state = {subscription: {playersStats: Meteor.subscribe('playerStats')}};
     return (
       <div>
-        <Skaters skaters={this.getSkaterStats(this.getPlayerStats())}/>
-        <Goalies goalies={this.getGoalieStats(this.getPlayerStats())}/>
+        <a href="#" onClick={this.toggleFull}>All/Per Game</a>
+        <Skaters full={Session.get('full')} skaters={this.getSkaterStats(this.getPlayerStats())}/>
+        <Goalies full={Session.get('full')} goalies={this.getGoalieStats(this.getPlayerStats())}/>
       </div>
     )
   };

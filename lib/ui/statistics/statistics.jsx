@@ -45,12 +45,19 @@ export default class Statistics extends TrackerReact(Component) {
 
   render() {
     this.state = {subscription: {playersStats: Meteor.subscribe('playerStats')}};
-    return (
-      <div>
-        <a href="#" onClick={this.toggleFull}>All/Per Game</a>
-        <Skaters full={Session.get('full')} skaters={this.getSkaterStats(this.getPlayerStats())}/>
-        <Goalies full={Session.get('full')} goalies={this.getGoalieStats(this.getPlayerStats())}/>
-      </div>
+    return (<div className="b_box" >
+                <div className="b_box" >
+                  <div className="content">
+                    <p>
+                      <img src="/assets/blank.jpg" />
+                      <p2>STATISTICS</p2>
+                    </p>
+                    <a href="#" onClick={this.toggleFull}>All/Per Game</a>
+                    <Skaters full={Session.get('full')} skaters={this.getSkaterStats(this.getPlayerStats())}/>
+                    <Goalies full={Session.get('full')} goalies={this.getGoalieStats(this.getPlayerStats())}/>
+                  </div>
+                </div>
+              </div>
     )
   };
 }

@@ -76,6 +76,7 @@ Meteor.methods({
           match.timestamp = game.timestamp;
           try {
             Matches.insert(match);
+            Meteor.call('calculateStats');
             console.log('game added');
           }
           catch(err) {

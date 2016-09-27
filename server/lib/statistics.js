@@ -39,16 +39,27 @@ export function playerStatsInGames() {
     members.push(players[player].name);
   }
   let playerStats = {created_at: Date.now()};
+  let forwardStats = {};
+  let goalieStats = {};
+  let defenderStats = {};
   const matches = Matches.find().fetch();
   for (match in matches) {
-    if (matches[match].timestamp < 1473724800) { continue; } //before september 13 2016 (release day nhl 17)
+    if (matches[match].timestamp < 1473724800) { continue; } //skip before september 13 2016 (release day nhl 17)
     let players = matches[match].game_players;
     for (player in players) {
       let name = players[player].personaName;
       if (members.includes(name)) {
-        playerStats[name] = playerStats[name] ? addTogether(playerStats[name], players[player]) : firstGame(players[player]);
+        if (players[player].position == 0) {
+          goalieStats[name] = goalieStats[name] ? addTogether(goalieStats[name], players[player]) : firstGame(players[player]);
+        }
+        else if (players[player].position > 0 && players[player].position < 3) {
+          defenderStats[name] = defenderStats[name] ? addTogether(defenderStats[name], players[player]) : firstGame(players[player]);
+        } else {
+          forwardStats[name] = forwardStats[name] ? addTogether(forwardStats[name], players[player]) : firstGame(players[player]);
+        }
       }
     }
   }
+  playerStats.forwards = forwardStats, playerStats.defenders = defenderStats, playerStats.goalies = goalieStats;
   PlayerStats.insert(playerStats);
 }

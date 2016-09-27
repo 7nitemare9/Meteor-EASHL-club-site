@@ -6,6 +6,14 @@ export default class Skaters extends Component {
     return Math.round(num * 100) / 100;
   }
 
+  arrayfy(obj) {
+    let returnArray = [];
+    for (x in obj) {
+      returnArray.push(obj[x]);
+    }
+    return returnArray;
+  }
+
   render() {
     return (
       <div>
@@ -20,7 +28,7 @@ export default class Skaters extends Component {
             <td>+/-</td>
             <td>Hits</td>
           </tr>
-          {this.props.skaters.map(player => {
+          {this.arrayfy(this.props.skaters).map(player => {
             let divide = this.props.full ? 1 : player.skgp;
             return (
               <tr>

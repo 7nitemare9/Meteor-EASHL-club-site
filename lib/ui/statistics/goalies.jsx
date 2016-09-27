@@ -6,6 +6,14 @@ export default class Goalies extends Component {
     return Math.round(num * 100) / 100;
   }
 
+  arrayfy(obj) {
+    let returnArray = [];
+    for (x in obj) {
+      returnArray.push(obj[x]);
+    }
+    return returnArray;
+  }
+
   render() {
     return (
       <div>
@@ -19,7 +27,7 @@ export default class Goalies extends Component {
             <td>GAA</td>
             <td>Shutouts</td>
           </tr>
-          {this.props.goalies.map(player => {
+          {this.arrayfy(this.props.goalies).map(player => {
             let divide = this.props.full ? 1 : player.glgp;
             return (
               <tr>

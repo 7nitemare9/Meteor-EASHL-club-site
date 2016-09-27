@@ -9,30 +9,8 @@ export default class Statistics extends TrackerReact(Component) {
     Session.set('full', 1);
   }
 
-  getPlayerStats() {
-    return PlayerStats.findOne()
-  };
-
-  getSkaterStats(playerStats) {
-    console.log(playerStats)
-    let skaters = [];
-    for(player in playerStats) {
-      if (playerStats[player].skgp > 0) {
-        skaters.push(playerStats[player]);
-      }
-    }
-    return skaters;
-  };
-
-  getGoalieStats(playerStats) {
-    console.log(playerStats)
-    let goalies = [];
-    for(player in playerStats) {
-      if (playerStats[player].glgp > 0) {
-        goalies.push(playerStats[player]);
-      }
-    }
-    return goalies;
+  getPlayerStats(position) {
+    return PlayerStats.findOne()[position]
   };
 
   toggleFull() {
@@ -40,6 +18,12 @@ export default class Statistics extends TrackerReact(Component) {
       Session.set('full', 0);
     } else {
       Session.set('full', 1);
+    }
+  }
+
+  css() {
+    return {
+      textAlign: 'center',
     }
   }
 
@@ -53,8 +37,12 @@ export default class Statistics extends TrackerReact(Component) {
                       <p2>STATISTICS</p2>
                     </p>
                     <a href="#" onClick={this.toggleFull}>All/Per Game</a>
-                    <Skaters full={Session.get('full')} skaters={this.getSkaterStats(this.getPlayerStats())}/>
-                    <Goalies full={Session.get('full')} goalies={this.getGoalieStats(this.getPlayerStats())}/>
+                    <h6 style={this.css()} >Forwards</h6>
+                    <Skaters full={Session.get('full')} skaters={this.getPlayerStats('forwards')}/>
+                    <h6 style={this.css()} >Defenders</h6>
+                    <Skaters full={Session.get('full')} skaters={this.getPlayerStats('defenders')}/>
+                    <h6 style={this.css()} >Goalies</h6>
+                    <Goalies full={Session.get('full')} goalies={this.getPlayerStats('goalies')}/>
                   </div>
                 </div>
               </div>

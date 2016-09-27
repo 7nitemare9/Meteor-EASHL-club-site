@@ -21,6 +21,14 @@ export default class Statistics extends TrackerReact(Component) {
     }
   }
 
+  arrayfy(obj) {
+    let returnArray = [];
+    for (x in obj) {
+      returnArray.push(obj[x]);
+    }
+    return returnArray;
+  }
+
   css() {
     return {
       textAlign: 'center',
@@ -39,13 +47,13 @@ export default class Statistics extends TrackerReact(Component) {
                       <img src="/assets/blank.jpg" />
                       <p2>STATISTICS</p2>
                     </p>
-                    <a href="#" onClick={this.toggleFull}>All/Per Game</a>
+                    <a onClick={this.toggleFull}>All/Per Game</a>
                     <h6 style={this.css()} >Forwards</h6>
-                    <Skaters full={Session.get('full')} skaters={this.getPlayerStats('forwards')}/>
+                    <Skaters full={Session.get('full')} skaters={this.arrayfy(this.getPlayerStats('forwards'))}/>
                     <h6 style={this.css()} >Defenders</h6>
-                    <Skaters full={Session.get('full')} skaters={this.getPlayerStats('defenders')}/>
+                    <Skaters full={Session.get('full')} skaters={this.arrayfy(this.getPlayerStats('defenders'))}/>
                     <h6 style={this.css()} >Goalies</h6>
-                    <Goalies full={Session.get('full')} goalies={this.getPlayerStats('goalies')}/>
+                    <Goalies full={Session.get('full')} goalies={this.arrayfy(this.getPlayerStats('goalies'))}/>
                   </div>
                 </div>
               </div>

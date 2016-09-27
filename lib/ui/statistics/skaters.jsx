@@ -1,17 +1,30 @@
 import React, { Component } from 'react';
+import TrackerReact from 'meteor/ultimatejs:tracker-react';
 
-export default class Skaters extends Component {
+export default class Skaters extends TrackerReact(Component) {
 
   twoDec(num) {
     return Math.round(num * 100) / 100;
   }
 
-  arrayfy(obj) {
-    let returnArray = [];
-    for (x in obj) {
-      returnArray.push(obj[x]);
-    }
-    return returnArray;
+  sortBy(key) {
+    this.props.skaters.sort((a, b) => {
+      let aDivide = this.props.full ? 1 : a.skgp;
+      let bDivide = this.props.full ? 1 : b.skgp;
+      if (key === 'points') {
+        if ((a.skgoals + a.skassists) / aDivide <= (b.skgoals + b.skassists) / bDivide) {
+          return 1;
+        } else {
+          return -1;
+        }
+      }
+      if (a[key] <= b[key]) {
+        return 1;
+      } else {
+        return -1;
+      }
+    });
+    this.forceUpdate();
   }
 
   render() {
@@ -20,15 +33,15 @@ export default class Skaters extends Component {
         <table>
           <tr>
             <td>Name</td>
-            <td>Games</td>
-            <td>Points</td>
-            <td>Goals</td>
-            <td>Assists</td>
-            <td>PIMS</td>
-            <td>+/-</td>
-            <td>Hits</td>
+            <td onClick={() => this.sortBy('skgp')}>Games</td>
+            <td onClick={() => this.sortBy('points')}>Points</td>
+            <td onClick={() => this.sortBy('skgoals')}>Goals</td>
+            <td onClick={() => this.sortBy('skassists')}>Assists</td>
+            <td onClick={() => this.sortBy('skpim')}>PIMS</td>
+            <td onClick={() => this.sortBy('skplusmin')}>+/-</td>
+            <td onClick={() => this.sortBy('skhits')}>Hits</td>
           </tr>
-          {this.arrayfy(this.props.skaters).map(player => {
+          {this.props.skaters.map(player => {
             let divide = this.props.full ? 1 : player.skgp;
             return (
               <tr>

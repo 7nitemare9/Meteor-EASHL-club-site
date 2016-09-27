@@ -6,12 +6,31 @@ export default class Goalies extends Component {
     return Math.round(num * 100) / 100;
   }
 
-  arrayfy(obj) {
-    let returnArray = [];
-    for (x in obj) {
-      returnArray.push(obj[x]);
-    }
-    return returnArray;
+  sortBy(key) {
+    this.props.goalies.sort((a, b) => {
+      let aDivide = this.props.full ? 1 : a.skgp;
+      let bDivide = this.props.full ? 1 : b.skgp;
+      if (key === 'glsvpct') {
+        if ((a.glsaves / a.glshots) <= (b.glsaves + b.glshots)) {
+          return 1;
+        } else {
+          return -1;
+        }
+      }
+      if (key === 'glgaa') {
+        if ((a.glga / a.glgp) <= (b.glga / a.glgp)) {
+          return 1;
+        } else {
+          return -1;
+        }
+      }
+      if (a[key] <= b[key]) {
+        return 1;
+      } else {
+        return -1;
+      }
+    });
+    this.forceUpdate();
   }
 
   render() {
@@ -20,14 +39,14 @@ export default class Goalies extends Component {
         <table>
           <tr>
             <td>Name</td>
-            <td>Games</td>
-            <td>Saves</td>
-            <td>Shots</td>
-            <td>Save %</td>
-            <td>GAA</td>
-            <td>Shutouts</td>
+            <td onClick={() => this.sortBy('glgp')}>Games</td>
+            <td onClick={() => this.sortBy('glsaves')}>Saves</td>
+            <td onClick={() => this.sortBy('glshots')}>Shots</td>
+            <td onClick={() => this.sortBy('glsvpct')}>Save %</td>
+            <td onClick={() => this.sortBy('glgaa')}>GAA</td>
+            <td onClick={() => this.sortBy('glso')}>Shutouts</td>
           </tr>
-          {this.arrayfy(this.props.goalies).map(player => {
+          {this.props.goalies.map(player => {
             let divide = this.props.full ? 1 : player.glgp;
             return (
               <tr>

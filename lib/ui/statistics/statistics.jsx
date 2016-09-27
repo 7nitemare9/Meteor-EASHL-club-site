@@ -29,6 +29,9 @@ export default class Statistics extends TrackerReact(Component) {
 
   render() {
     this.state = {subscription: {playersStats: Meteor.subscribe('playerStats')}};
+    if (!this.state.subscription.playerStats.ready()) {
+      return (<div>Loading...</div>)
+    }
     return (<div className="b_box" >
                 <div className="b_box" >
                   <div className="content">

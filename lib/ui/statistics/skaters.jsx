@@ -47,7 +47,7 @@ export default class Skaters extends TrackerReact(Component) {
               <tr>
                 <td>{player.personaName}</td>
                 <td>{player.skgp / divide}</td>
-                <td>{this.twoDec((player.skgoals + player.skassists) / divide)}</td>
+                <td>{this.twoDec((parseInt(player.skgoals) + parseInt(player.skassists)) / divide)}</td>
                 <td>{this.twoDec(player.skgoals / divide)}</td>
                 <td>{this.twoDec(player.skassists / divide)}</td>
                 <td>{this.twoDec(player.skpim / divide)}</td>

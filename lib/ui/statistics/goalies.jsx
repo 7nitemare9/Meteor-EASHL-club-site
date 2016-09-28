@@ -11,7 +11,7 @@ export default class Goalies extends Component {
       let aDivide = this.props.full ? 1 : a.skgp;
       let bDivide = this.props.full ? 1 : b.skgp;
       if (key === 'glsvpct') {
-        if ((a.glsaves / a.glshots) <= (b.glsaves + b.glshots)) {
+        if ((a.glsaves / a.glshots) <= (b.glsaves / b.glshots)) {
           return 1;
         } else {
           return -1;
@@ -24,7 +24,7 @@ export default class Goalies extends Component {
           return -1;
         }
       }
-      if (a[key] <= b[key]) {
+      if (a[key] / aDivide <= b[key] / bDivide) {
         return 1;
       } else {
         return -1;

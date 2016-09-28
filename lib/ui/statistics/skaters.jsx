@@ -12,13 +12,13 @@ export default class Skaters extends TrackerReact(Component) {
       let aDivide = this.props.full ? 1 : a.skgp;
       let bDivide = this.props.full ? 1 : b.skgp;
       if (key === 'points') {
-        if ((a.skgoals + a.skassists) / aDivide <= (b.skgoals + b.skassists) / bDivide) {
+        if ((parseInt(a.skgoals) + parseInt(a.skassists)) / aDivide <= (parseInt(b.skgoals) + parseInt(b.skassists)) / bDivide) {
           return 1;
         } else {
           return -1;
         }
       }
-      if (a[key] <= b[key]) {
+      if (a[key] / aDivide <= b[key] /bDivide) {
         return 1;
       } else {
         return -1;

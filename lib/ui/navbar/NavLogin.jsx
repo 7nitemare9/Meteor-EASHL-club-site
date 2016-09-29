@@ -11,7 +11,8 @@ export default class NavLogin extends TrackerReact(Component) {
             {link: '/admin/fanzone', name: 'Add Media'},
             {link: '/admin/users', name: 'Manage Users'},
             {link: '/admin/forumcategory', name: 'Add Forum Category'},
-            {link: '/admin/streams', name: 'Handle Streams'}
+            {link: '/admin/streams', name: 'Handle Streams'},
+            {link: '/admin/manualupdates', name: 'Manual Updates'}
         );
       }
       if (Roles.userIsInRole(Meteor.user(), ['News-poster', 'Admin'])) {

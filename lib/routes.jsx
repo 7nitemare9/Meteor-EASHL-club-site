@@ -33,6 +33,7 @@ import AdmEditEvent from './ui/admin/EditEvent.jsx';
 import AdmClubInfo from './ui/admin/ClubInfo.jsx';
 import AdmEditClubInfo from './ui/admin/EditClubInfo.jsx';
 import AdmStreams from './ui/admin/Streams.jsx';
+import AdmManualUpdates from './ui/admin/ManualUpdates.jsx';
 // const mount = render;
 
 if(Meteor.isServer) {
@@ -283,6 +284,14 @@ FlowRouter.route('/admin/streams', {
   action() {
     mount(MainLayout, {
       content: (<AdmStreams />)
+    })
+  }
+});
+
+FlowRouter.route('/admin/manualupdates', {
+  action() {
+    mount(MainLayout, {
+      content: (<AdmManualUpdates />)
     })
   }
 });

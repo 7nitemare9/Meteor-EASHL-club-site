@@ -37,7 +37,7 @@ export default class Forum extends TrackerReact(Component) {
                 return (<p></p>)
               }
               return(
-                <div className="category">
+                <div key={category._id} className="category">
                   <div className="category-left">
                     <a href={`/forum/${category.name}`}>{category.name}</a>
                     <p>{category.description}</p>

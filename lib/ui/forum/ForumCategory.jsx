@@ -77,7 +77,7 @@ export default class ForumCategory extends TrackerReact(Component) {
                        at ${moment(thread.latestPost.createdAt).format('YY-MM-DD HH:mm')}`}
                     </p> : <div></div>
               return(
-                <div className="category">
+                <div key={thread._id} className="category">
                   <div className="category-left">
                     <a href={`/forum/thread/${thread._id}`}>{thread.title}</a>
                   </div>

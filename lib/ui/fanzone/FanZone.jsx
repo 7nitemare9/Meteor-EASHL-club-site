@@ -27,7 +27,7 @@ export default class FanZone extends TrackerReact(Component) {
               </p>
               <ul className="row">
                 {this.getMedia().map((data) => {
-                  return (<MediaImage media={data}/>);
+                  return (<MediaImage key={data._id} media={data}/>);
                 })}
               </ul>
             </div>

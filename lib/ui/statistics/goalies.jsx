@@ -37,29 +37,31 @@ export default class Goalies extends Component {
     return (
       <div>
         <table>
-          <tr>
-            <td>Name</td>
-            <td onClick={() => this.sortBy('glgp')}>Games</td>
-            <td onClick={() => this.sortBy('glsaves')}>Saves</td>
-            <td onClick={() => this.sortBy('glshots')}>Shots</td>
-            <td onClick={() => this.sortBy('glsvpct')}>Save %</td>
-            <td onClick={() => this.sortBy('glgaa')}>GAA</td>
-            <td onClick={() => this.sortBy('glso')}>Shutouts</td>
-          </tr>
-          {this.props.goalies.map(player => {
-            let divide = this.props.full ? 1 : player.glgp;
-            return (
-              <tr>
-                <td>{player.personaName}</td>
-                <td>{player.glgp / divide}</td>
-                <td>{this.twoDec(player.glsaves / divide)}</td>
-                <td>{this.twoDec(player.glshots / divide)}</td>
-                <td>{this.twoDec((player.glsaves / player.glshots) * 100)}%</td>
-                <td>{this.twoDec(player.glga / player.glgp)}</td>
-                <td>{this.twoDec(player.glso / divide)}</td>
-              </tr>
-            )
-          })}
+          <tbody>
+            <tr>
+              <td>Name</td>
+              <td onClick={() => this.sortBy('glgp')}>Games</td>
+              <td onClick={() => this.sortBy('glsaves')}>Saves</td>
+              <td onClick={() => this.sortBy('glshots')}>Shots</td>
+              <td onClick={() => this.sortBy('glsvpct')}>Save %</td>
+              <td onClick={() => this.sortBy('glgaa')}>GAA</td>
+              <td onClick={() => this.sortBy('glso')}>Shutouts</td>
+            </tr>
+            {this.props.goalies.map(player => {
+              let divide = this.props.full ? 1 : player.glgp;
+              return (
+                <tr key={player.personaName + player.glgp}>
+                  <td>{player.personaName}</td>
+                  <td>{player.glgp / divide}</td>
+                  <td>{this.twoDec(player.glsaves / divide)}</td>
+                  <td>{this.twoDec(player.glshots / divide)}</td>
+                  <td>{this.twoDec((player.glsaves / player.glshots) * 100)}%</td>
+                  <td>{this.twoDec(player.glga / player.glgp)}</td>
+                  <td>{this.twoDec(player.glso / divide)}</td>
+                </tr>
+              )
+            })}
+          </tbody>
         </table>
       </div>
     )

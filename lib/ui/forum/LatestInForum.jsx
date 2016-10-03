@@ -12,7 +12,7 @@ export default class LatestInForum extends TrackerReact(Component) {
     if (!this.state.subscription.threads.ready()) {
       return (<div>Loading...</div>);
     }
-    let empty = [0, 0, 0, 0, 0];
+    let empty = [1, 2, 3, 4, 5];
     empty = empty.slice(0, 5 - this.getLatestThreads().length);
     return (
       <div className="col-lg-3 b_column col-md-4 col-sm-6 col-xs-6">
@@ -22,16 +22,16 @@ export default class LatestInForum extends TrackerReact(Component) {
           </div>
           {this.getLatestThreads().map(thread => {
             return (
-              <li className="list-group-item">
+              <li key={thread._id} className="list-group-item">
                 <a href={`/forum/thread/${thread._id}`}>
                   <p>{thread.title}</p>
                 </a>
               </li>
             )
           })}
-          {empty.map(() =>  {
+          {empty.map(x =>  {
             return (
-              <li className="list-group-item">
+              <li key={x} className="list-group-item">
                 <a href="#">
                   <p></p>
                 </a>

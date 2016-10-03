@@ -81,7 +81,7 @@ export default class ForumThread extends TrackerReact(Component) {
            <ForumPost post={thread} users={Meteor.users.find().fetch()} thread={true}/>
            {posts.map((post) => {
              return (
-               <ForumPost post={post} users={Meteor.users.find().fetch()}/>
+               <ForumPost key={post._id} post={post} users={Meteor.users.find().fetch()}/>
              )
            })}
            {ableToPost}

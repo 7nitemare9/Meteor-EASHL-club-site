@@ -59,7 +59,7 @@ export default class ListMatches extends TrackerReact(Component) {
                   return <div></div>
                 }
                 return (
-                  <li className="list-group-item">
+                  <li  key={match._id} className="list-group-item">
                     <a href={`/matches/${match._id}`}>{`${match.game_teams[0].name} - ${match.game_teams[1].name}`}</a>
                     <span className="badge pull-right" style={{background: this.resultColor(match)}} >
                       {`${match.game_teams[0].score} - ${match.game_teams[1].score}`}

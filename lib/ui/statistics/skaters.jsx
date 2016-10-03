@@ -31,31 +31,33 @@ export default class Skaters extends TrackerReact(Component) {
     return (
       <div>
         <table>
-          <tr>
-            <td>Name</td>
-            <td onClick={() => this.sortBy('skgp')}>Games</td>
-            <td onClick={() => this.sortBy('points')}>Points</td>
-            <td onClick={() => this.sortBy('skgoals')}>Goals</td>
-            <td onClick={() => this.sortBy('skassists')}>Assists</td>
-            <td onClick={() => this.sortBy('skpim')}>PIMS</td>
-            <td onClick={() => this.sortBy('skplusmin')}>+/-</td>
-            <td onClick={() => this.sortBy('skhits')}>Hits</td>
-          </tr>
-          {this.props.skaters.map(player => {
-            let divide = this.props.full ? 1 : player.skgp;
-            return (
-              <tr>
-                <td>{player.personaName}</td>
-                <td>{player.skgp / divide}</td>
-                <td>{this.twoDec((parseInt(player.skgoals) + parseInt(player.skassists)) / divide)}</td>
-                <td>{this.twoDec(player.skgoals / divide)}</td>
-                <td>{this.twoDec(player.skassists / divide)}</td>
-                <td>{this.twoDec(player.skpim / divide)}</td>
-                <td>{this.twoDec(player.skplusmin / divide)}</td>
-                <td>{this.twoDec(player.skhits / divide)}</td>
-              </tr>
-            )
-          })}
+          <tbody>
+            <tr>
+              <td>Name</td>
+              <td onClick={() => this.sortBy('skgp')}>Games</td>
+              <td onClick={() => this.sortBy('points')}>Points</td>
+              <td onClick={() => this.sortBy('skgoals')}>Goals</td>
+              <td onClick={() => this.sortBy('skassists')}>Assists</td>
+              <td onClick={() => this.sortBy('skpim')}>PIMS</td>
+              <td onClick={() => this.sortBy('skplusmin')}>+/-</td>
+              <td onClick={() => this.sortBy('skhits')}>Hits</td>
+            </tr>
+            {this.props.skaters.map(player => {
+              let divide = this.props.full ? 1 : player.skgp;
+              return (
+                <tr key={player.personaName + player.skgp}>
+                  <td>{player.personaName}</td>
+                  <td>{player.skgp / divide}</td>
+                  <td>{this.twoDec((parseInt(player.skgoals) + parseInt(player.skassists)) / divide)}</td>
+                  <td>{this.twoDec(player.skgoals / divide)}</td>
+                  <td>{this.twoDec(player.skassists / divide)}</td>
+                  <td>{this.twoDec(player.skpim / divide)}</td>
+                  <td>{this.twoDec(player.skplusmin / divide)}</td>
+                  <td>{this.twoDec(player.skhits / divide)}</td>
+                </tr>
+              )
+            })}
+          </tbody>
         </table>
       </div>
     )

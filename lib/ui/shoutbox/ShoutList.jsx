@@ -18,7 +18,7 @@ export default class ShoutList extends Component {
           <tbody>
             {this.props.shouts.map((data) => {
               return (
-                <tr>
+                <tr key={data._id}>
                   <td className="shout-name-td">{` ${data.name}:`}</td>
                   <td className="shout-message-td">{data.message}</td>
                   {deleteShout}

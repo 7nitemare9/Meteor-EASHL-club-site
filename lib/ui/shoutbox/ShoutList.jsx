@@ -1,17 +1,26 @@
 import React, { Component } from 'react';
 
 export default class ShoutList extends Component {
+  constructor() {
+    super();
+    this.state = {deleteShout: <td></td>};
+  }
 
   removeShout(shout) {
     Meteor.call('removeShout', shout);
   }
 
-  render() {
-    let deleteShout = (Roles.userIsInRole(Meteor.user(), ["Admin"])) ?
-      <td className="shout-delete-td">
-        <a onClick={() => {this.removeShout(data)}}>delete</a>
-      </td> : <td></td>;
+  componentDidMount() {
+    if (Roles.userIsInRole(Meteor.user(), ["Admin"])) {
+      this.setState({deleteShout:
+        <td className="shout-delete-td">
+          <a onClick={() => {this.removeShout(data)}}>delete</a>
+        </td>}
+      );
+    }
+  }
 
+  render() {
     return (
       <div className="shout-list">
         <table>
@@ -21,7 +30,7 @@ export default class ShoutList extends Component {
                 <tr key={data._id}>
                   <td className="shout-name-td">{` ${data.name}:`}</td>
                   <td className="shout-message-td">{data.message}</td>
-                  {deleteShout}
+                  {this.state.deleteShout}
                 </tr>
               )
             })}

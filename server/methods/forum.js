@@ -57,7 +57,7 @@ Meteor.methods({
       });
       ForumThreads.update({_id: thread},
         {$inc: {numPosts: 1},
-         $set: {latestPost: ForumPosts.findOne({_id: post})}});
+         $set: {latestPost: ForumPosts.findOne({_id: post}), updatedAt: new Date()}});
       return true;
     }
     return false;
@@ -94,7 +94,7 @@ Meteor.methods({
   updateForumPost(id, message) {
     if ((Meteor.user()._id == ForumPosts.findOne({_id: id}).userId) || Roles.userIsInRole(Meteor.user(), ['Admin'])) {
       try {
-        ForumPosts.update({_id: id}, {$set: {message: message}});
+        ForumPosts.update({_id: id}, {$set: {message: message, updatedAt: new Date()}});
         return ForumPosts.findOne({_id: id}).thread;
       }
       catch(err) {
@@ -105,7 +105,7 @@ Meteor.methods({
   updateForumThread(id, message, title) {
     if ((Meteor.user()._id == ForumThreads.findOne({_id: id}).userId) || Roles.userIsInRole(Meteor.user(), ['Admin'])) {
       try {
-        ForumThreads.update({_id: id}, {$set: {message: message, title: title}});
+        ForumThreads.update({_id: id}, {$set: {message: message, title: title, updatedAt: new Date()}});
       }
       catch(err) {
         throw new Meteor.Error(err[0]);

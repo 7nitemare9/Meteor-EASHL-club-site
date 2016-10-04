@@ -3,6 +3,10 @@ import TrackerReact from 'meteor/ultimatejs:tracker-react';
 import * as Youtube from '../helpers/Youtube.js';
 
 export default class MediaImage extends TrackerReact(Component) {
+  constructor() {
+    super();
+    this.state = {isAdmin: ''};
+  }
 
   getImage(data) {
     if (data.type == "image") {
@@ -44,12 +48,17 @@ export default class MediaImage extends TrackerReact(Component) {
     Session.set('showModal', true);
   }
 
+  componentDidMount() {
+    if (Roles.userIsInRole(Meteor.user(), ['Admin'])) {
+      this.setState({isAdmin: <a href="#" onClick={this.deleteMedia.bind(this)}>delete</a>});
+    }
+  }
+
   render() {
-    var isAdmin = Roles.userIsInRole(Meteor.user(), ['Admin']) ? <a href="#" onClick={this.deleteMedia.bind(this)}>delete</a> : '';
     return (
       <li className="col-lg-4 col-md-4 col-sm-4 col-xs-4">
         <img onClick={() => this.openModal(this.props.media)} src={this.getImage(this.props.media)} alt=""/>
-        {isAdmin}
+        {this.state.isAdmin}
       </li>
     )
   }

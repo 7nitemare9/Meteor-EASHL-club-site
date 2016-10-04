@@ -20,7 +20,7 @@ export default class ForumCategory extends TrackerReact(Component) {
   }
 
   getThreads() {
-    return ForumThreads.find({category: this.props.name}).fetch();
+    return ForumThreads.find({category: this.props.name}, {$sort: {updatedAt: 1}}).fetch();
   }
 
   getCategory(category) {
@@ -49,15 +49,18 @@ export default class ForumCategory extends TrackerReact(Component) {
     return Meteor.users.findOne({_id: userId}).profile.gamertag || Meteor.users.findOne({_id: userId}).profile.name;
   }
 
-  render() {
+  componentWillMount() {
     this.state = {subscription:
                   {threads: Meteor.subscribe('allThreadsInCategory', this.props.name)}};
     this.state.subscription.category = Meteor.subscribe('allForumCategories');
     this.state.subscription.users = Meteor.subscribe('allUserProfiles');
+  }
+
+  render() {
     if (!this.state.subscription.threads.ready() || !this.state.subscription.category.ready() || !this.state.subscription.users.ready()) {
       return (<div>Loading...</div>)
     }
-    if (!Roles.userIsInRole(Meteor.user(), this.getCategory(this.props.name).available_to) && this.getCategory(this.props.name).available_to > 0) {
+    if (!Roles.userIsInRole(Meteor.user(), this.getCategory(this.props.name).available_to) && this.getCategory(this.props.name).available_to.length > 0) {
       return (<div>Access Denied, you don't have permission to this part of the forum</div>)
     }
     let ableToPost = Meteor.user() ? <a href="#" onClick={this.showForm}>Add new thread</a> : <a href="/login">Login / Register</a>;

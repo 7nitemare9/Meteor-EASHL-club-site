@@ -131,7 +131,7 @@ FlowRouter.route('/forum', {
 FlowRouter.route('/forum/:category', {
   action(params) {
     mount(MainLayout, {
-      content: (<ForumCategory name={params.category} />)
+      content: (<ForumCategory name={decodeURIComponent(params.category)} />)
     })
   }
 });

@@ -3,6 +3,10 @@ import TrackerReact from 'meteor/ultimatejs:tracker-react';
 import NavDropdown from './NavDropdown.jsx';
 
 export default class NavLogin extends TrackerReact(Component) {
+  constructor() {
+    super();
+    this.state = {links: []};
+  }
 
     getLinks() {
       var links = [];
@@ -37,9 +41,13 @@ export default class NavLogin extends TrackerReact(Component) {
       return links;
     }
 
+    componentDidMount() {
+      this.setState({links: this.getLinks()});
+    }
+
     render() {
       if (Meteor.user()) {
-        return (<NavDropdown target="login" name={Meteor.user().profile.gamertag || Meteor.user().profile.name} sites={this.getLinks()} />);
+        return (<NavDropdown target="login" name={Meteor.user().profile.gamertag || Meteor.user().profile.name} sites={this.state.links} />);
       }
         return (
             <li className="log_in_out">

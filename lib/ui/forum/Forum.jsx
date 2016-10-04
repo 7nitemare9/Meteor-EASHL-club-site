@@ -6,11 +6,16 @@ export default class Forum extends TrackerReact(Component) {
   constructor() {
     super();
     this.state = {subscription:
-                 {categories: Meteor.subscribe('allForumCategories')}};
+                 {categories: Meteor.subscribe('allForumCategories')},
+                  isClient: false};
   }
 
   getCategories() {
     return ForumCategories.find().fetch();
+  }
+
+  componentDidMount() {
+    this.setState({isClient: true});
   }
 
   render() {
@@ -33,8 +38,8 @@ export default class Forum extends TrackerReact(Component) {
                 <a href={`/forum/thread/${category.LatestActiveThread._id}`}>
                   {category.LatestActiveThread.title}
                 </a> : <p></p>;
-              if (!Roles.userIsInRole(Meteor.user(), category.available_to) && category.available_to.length > 0) {
-                return (<p></p>)
+              if ((!Roles.userIsInRole(Meteor.user(), category.available_to) && category.available_to.length > 0) || !this.state.isClient) {
+                return (<p key={category._id}></p>)
               }
               return(
                 <div key={category._id} className="category">

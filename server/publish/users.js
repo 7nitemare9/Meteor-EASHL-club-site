@@ -3,8 +3,11 @@ Meteor.publish('allUsers', function() {
 });
 
 Meteor.publish('allUserProfiles', function() {
-  console.log('allUserProfiles');
-  return Meteor.users.find({}, {fields: {profile: 1}});
+  if (Meteor.isServer) {
+    return Meteor.users.find(); // So that SSR get full user on Meteor.user() as client does.
+  } else {
+    return Meteor.users.find({}, {fields: {profile: 1}});
+  }
 });
 
 Meteor.publish('deletedUsers', function() {

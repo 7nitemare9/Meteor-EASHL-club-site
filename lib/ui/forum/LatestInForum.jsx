@@ -2,13 +2,24 @@ import React, { Component } from 'react';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
 
 export default class LatestInForum extends TrackerReact(Component) {
+  constructor() {
+    super();
+    this.state = {isClient: false};
+  }
 
   getLatestThreads() {
-    return ForumThreads.find({}, {sort: {updatedAt: -1}, limit: 5}).fetch();
+    if (this.state.isClient) {
+      return ForumThreads.find({}, {sort: {updatedAt: 1}, limit: 5}).fetch();
+    }
+    return [];
+  }
+
+  componentDidMount() {
+    this.setState({isClient: true});
   }
 
   render() {
-    this.state = {subscription: {threads: Meteor.subscribe('latestThreads')}}
+    this.state.subscription = {threads: Meteor.subscribe('latestThreads')};
     if (!this.state.subscription.threads.ready()) {
       return (<div>Loading...</div>);
     }

@@ -3,6 +3,12 @@ import TrackerReact from 'meteor/ultimatejs:tracker-react';
 import ChatList from './ChatList.jsx';
 
 export default class TeamChat extends TrackerReact(Component) {
+  constructor() {
+    super();
+  }
+
+  componentWillMount() {
+  }
 
   getChatMessages() {
     return ChatMessages.find().fetch();
@@ -26,7 +32,7 @@ export default class TeamChat extends TrackerReact(Component) {
     }
   }
 
-  componentDidUpdate() {
+  activateFroala() {
     $('#edit').froalaEditor({
       imageUploadURL: 'admin/imageupload',
       height: 150,
@@ -44,6 +50,13 @@ export default class TeamChat extends TrackerReact(Component) {
     });
   }
 
+  componentDidMount() {
+    this.activateFroala();
+  }
+
+  componentDidUpdate() {
+    this.activateFroala();
+  }
 
   render() {
     this.state = {subscription: {chatMessages: Meteor.subscribe('allChatMessages')}}

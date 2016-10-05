@@ -31,17 +31,19 @@ export default class AdmFanZone extends Component {
                             text: newsText}, this.onComplete.bind(this));
   }
 
-  componentDidMount() {
-    DocHead.loadScript('https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/froala_editor.pkgd.min.js', (err, data) => {
-      if(!err) {
-        $('#edit').froalaEditor({
-          imageUploadURL: '/admin/imageupload',
-          height: 300
-        });
-      }
+  activateFroala() {
+    $('#edit').froalaEditor({
+      imageUploadURL: '/admin/imageupload',
+      height: 300
     });
+  }
 
+  componentDidMount() {
+    this.activateFroala();
+  }
 
+  componentDidUpdate() {
+    this.activateFroala();
   }
 
   render() {

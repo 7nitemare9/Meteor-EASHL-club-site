@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
 
 export default class ChatList extends TrackerReact(Component) {
-  constructor () {
-    super();
+
+  componentDidMount() {
     this.sound = new buzz.sound('/assets/sound/preview.mp3', {volume: 100});
   }
 

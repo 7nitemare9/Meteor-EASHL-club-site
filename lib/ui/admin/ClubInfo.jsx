@@ -21,17 +21,21 @@ export default class AdmClubInfo extends TrackerReact(Component) {
     });
   }
 
+  activateFroala() {
+    $('#edit').froalaEditor({
+      height: '300px',
+      imageUploadURL: '/admin/imageupload',
+      imageDefaultWidth: 640,
+      imageDefaultAlign: 'center'
+    })
+  }
+
   componentDidMount() {
-    DocHead.loadScript('https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/froala_editor.pkgd.min.js', (err, data) => {
-      if(!err) {
-        $('#edit').froalaEditor({
-          height: '300px',
-          imageUploadURL: '/admin/imageupload',
-          imageDefaultWidth: 640,
-          imageDefaultAlign: 'center'
-        })
-      }
-    });
+    this.activateFroala();
+  }
+
+  componentDidUpdate() {
+    this.activateFroala();
   }
 
   render() {

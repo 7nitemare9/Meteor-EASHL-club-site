@@ -7,18 +7,22 @@ export default class AdmEditClubInfo extends TrackerReact(Component) {
     return ClubInfos.findOne({_id: id});
   }
 
-  componentDidUpdate() {
-    DocHead.loadScript('https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/froala_editor.pkgd.min.js', (err, data) => {
-      if(!err) {
-        $('#edit').froalaEditor({
-          height: 300,
-          imageUploadURL: '/admin/imageupload',
-          imageDefaultWidth: 640,
-          imageDefaultAlign: 'center'
-        });
-        $('#edit').froalaEditor('html.set', this.getClubInfo(this.props.id).text, true);
-      }
+  activateFroala() {
+    $('#edit').froalaEditor({
+      height: '300px',
+      imageUploadURL: '/admin/imageupload',
+      imageDefaultWidth: 640,
+      imageDefaultAlign: 'center'
     });
+    $('#edit').froalaEditor('html.set', this.getClubInfo(this.props.id).text, true);
+  }
+
+  componentDidMount() {
+    this.activateFroala();
+  }
+
+  componentDidUpdate() {
+    this.activateFroala();
   }
 
   onComplete(err, data) {

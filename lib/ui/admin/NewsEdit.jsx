@@ -42,16 +42,20 @@ export default class AdmNewsEdit extends TrackerReact(Component) {
     FlowRouter.go('/');
   }
 
-  componentDidUpdate() {
-      DocHead.loadScript('https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.3.4/js/froala_editor.pkgd.min.js', (err, data) => {
-      if(!err) {
-        $('#edit').froalaEditor({
-          imageUploadURL: '/admin/imageupload',
-          height: 300
-        });
-        $('#edit').froalaEditor('html.insert', this.getNews(this.props.id).text, true);
-      }
+  activateFroala() {
+    $('#edit').froalaEditor({
+      imageUploadURL: '/admin/imageupload',
+      height: 300
     });
+    $('#edit').froalaEditor('html.insert', this.getNews(this.props.id).text, true);
+  }
+
+  componentDidMount() {
+    this.activateFroala();
+  }
+
+  componentDidUpdate() {
+    this.activateFroala();
   }
 
   getNews(id) {
@@ -66,6 +70,7 @@ export default class AdmNewsEdit extends TrackerReact(Component) {
       return (<div>Access Denied, you don't have permission to post or edit news</div>);
     }
     let newsPost = this.getNews(this.props.id);
+    this.image = newsPost.image;
     return (
       <div className="b_main_content">
         <div className="b_box">

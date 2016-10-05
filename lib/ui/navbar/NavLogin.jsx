@@ -6,9 +6,11 @@ export default class NavLogin extends TrackerReact(Component) {
   constructor() {
     super();
     this.state = {links: []};
+    this.state.subscription = {user: Meteor.subscribe('thisUser')};
   }
 
     getLinks() {
+      console.log(Meteor.user())
       var links = [];
       if (Roles.userIsInRole(Meteor.user(), ['Admin'])) {
         links.push(
@@ -41,12 +43,21 @@ export default class NavLogin extends TrackerReact(Component) {
       return links;
     }
 
+
+    componentDidUpdate() {
+      if (this.state.subscription.user.ready() && this.state.links.length === 0) {
+        this.setState({links: this.getLinks()});
+      }
+    }
+
     componentDidMount() {
-      this.setState({links: this.getLinks()});
+      if (this.state.subscription.user.ready() && this.state.links.length === 0) {
+        this.setState({links: this.getLinks()});
+      }
     }
 
     render() {
-      if (Meteor.user()) {
+      if (Meteor.user() && this.state.subscription.user.ready()) {
         return (<NavDropdown target="login" name={Meteor.user().profile.gamertag || Meteor.user().profile.name} sites={this.state.links} />);
       }
         return (

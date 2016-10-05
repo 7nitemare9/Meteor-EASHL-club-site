@@ -10,7 +10,6 @@ export default class NavLogin extends TrackerReact(Component) {
   }
 
     getLinks() {
-      console.log(Meteor.user())
       var links = [];
       if (Roles.userIsInRole(Meteor.user(), ['Admin'])) {
         links.push(

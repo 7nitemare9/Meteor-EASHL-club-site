@@ -37,7 +37,7 @@ export default class GamePlayers extends Component {
       <div className="box" id="rink">
         {this.props.players.map((player) => {
           return (
-            <div key={player.id} className={this.setClass(this.props.hometeam, player)}>
+            <div key={player.personaName} className={this.setClass(this.props.hometeam, player)}>
               <img src={`https://avatar-ssl.xboxlive.com/avatar/${player.personaName}/avatarpic-l.png`} alt="" className="player_image"/>
               <div className="player_text_box">{player.personaName}</div>
             </div>

@@ -4,7 +4,7 @@ export default class GoalieTable extends Component {
 
   render() {
     if (!this.props.goalie) {
-      return <div></div>
+      return <tfoot></tfoot>;
     }
     return (
       <tfoot>

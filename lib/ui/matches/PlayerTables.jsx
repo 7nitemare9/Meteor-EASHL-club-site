@@ -33,7 +33,7 @@ export default class PlayerTables extends Component {
                 this.goalie = player;
               } else {
                 return (
-                  <tr>
+                  <tr key={player.personaName + player.position}>
                     <td>{player.personaName}</td>
                     <td className="cr">{['G', 'D', 'D', 'LW', 'C', 'RW'][player.position]}</td>
                     <td className="cr">{player.skpoints}</td>

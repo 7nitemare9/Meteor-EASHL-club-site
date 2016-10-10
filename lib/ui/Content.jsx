@@ -10,7 +10,8 @@ class Content extends TrackerReact(Component) {
     Session.set('showModal', false);
     Session.set('modalContent', '');
     this.contentStyle = {
-      margin: '0 10px',
+      margin: '5px 10px',
+      width: '636px',
       '@media (max-width: 1312px)': {
         order: '-1'
       }

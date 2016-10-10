@@ -73,10 +73,12 @@ const mediumBottom = {
   }
 }
 
+const userAgent = Meteor.isServer ? {userAgent: 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36'} : '';
+
 export const MainLayout = ({content}) => (
 
 
-      <StyleRoot>
+      <StyleRoot radiumConfig={userAgent}>
         <div style={layoutStyle}>
           <div style={flexStyle}>
             <Header />
@@ -87,22 +89,26 @@ export const MainLayout = ({content}) => (
               <Streaming />
             </div>
             <Content content={content}/>
-            <div style={mediumRight}>
-              <LatestMatches />
-              <LatestInForum />
-              <Calendar />
-            </div>
-            <div style={mediumBottom}>
-              <Twitter />
-              <Streaming />
-              <ShoutBox />
-            </div>
-            {/*</div>*/}
+            {Meteor.isClient ?
+              <div style={mediumRight}>
+                <LatestMatches />
+                <LatestInForum />
+                <Calendar />
+              </div> : <div></div>
+            }
             <div style={bigAndMobile}>
               <LatestInForum />
               <Twitter />
               <ShoutBox />
             </div>
+            {Meteor.isClient ?
+              <div style={mediumBottom}>
+                <Twitter />
+                <Streaming />
+                <ShoutBox />
+              </div> : <div></div>
+            }
+            {/*</div>*/}
             <Footer />
           </div>
         </div>

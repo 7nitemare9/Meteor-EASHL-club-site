@@ -29,10 +29,12 @@ export default class ClubInfo extends TrackerReact(Component) {
     Meteor.call('deleteClubInfo', this.getClubInfoPage()._id, this.onComplete.bind(this));
   }
 
-  componentDidMount() {
-    const page = this.getClubInfoPage();
-    if (Roles.userIsInRole(Meteor.user(), ['Admin'])) {
-      this.setState({isAdmin: <div><a href={`/admin/editclubinfo/${page._id}`} >edit </a><a href="#" onClick={this.deleteClubInfo.bind(this)}> delete</a></div>});
+  componentDidUpdate() {
+    if (this.state.isAdmin === '') {
+      const page = this.getClubInfoPage();
+      if (Roles.userIsInRole(Meteor.user(), ['Admin'])) {
+        this.setState({isAdmin: <div><a href={`/admin/editclubinfo/${page._id}`} >edit </a><a href="#" onClick={this.deleteClubInfo.bind(this)}> delete</a></div>});
+      }
     }
   }
 

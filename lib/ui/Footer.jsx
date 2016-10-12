@@ -7,11 +7,12 @@ export default class Footer extends Component {
       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 b_footer b_column">
         <div className="b_box">
           <div className="col-lg-6 col-md-8 col-sm-12">
-            <img src="/assets/EA_sports.jpg" width="101" alt=""/>
-            <img src="/assets/react-logo.png" width="60" alt=""/>
-            <img src="/assets/mongodb.png" width="50" style={{background: "#ffffff"}} alt=""/>
-            <img src="/assets/meteor-logo.png" width="100" style={{background: "#ffffff"}} alt=""/>
-            <img src="/assets/twitter-bootstrap.jpg" width="102" alt=""/>
+            <a href="http://www.easports.com"><img src="/assets/EA_sports.jpg" width="101" alt=""/></a>
+            <a href="https://facebook.github.io/react/"><img src="/assets/react-logo.png" width="60" alt=""/></a>
+            <a href="http://www.mongodb.com"><img src="/assets/mongodb.png" width="50" style={{background: "#ffffff"}} alt=""/></a>
+            <a href="http://www.meteor.com"><img src="/assets/meteor-logo.png" width="100" style={{background: "#ffffff"}} alt=""/></a>
+            <a href="http://www.getbootstrap.com"><img src="/assets/twitter-bootstrap.jpg" width="102" alt=""/></a>
+            <a href="https://github.com/aostlund/Meteor-EASHL-club-site"><img src="/assets/Github-Logo.jpg" width="58"/></a>
           </div>
           <div className="col-lg-6 col-lg-push-0 col-md8 col-md-push-2 col-sm-12">
             <div className="col-lg-4 col-md-3 col-sm-6">

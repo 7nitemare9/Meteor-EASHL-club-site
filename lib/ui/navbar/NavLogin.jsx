@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
 import NavDropdown from './NavDropdown.jsx';
+import NavButton from './NavButton.jsx';
 
 export default class NavLogin extends TrackerReact(Component) {
   constructor() {
@@ -60,11 +61,12 @@ export default class NavLogin extends TrackerReact(Component) {
         return (<NavDropdown target="login" name={Meteor.user().profile.gamertag || Meteor.user().profile.name} sites={this.state.links} />);
       }
         return (
-            <li className="log_in_out">
-                <a className={`nav-${this.props.target}`} href={this.props.route}>
-                    <img src={`/assets/nav/${this.props.target}_hover.png`} />
-                </a>
-            </li>
+          <NavButton target="login" route="/login"/>
+            // <li className="log_in_out">
+            //     <a className={`nav-${this.props.target}`} href={this.props.route}>
+            //         <img src={`/assets/nav/${this.props.target}_hover.png`} />
+            //     </a>
+            // </li>
         )
     }
 }

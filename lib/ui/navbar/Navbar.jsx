@@ -2,8 +2,48 @@ import React, { Component } from 'react';
 import NavButton from './NavButton.jsx';
 import NavDropdown from './NavDropdown.jsx';
 import NavLogin from './NavLogin.jsx';
+import Radium from 'radium';
 
 export default class Navbar extends Component {
+
+  getCSS(style) {
+    switch(style) {
+      case 'navbar':
+        return (
+          {
+            width: '100%',
+            display: 'flex',
+            height: '32px',
+            background: 'url(assets/nav/filler.jpg)'
+          }
+        )
+      case 'ul':
+        return (
+          {
+            display: 'flex',
+            listStyle: 'none',
+            justifyContent: 'space-around',
+            width: '1100px'
+          }
+        )
+      case 'login':
+        return (
+          {
+            display: 'flex',
+            width: '100%',
+            justifyContent: 'flex-end',
+            listStyle: 'none'
+          }
+        )
+      case 'lButton':
+        return (
+          {
+            width: '100px'
+          }
+        )
+    }
+  }
+
     render() {
         let sites = [
             {link: "http://www.nhl.com", name: "NHL.com"},
@@ -15,19 +55,22 @@ export default class Navbar extends Component {
             {link: "http://www.shl.se", name: "SHL"}
         ];
         return (
-            <div className="collapse navbar-collapse nav-filler b_navigation" id="bs-example-navbar-collapse-1">
-                <ul className="nav navbar-nav">
+            <div style={this.getCSS('navbar')} id="bs-example-navbar-collapse-1">
+                <ul style={this.getCSS('ul')}>
                     <NavButton target="home" route="/" />
                     <NavButton target="lineup" route="/lineup" />
-                    <NavButton target="stats" route="/statistics" />
-                    <NavButton target="media" route="/fanzone" />
-                    <NavButton target="info" route="/clubinfo/0" />
+                    <NavButton target="statistics" route="/statistics" />
+                    <NavButton target="fan zone" route="/fanzone" />
+                    <NavButton target="club info" route="/clubinfo/0" />
                     <NavButton target="results" route="/matches/list/0" />
                     <NavDropdown target="links" sites={sites} />
                     <NavButton target="forum" route="/forum" />
-                    <NavLogin target="login" route="/login" />
-                    {/*<NavLogin target="login" />*/}
                 </ul>
+                <div style={this.getCSS('login')}>
+                  <div style={this.getCSS('lButton')}>
+                    <NavLogin target="login" route="/login" />
+                  </div>
+                </div>
             </div>
         )
     }

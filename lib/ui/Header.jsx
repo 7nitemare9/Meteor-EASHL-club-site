@@ -16,7 +16,6 @@ export default class Header extends Component {
                 <a href="/" >
                     <img className="img-responsive" src="/assets/header.png" />
                 </a>
-                <NavToggle />
                 <Navbar />
             </nav>
         )

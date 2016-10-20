@@ -13,6 +13,7 @@ export default class Navbar extends Component {
           {
             width: '100%',
             display: 'flex',
+            justifyContent: 'space-between',
             height: '32px',
             background: 'url(assets/nav/filler.jpg)'
           }
@@ -23,14 +24,16 @@ export default class Navbar extends Component {
             display: 'flex',
             listStyle: 'none',
             justifyContent: 'space-around',
-            width: '1100px'
+            minWidth: '45%',
+            maxWidth: '585px',
+            flexGrow: '1'
           }
         )
       case 'login':
         return (
           {
             display: 'flex',
-            width: '100%',
+            minWidth: '15%',
             justifyContent: 'flex-end',
             listStyle: 'none'
           }

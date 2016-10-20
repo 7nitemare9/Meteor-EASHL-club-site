@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
+import Box from '../commonCSS/box.js';
+import Colors from '../commonCSS/colors.js';
 
 
 export default class LatestMatches extends TrackerReact(Component) {
@@ -13,8 +15,45 @@ export default class LatestMatches extends TrackerReact(Component) {
     }
     this.state.subscription.settings = Meteor.subscribe('sharedSettings');
     this.style = {
-      width: '310px',
-      margin: '10px 0'
+      box: Object.assign(Box.box, {
+        width: '310px',
+        margin: '10px 0'
+      }),
+      ul: {
+        margin: '0px'
+      },
+      li: {
+        even: {
+          padding: '2px 15px 0px 15px',
+          background: Colors.grey,
+          border: 'none',
+          minWidth: '200px',
+          display: 'flex',
+          justifyContent: 'space-between'
+        },
+        odd: {
+          padding: '2px 15px 0px 15px',
+          background: Colors.darkGrey,
+          border: 'none',
+          minWidth: '200px',
+          display: 'flex',
+          justifyContent: 'space-between'
+        }
+      },
+      badge: {
+        display: 'inline-block',
+        height: '18px',
+        minWidth: '10px',
+        padding: '3px 7px',
+        fontSize: '12px',
+        fontWeight: 'bold',
+        color: '#fff',
+        lineHeight: '1',
+        verticalAlign: 'baseline',
+        whiteSpace: 'nowrap',
+        textAlign: 'center',
+    borderRadius: '10px'
+      }
     }
   }
 
@@ -61,18 +100,24 @@ export default class LatestMatches extends TrackerReact(Component) {
     } else {
       return (
         // <div className="col-lg-3 b_column col-lg-pull-6 col-md-4 col-sm-6 col-xs-6">
-          <div className="b_box" style={this.style}>
+        <div style={this.style.box}>
             <div className="b_header">
               <img src="/assets/latestgames.png" />
             </div>
-            {this.matchData().map((data) => {
-              return (
-                <li key={data._id} className="list-group-item">
-                  <a href={`/matches/${data._id}`}>{`${this.shortenIfToLong(data.game_teams[0].name)} - ${this.shortenIfToLong(data.game_teams[1].name)}`}</a>
-                  <span className="badge pull-right" style={{background: this.winOrLoss(data)}}>{`${data.game_teams[0].score} - ${data.game_teams[1].score}`}</span>
-                </li>
-              )
-            })}
+            <ul style={this.style.ul}>
+              {this.matchData().map((data, idx) => {
+                let color = this.winOrLoss(data);
+                let badgeStyle = Object.assign({}, this.style.badge, {background: color});
+                return (
+                  <li key={data._id} style={idx % 2 == 0 ? this.style.li.even : this.style.li.odd}>
+                    <a href={`/matches/${data._id}`}>{`${this.shortenIfToLong(data.game_teams[0].name)} - ${this.shortenIfToLong(data.game_teams[1].name)}`}</a>
+                    <span style={badgeStyle}>
+                      {`${data.game_teams[0].score} - ${data.game_teams[1].score}`}
+                    </span>
+                  </li>
+                )
+              })}
+            </ul>
           </div>
         // </div>
       )

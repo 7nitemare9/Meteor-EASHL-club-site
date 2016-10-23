@@ -7,9 +7,9 @@ import Weeks from './Weeks.jsx';
 export default class Calendar extends TrackerReact(Component) {
   constructor() {
     super();
-    Session.set('today', moment().startOf('day').format('YYYY-MM-DD'));
+    this.state = {today: moment().startOf('day').format('YYYY-MM-DD')};
+    this.state.calendarMonth = moment().startOf('month').format('MM-YYYY');
     Meteor.setTimeout(this.newDay, moment.duration(moment().add(1, 'day').startOf('day').diff(moment()))._milliseconds + 1000);
-    Session.set('calendar-month', moment().startOf('month').format('MM-YYYY'));
     this.style = {
       width: '310px',
       margin: '10px 0'
@@ -17,21 +17,24 @@ export default class Calendar extends TrackerReact(Component) {
   }
 
   newDay() {
-    Session.set('today', moment().startOf('day').format('YYYY-MM-DD'));
+    this.setState({today: moment().startOf('day').format('YYYY-MM-DD')});
     Meteor.setTimeout(this.newDay, moment.duration(moment().add(1, 'day').startOf('day').diff(moment()))._milliseconds + 1000);
+  }
+
+  changeMonth(amount) {
+    this.setState({calendarMonth: moment(this.state.calendarMonth, 'MM-YYYY').add(amount, 'month').format('MM-YYYY')});
   }
 
   render() {
     return (
-      // <div className="col-lg-3 col-lg-pull-6 col-md-4 b_column col-sm-6 col-xs-6">
         <div className="b_box" style={this.style}>
           <div className="b_header">
             <img src="/assets/calendar.png" alt=""/>
           </div>
           <div className="calendar">
-            <MonthPicker />
-            <DayNames />
-            <Weeks today={Session.get('today')}/>
+            <MonthPicker month={this.state.calendarMonth} func={this.changeMonth.bind(this)}/>
+            <DayNames/>
+            <Weeks today={this.state.today} month={this.state.calendarMonth}/>
           </div>
         </div>
       // </div>

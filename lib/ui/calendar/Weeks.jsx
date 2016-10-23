@@ -17,7 +17,8 @@ export default class Weeks extends TrackerReact(Component) {
   createWeeks(startDate) {
     weeks = [];
     let newDate = startDate.clone().day('Monday');
-    while(newDate.month() <= startDate.month()) {
+    console.log(newDate)
+    while(newDate.month() <= startDate.month() && newDate.year() <= startDate.year()) {
       weeks.push(this.createWeek(newDate));
       newDate.add(1, 'w').day('Monday');
     }
@@ -27,18 +28,18 @@ export default class Weeks extends TrackerReact(Component) {
   render() {
     return (
       <div>
-      {this.createWeeks(moment(Session.get('calendar-month'), 'MM-YYYY').startOf('month')).map((data, index) => {
+      {this.createWeeks(moment(this.props.month, 'MM-YYYY').startOf('month')).map((data, index) => {
         if(index == 0 && data[0] > data[6]) {
           return (
-            <FirstWeek key={`week${index}`} week={data} today={this.props.today}/>
+            <FirstWeek key={`week${index}`} week={data} today={this.props.today} month={this.props.month}/>
           )
         } else if (index > 2 && data[0] > data[6]) {
           return (
-            <LastWeek key={`week${index}`}week={data} today={this.props.today}/>
+            <LastWeek key={`week${index}`}week={data} today={this.props.today} month={this.props.month} />
           )
         }
         return (
-          <Week key={`week${index}`}week={data} today={this.props.today} />
+          <Week key={`week${index}`}week={data} today={this.props.today} month={this.props.month}/>
         )
         })
       }

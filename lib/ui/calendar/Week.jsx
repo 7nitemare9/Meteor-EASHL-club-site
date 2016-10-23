@@ -22,7 +22,7 @@ export default class Week extends TrackerReact(Component) {
     return (
       <div>
         {this.props.week.map((day) => {
-          let thisday = moment(Session.get('calendar-month'), 'MM-YYYY').date(day).format('YYYY-MM-DD');
+          let thisday = moment(this.props.month, 'MM-YYYY').date(day).format('YYYY-MM-DD');
           if ( this.hasScheduledEvent(thisday)) {
             let event = this.hasScheduledEvent(thisday);
             if (thisday === today) {

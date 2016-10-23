@@ -22,7 +22,7 @@ export default class LastWeek extends TrackerReact(Component) {
     return (
       <div>
         {this.props.week.map((day) => {
-          let thisday = moment(Session.get('calendar-month'), 'MM-YYYY').date(day).format('YYYY-MM-DD');
+          let thisday = moment(this.props.month, 'MM-YYYY').date(day).format('YYYY-MM-DD');
           if (day < 20) {
             return <span key={`nm-day${day}`} className="cal-date-other-month">{day}</span>
           }

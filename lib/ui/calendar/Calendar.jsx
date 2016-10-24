@@ -3,6 +3,7 @@ import TrackerReact from 'meteor/ultimatejs:tracker-react';
 import MonthPicker from './MonthPicker.jsx';
 import DayNames from './DayNames.jsx';
 import Weeks from './Weeks.jsx';
+import Box from '../commonCSS/box.js';
 
 export default class Calendar extends TrackerReact(Component) {
   constructor() {
@@ -11,8 +12,10 @@ export default class Calendar extends TrackerReact(Component) {
     this.state.calendarMonth = moment().startOf('month').format('MM-YYYY');
     Meteor.setTimeout(this.newDay, moment.duration(moment().add(1, 'day').startOf('day').diff(moment()))._milliseconds + 1000);
     this.style = {
-      width: '310px',
-      margin: '10px 0'
+      box: Object.assign({}, Box.box, {
+        width: '310px',
+        margin: '10px 0'
+      })
     }
   }
 
@@ -27,11 +30,11 @@ export default class Calendar extends TrackerReact(Component) {
 
   render() {
     return (
-        <div className="b_box" style={this.style}>
-          <div className="b_header">
+        <div style={this.style.box}>
+          <div style={Box.header}>
             <img src="/assets/calendar.png" alt=""/>
           </div>
-          <div className="calendar">
+          <div>
             <MonthPicker month={this.state.calendarMonth} func={this.changeMonth.bind(this)}/>
             <DayNames/>
             <Weeks today={this.state.today} month={this.state.calendarMonth}/>

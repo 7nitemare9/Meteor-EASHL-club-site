@@ -17,7 +17,6 @@ export default class Weeks extends TrackerReact(Component) {
   createWeeks(startDate) {
     weeks = [];
     let newDate = startDate.clone().day('Monday');
-    console.log(newDate)
     while(newDate.month() <= startDate.month() && newDate.year() <= startDate.year()) {
       weeks.push(this.createWeek(newDate));
       newDate.add(1, 'w').day('Monday');

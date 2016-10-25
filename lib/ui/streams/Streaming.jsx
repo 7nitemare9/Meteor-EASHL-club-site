@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
 import SelectStream from './SelectStream.jsx';
 import ShowStream from './ShowStream.jsx';
+import Box from '../commonCSS/box.js';
 
 export default class Streaming extends TrackerReact(Component) {
   constructor() {
@@ -11,8 +12,16 @@ export default class Streaming extends TrackerReact(Component) {
     }}
     Session.set('active_stream', 'none');
     this.style = {
-      width: '310px',
-      margin: '10px 0'
+      box: Object.assign({}, Box.box, {
+        width: '310px',
+        margin: '10px 0',
+        display: 'flex',
+        flexFlow: 'column'
+      }),
+      showStream: {
+        display: 'flex',
+        justifyContent: 'center'
+      }
     }
   }
 
@@ -27,15 +36,13 @@ export default class Streaming extends TrackerReact(Component) {
         )
     }
     return (
-      // <div className="col-lg-3 col-md-4 col-lg-pull-6 b_column col-sm-6 col-xs-6">
-        <div className="b_box" style={this.style}>
-          <div className="b_header">
+        <div style={this.style.box}>
+          <div style={Box.header}>
             <img src="/assets/livestream.png" alt=""/>
           </div>
           <SelectStream streams={this.getStreams()} />
-          <div className="b_stream">
+          <div style={this.style.showStream}>
             <ShowStream streams={this.getStreams()} />
-            {/*<img src="/assets/TwitchBG.png" width="288" height="162" alt=""/>*/}
           </div>
         </div>
       // </div>

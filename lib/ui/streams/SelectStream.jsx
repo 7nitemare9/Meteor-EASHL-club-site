@@ -1,7 +1,17 @@
 import React, { Component } from 'react';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
+import Colors from '../commonCSS/colors.js';
 
 export default class SelectStream extends TrackerReact(Component) {
+  constructor() {
+    super();
+    this.style = {
+      holder: {
+        display: 'flex',
+        justifyContent: 'space-around'
+      }
+    }
+  }
 
   changeStream(name) {
     Session.set('active_stream', name);
@@ -9,9 +19,16 @@ export default class SelectStream extends TrackerReact(Component) {
 
   isActive(name) {
     if (name == Session.get('active_stream')) {
-      return "active"
+      return {
+        color: Colors.secondary,
+        textAlign: 'center'
+      }
     }
-    return "inactive"
+    return {
+      color: Colors.secondaryDimmed,
+      cursor: 'pointer',
+      textAlign: 'center'
+    }
   }
 
   render() {
@@ -23,12 +40,12 @@ export default class SelectStream extends TrackerReact(Component) {
       this.changeStream(this.props.streams[0].name);
     }
     return (
-      <div className="streams-holder">
+      <div style={this.style.holder}>
         {this.props.streams.map((data) => {
           return (
             <div
-              className={`stream-selector-${this.isActive(data.name)}`}
-              style={{width: `${100 / this.props.streams.length}%`}}
+              style={this.isActive(data.name)}
+              // style={{width: `${100 / this.props.streams.length}%`}}
               onClick={() => {this.changeStream(data.name);}}
             >
               {data.name}

@@ -18,11 +18,11 @@ const layoutStyle = {
   margin: '0 auto',
   display: 'flex',
   justifyContent: 'center',
-  '@media (min-width: 983px) and (max-width: 1312px)': {
+  '@media (min-width: 1069px) and (max-width: 1340px)': {
     maxWidth: '1083px',
     minWidth: '1053px'
   },
-  '@media (max-width: 982px)': {
+  '@media (max-width: 1068px)': {
     maxWidth: '710px',
     minWidth: '660px'
   }
@@ -34,10 +34,10 @@ const flexStyle = {
   justifyContent: 'space-around',
   maxWidth: '1325px',
   margin: '0 -10px',
-  '@media (min-width: 983px) and (max-width: 1312px)': {
+  '@media (min-width: 1069px) and (max-width: 1340px)': {
     maxWidth: '1050px'
   },
-  '@media (max-width: 982px)': {
+  '@media (max-width: 1068px)': {
     maxWidth: '660px',
     minWidth: '660px'
   }
@@ -47,14 +47,14 @@ const bigAndMobile = {
   display: 'flex',
   flexFlow: 'column',
   margin: '-5px 10px',
-  '@media (min-width: 983px) and (max-width: 1312px)': {
+  '@media (min-width: 1069px) and (max-width: 1340px)': {
     display: 'none'
   }
 }
 
 const mediumRight = {
   display: 'none',
-  '@media (min-width: 983px) and (max-width: 1312px)': {
+  '@media (min-width: 1069px) and (max-width: 1340px)': {
     display: 'flex',
     flexFlow: 'column',
     margin: '-5px 10px'
@@ -63,7 +63,7 @@ const mediumRight = {
 
 const mediumBottom = {
   display: 'none',
-  '@media (min-width: 983px) and (max-width: 1312px)': {
+  '@media (min-width: 1069px) and (max-width: 1340px)': {
     display: 'flex',
     flexFlow: 'row',
     margin: '10px -5px',

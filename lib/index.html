@@ -9,6 +9,7 @@
       $(document).ready(function fixMobile() {
         var viewport = $("meta[name=viewport]");
         var scale = 1;
+        viewport[0].content = `width=device-width, initial-scale=${scale}, user-scalable=0`;
         function getWidth() {
           return window.screen.orientation.angle == 0 ?
             window.screen.width < window.screen.height ?
@@ -16,14 +17,16 @@
             window.screen.height > window.screen.width ?
               window.screen.height : window.screen.width;
         }
-        if (getWidth() < 660) {
-          scale = getWidth() / 660;
+        console.log(document.body.clientWidth)
+        if (document.body.clientWidth < 660) {
+          scale = document.body.clientWidth / 660;
         }
-        else if (getWidth() < 1050) {
-          scale = getWidth() / 1055;
+        else if (document.body.clientWidth < 1068) {
+          scale = document.body.clientWidth / 1068;
         }
         window.screen.orientation.onchange = fixMobile;
         viewport[0].content = `width=device-width, initial-scale=${scale}, user-scalable=0`;
+        console.log(document.body.clientWidth)
       });
     </script>
 </head>

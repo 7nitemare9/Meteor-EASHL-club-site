@@ -4,3 +4,4 @@ secrets.env
 secrets.js
 .env
 test.bat
+.DS_Store

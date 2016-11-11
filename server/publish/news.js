@@ -1,3 +1,5 @@
+import { NewsPosts } from '../../lib/collections.js';
+
 Meteor.publish('allNews', function() {
   return NewsPosts.find();
 });

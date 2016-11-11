@@ -1,3 +1,5 @@
+import { ForumCategories, ForumThreads, ForumPosts } from '../../lib/collections.js';
+
 Meteor.publish('allForumCategories', function() {
   return ForumCategories.find();
 });

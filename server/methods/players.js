@@ -1,3 +1,5 @@
+import { Players } from '../../lib/collections.js';
+
 Meteor.methods({
   getPlayers() {
     const platform = process.env.PLATFORM;

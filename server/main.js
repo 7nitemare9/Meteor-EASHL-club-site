@@ -1,4 +1,5 @@
 import { Meteor } from 'meteor/meteor';
+import { SharedSettings } from '../lib/collections.js';
 
 Meteor.startup(() => {
   SharedSettings.upsert({name: 'url'}, {$set: {value: process.env.URL}});

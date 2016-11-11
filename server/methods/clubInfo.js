@@ -1,3 +1,5 @@
+import { ClubInfos } from '../../lib/collections.js';
+
 Meteor.methods({
   addClubInfo(data) {
     if (Roles.userIsInRole(Meteor.user(), ['Admin'])) {

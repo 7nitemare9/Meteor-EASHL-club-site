@@ -1,4 +1,5 @@
 import fs from 'fs';
+import { Schedule } from '../../lib/collections.js';
 
 Meteor.methods({
   scheduleImages() {

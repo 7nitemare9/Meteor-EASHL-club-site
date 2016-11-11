@@ -1,3 +1,5 @@
+import { Matches } from '../../lib/collections.js';
+
 Meteor.publish('lastMatches', function() {
   return Matches.find({}, {sort: {timestamp: -1}, limit: 5});
 });

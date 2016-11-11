@@ -1,3 +1,5 @@
+import { ChatMessages } from '../../lib/collections.js';
+
 Meteor.methods({
   addChatMessage(user, message) {
     ChatMessages.insert({

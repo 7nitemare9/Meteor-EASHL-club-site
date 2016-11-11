@@ -3,6 +3,7 @@ import TrackerReact from 'meteor/ultimatejs:tracker-react';
 import Forwards from './Forwards.jsx';
 import Defenders from './Defenders.jsx';
 import Goalkeepers from './Goalkeepers.jsx';
+import { Players } from '../../../lib/collections.js';
 
 export default class Lineup extends TrackerReact(Component) {
   constructor() {

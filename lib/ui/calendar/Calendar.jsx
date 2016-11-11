@@ -3,6 +3,7 @@ import TrackerReact from 'meteor/ultimatejs:tracker-react';
 import MonthPicker from './MonthPicker.jsx';
 import DayNames from './DayNames.jsx';
 import Weeks from './Weeks.jsx';
+import { Session } from '../../../server/lib/session.js';
 
 export default class Calendar extends TrackerReact(Component) {
   constructor() {

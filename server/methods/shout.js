@@ -1,3 +1,5 @@
+import { Shouts } from '../../lib/collections.js';
+
 Meteor.methods({
   addShout(message, name) {
     Shouts.insert({

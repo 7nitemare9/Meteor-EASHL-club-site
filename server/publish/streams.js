@@ -1,3 +1,5 @@
+import { Streams, TwitchNames } from '../../lib/collections.js';
+
 Meteor.publish('allStreams', function() {
   return Streams.find();
 });

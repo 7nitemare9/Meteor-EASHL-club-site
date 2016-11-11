@@ -1,3 +1,5 @@
+import { Media } from '../../lib/collections.js';
+
 Meteor.methods({
 
   insertImage(link) {

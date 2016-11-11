@@ -1,5 +1,7 @@
+import { Meteor } from 'meteor/meteor';
 import Twitter from 'twit';
 import Request from 'request';
+import { Tweets } from '../../lib/collections.js';
 
 Meteor.methods({
   //get from old site.

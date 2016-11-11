@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
+import ForumThreads from '../../collections.js';
 
 export default class LatestInForum extends TrackerReact(Component) {
   constructor() {

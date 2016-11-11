@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import { Session } from '../../../server/lib/session.js';
 
 export default class OtherNews extends Component {
     changeToThis(index) {

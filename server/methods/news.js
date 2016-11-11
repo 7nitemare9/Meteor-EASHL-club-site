@@ -1,3 +1,5 @@
+import { NewsPosts } from '../../lib/collections.js';
+
 function getImage(data) {
   if (data) {
     if (data.image.length > 0) {

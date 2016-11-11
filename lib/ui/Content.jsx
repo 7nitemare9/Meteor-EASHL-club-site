@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Modal, { closeStyle } from 'simple-react-modal';
+import { Session } from '../../server/lib/session.js';
 
 export default class Content extends TrackerReact(Component) {
   constructor() {
     super();
+    console.log(Session);
     Session.set('showModal', false);
     Session.set('modalContent', '');
   }

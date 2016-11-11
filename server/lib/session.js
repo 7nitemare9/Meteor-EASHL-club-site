@@ -1,5 +1,5 @@
 // Session standin for server side rendering.
-Session = (function() {
+export const Session = (function() {
   let store = {};
   return {
     set: function(key, value) {

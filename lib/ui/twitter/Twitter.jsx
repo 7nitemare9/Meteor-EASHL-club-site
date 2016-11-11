@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
 import Tweet from './Tweet.jsx';
+import { Tweets } from '../../collections.js';
 
 export default class Twitter extends TrackerReact(Component) {
   constructor() {

@@ -1,3 +1,5 @@
+import { Schedule } from '../../lib/collections.js';
+
 Meteor.publish('events', function() {
   return Schedule.find();
 });

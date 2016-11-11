@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import { Session } from '../../../server/lib/session.js';
 
 export default class TopNews extends TrackerReact(Component) {
    render() {

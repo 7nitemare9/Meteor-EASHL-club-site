@@ -1,3 +1,5 @@
+import { ImgurTokens } from '../../lib/collections.js';
+
 Meteor.methods({
   imgurAccessToken() {
     console.log(ImgurTokens.findOne());

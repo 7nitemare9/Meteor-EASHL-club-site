@@ -1,3 +1,7 @@
+import { TwitchNames } from '../../lib/collections.js';
+import { Streams } from '../../lib/collections.js';
+
+
 Meteor.methods({
     addTwitchName(name) {
       if (Roles.userIsInRole(Meteor.user(), ['Admin'])) {

@@ -4,6 +4,8 @@ import Splash from './Splash.jsx';
 import Tray from './Tray.jsx';
 import OldNews from './OldNews.jsx';
 import * as NewsHelper from '../helpers/NewsHelper.js';
+import { Session } from '../../../server/lib/session.js';
+import { NewsPosts } from '../../collections.js';
 
 export default class News extends TrackerReact(Component) {
     constructor() {

@@ -1,3 +1,5 @@
+import { Matches } from '../../lib/collections.js';
+
 Meteor.methods({
   /*
      EA adds a new id everytime you do a query, this combined with not storing names of player in the json for the match
@@ -21,7 +23,7 @@ Meteor.methods({
         }}).data.raw;
 
         /* Loop through the matches */
-        for (gm in data) {
+        for (let gm in data) {
           let game = data[gm];
           let match = {};
           match.game_teams = [];

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
 import SelectStream from './SelectStream.jsx';
 import ShowStream from './ShowStream.jsx';
+import { Streams } from '../../collections.js';
+import { Session } from '../../../server/lib/session.js';
 
 export default class Streaming extends TrackerReact(Component) {
   constructor() {

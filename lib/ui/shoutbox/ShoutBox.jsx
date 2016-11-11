@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
 import ShoutList from './ShoutList.jsx';
+import { Shouts } from '../../collections.js';
 
 export default class ShoutBox extends TrackerReact(Component) {
 

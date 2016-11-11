@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
+import { Session } from '../../../server/lib/session.js';
 
 export default class MonthPicker extends TrackerReact(Component) {
 

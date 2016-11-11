@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
+import { Matches } from '../../collections.js';
+import { SharedSettings } from '../../collections.js';
 
 
 export default class LatestMatches extends TrackerReact(Component) {

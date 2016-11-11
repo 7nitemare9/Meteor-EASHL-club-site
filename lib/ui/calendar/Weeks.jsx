@@ -3,11 +3,12 @@ import TrackerReact from 'meteor/ultimatejs:tracker-react';
 import Week from './Week.jsx';
 import FirstWeek from './FirstWeek.jsx';
 import LastWeek from './LastWeek.jsx';
+import { Session } from '../../../server/lib/session.js';
 
 export default class Weeks extends TrackerReact(Component) {
 
   createWeek(startDate) {
-    weekdays = []
+    let weekdays = []
     for (var i = 0; i < 7; i++) {
       weekdays[i] = (startDate.clone().add(i, 'd').date());
     }
@@ -15,7 +16,7 @@ export default class Weeks extends TrackerReact(Component) {
   }
 
   createWeeks(startDate) {
-    weeks = [];
+    let weeks = [];
     let newDate = startDate.clone().day('Monday');
     while(newDate.month() <= startDate.month()) {
       weeks.push(this.createWeek(newDate));

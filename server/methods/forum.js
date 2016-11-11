@@ -1,3 +1,5 @@
+import { ForumCategories, ForumThreads, ForumPosts } from '../../lib/collections.js';
+
 Meteor.methods({
   addForumCategory(name, description, available_to) {
     if (Roles.userIsInRole(Meteor.user(), ['Admin'])) {

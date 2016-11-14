@@ -9,16 +9,17 @@ export default class TopNews extends TrackerReact(Component) {
        Session.set('counter', 0);
        console.log(Session.get('counter'));
      }
+      const newsItem = this.props.newsData[Session.get('counter')];
       return (
           <ReactCSSTransitionGroup
               transitionName="title-spinner"
               transitionEnterTimeout={1200}
               transitionLeaveTimeout={500}
           >
-             <div key={this.props.newsData[Session.get('counter')].title} id="top_news">
+             <div key={newsItem ? newsItem.title : Math.random()} id="top_news">
                 <div className="title">
-                   <a href={`/news/${this.props.newsData[Session.get('counter')]._id}`} >
-                       {this.props.newsData[Session.get('counter')].title.toUpperCase()}
+                   <a href={`/news/${newsItem ? newsItem._id : Math.random()}`} >
+                       {newsItem ? newsItem.title.toUpperCase() : ''}
                    </a>
                 </div>
              </div>

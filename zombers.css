@@ -138,8 +138,11 @@ a {
 
 .b_box {
     background: #333333;
+    /*
     border: 1px solid #484848;
     border-radius: 4px;
+    */
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     width: 100%;
 }
 

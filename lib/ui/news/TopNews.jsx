@@ -4,12 +4,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 export default class TopNews extends TrackerReact(Component) {
    render() {
-     if (Meteor.isServer) {
-       console.log(Session);
-       Session.set('counter', 0);
-       console.log(Session.get('counter'));
-     }
-      const newsItem = this.props.newsData[Session.get('counter')];
+      const newsItem = this.props.newsData[this.props.counter];
       return (
           <ReactCSSTransitionGroup
               transitionName="title-spinner"

@@ -9,16 +9,12 @@ export default class News extends TrackerReact(Component) {
     constructor() {
         super();
         this.secondsToWait = 5;
-        Session.set('counter', 0);
-        console.log(Session.get('counter'));
+        this.state = {counter: 0};
         if (Meteor.isClient) {
-          Session.set('timer', Meteor.setInterval(this.changeImage.bind(this), this.secondsToWait * 1000));
+          this.state.timer = Meteor.setInterval(this.changeImage.bind(this), this.secondsToWait * 1000);
         }
-        // Session.set('timer', timer);
-        this.state = {
-            subscription: {
-                newsPosts: Meteor.subscribe('frontPageNews')
-            }
+        this.state.subscription = {
+          newsPosts: Meteor.subscribe('frontPageNews')
         }
     }
 
@@ -32,27 +28,29 @@ export default class News extends TrackerReact(Component) {
     }
 
     changeImage(){
-        this.test = [];
-        if (Session.get('counter') < 4) {
-            Session.set('counter', Session.get('counter') + 1);
+        if (this.state.counter < 4) {
+          this.setState({counter: this.state.counter + 1});
         } else {
-            Session.set('counter', 0);
+          this.setState({counter: 0});
         }
     }
 
 
 
     pause() {
-        Meteor.clearInterval(Session.get('timer'));
+        Meteor.clearInterval(this.state.timer);
     }
 
     continue() {
-        Session.set('timer', Meteor.setInterval(this.changeImage.bind(this), this.secondsToWait * 1000));
+        this.setState({timer: Meteor.setInterval(this.changeImage.bind(this), this.secondsToWait * 1000)});
     }
 
     newsData() {
-        // return NewsPosts.find().fetch().reverse();
         return NewsPosts.find({}, {sort: {created_at: -1}, limit: 11}).fetch();
+    }
+
+    setCounter(num) {
+      this.setState({counter: num});
     }
 
     render() {
@@ -61,7 +59,6 @@ export default class News extends TrackerReact(Component) {
                 <div>Loading...</div>
             )
         }
-        // Session.set('image', this.getImage(this.newsData()[Session.get('counter')]));
         this.newsData().forEach((data) => {
         })
         return (
@@ -70,8 +67,8 @@ export default class News extends TrackerReact(Component) {
                     <div className="news">
                       <div className="post_image">
                         <div onMouseEnter={this.pause.bind(this)} onMouseLeave={this.continue.bind(this)}>
-                          <Splash newsData={NewsHelper.getImage(this.newsData()[Session.get('counter')])}  />
-                          <Tray newsData={this.newsData()} />
+                          <Splash newsData={NewsHelper.getImage(this.newsData()[this.state.counter])}  />
+                          <Tray newsData={this.newsData()} counter={this.state.counter} setCounter={this.setCounter.bind(this)}/>
                         </div>
                       </div>
                     </div>

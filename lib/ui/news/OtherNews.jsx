@@ -11,7 +11,7 @@ export default class OtherNews extends Component {
             <div className="other_news">
                 {this.props.newsData.slice(0,5).map((data, index) => {
                     let active = "";
-                    (index == Session.get('counter') ? active = "act-" : active = "");
+                    index == this.props.counter ? active = "act-" : active = "";
                     if (active == "act-") {
                         return (
                             <ReactCSSTransitionGroup
@@ -20,7 +20,7 @@ export default class OtherNews extends Component {
                                 transitionLeaveTimeout={1000}
                                 key={data._id}
                             >
-                                <div key={`${active}test${data._id}`} id={`${active}nl${index}`} onMouseOver={this.changeToThis.bind(this, index)}>
+                                <div key={`${active}test${data._id}`} id={`${active}nl${index}`} onMouseOver={() => this.props.setCounter(index)}>
                                     <br/>
                                     <a href={`/news/${data._id}`} id={`${active}anl${index}`} >
                                         {data.title}
@@ -36,7 +36,7 @@ export default class OtherNews extends Component {
                                 transitionLeaveTimeout={1000}
                                 key={data._id}
                             >
-                                <div key={`${active}test${data._id}`} id={`${active}nl${index}`} onMouseOver={this.changeToThis.bind(this, index)}>
+                                <div key={`${active}test${data._id}`} id={`${active}nl${index}`} onMouseOver={() => this.props.setCounter(index)}>
                                     <br/>
                                     <a href={`/news/${data._id}`} id={`${active}anl${index}`} >
                                         {data.title}
@@ -48,4 +48,4 @@ export default class OtherNews extends Component {
             </div>
         )
     }
-}
+    

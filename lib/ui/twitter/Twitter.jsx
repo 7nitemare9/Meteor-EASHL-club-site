@@ -9,8 +9,29 @@ export default class Twitter extends TrackerReact(Component) {
       tweets: Meteor.subscribe('tweets')
     }};
     this.style = {
-      width: '310px',
-      margin: '10px 0'
+      box: Object.assign(Box.box, {
+        width: '310px',
+        margin: '10px 0'
+      }),
+      ul: {
+        margin: '0px'
+      },
+      li: {
+        even: {
+          background: Colors.grey,
+          border: 'none',
+          minWidth: '200px',
+          display: 'flex',
+          justifyContent: 'space-between'
+        },
+        odd: {
+          background: Colors.darkGrey,
+          border: 'none',
+          minWidth: '200px',
+          display: 'flex',
+          justifyContent: 'space-between'
+        }
+      }
     }
   }
 
@@ -26,17 +47,15 @@ export default class Twitter extends TrackerReact(Component) {
     }
     return (
       // <div className="col-lg-3 col-md-4 b_column col-sm-6 col-xs-6">
-        <div className="b_box" style={this.style}>
+        <div style={this.style.box}>
           <div className="b_header">
             <img src="/assets/twitter.png" alt=""/>
           </div>
-          <table>
-            <tbody>
-              {this.getTweets().map((data) => {
-                return (<Tweet key={data.id} tweet={data} />)
+            <ul style={this.style.ul}>
+              {this.getTweets().map((data, idx) => {
+                return (<Tweet key={data.id} tweet={data} style={idx % 2 == 0 ? this.style.li.even : this.style.li.odd}/>)
               })}
-            </tbody>
-          </table>
+            </ul>
         </div>
       // </div>
     )

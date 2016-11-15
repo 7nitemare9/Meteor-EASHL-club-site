@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
 import ShoutList from './ShoutList.jsx';
+import Box from '../commonCSS/box.js';
+import Colors from '../commonCSS/colors.js';
 
 export default class ShoutBox extends TrackerReact(Component) {
 
@@ -10,8 +12,21 @@ export default class ShoutBox extends TrackerReact(Component) {
       shouts: Meteor.subscribe('allShouts')
     }}
     this.style = {
-      width: '310px',
-      margin: '10px 0'
+      box: Object.assign(Box.box, {
+        width: '310px',
+        margin: '10px 0'
+      }),
+      text: {
+        width: '97%',
+        height: '70px',
+        border: '0'
+      },
+      nameTag: {
+        color: Colors.secondary,
+        width: '24%',
+        display: 'inline',
+        margin: '2%'
+      }
     }
   }
 
@@ -37,23 +52,19 @@ export default class ShoutBox extends TrackerReact(Component) {
 
   render() {
     return (
-      // <div className="col-lg-3 col-md-4 b_column col-sm-6 col-xs-6">
-        <div className="shouts" style={this.style}>
-          <div className="b_box">
-            <div className="b_header">
-              <img src="/assets/shout.png" alt=""/>
-            </div>
-            <ShoutList shouts={this.getShouts()} />
-            <form onSubmit={this.addShout.bind(this)}>
-              <input type="hidden"/>
-              <textarea className="shout-text" ref="message" cols="30" rows="10"></textarea>
-              <p className="shout-name-tag">Name:</p>
-              <input type="text" id="shout_name" ref="name" value={this.userName()}/>
-              <input type="submit" value="Send"/>
-            </form>
-          </div>
+      <div style={this.style.box}>
+        <div className="b_header">
+          <img src="/assets/shout.png" alt=""/>
         </div>
-      // </div>
+        <ShoutList shouts={this.getShouts()} />
+        <form onSubmit={this.addShout.bind(this)}>
+          <input type="hidden"/>
+          <textarea style={this.style.text} ref="message" cols="30" rows="10"></textarea>
+          <p style={this.style.nameTag}>Name:</p>
+          <input type="text" id="shout_name" ref="name" value={this.userName()}/>
+          <input type="submit" value="Send"/>
+        </form>
+      </div>
     )
   }
 }

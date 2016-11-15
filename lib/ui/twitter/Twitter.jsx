@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
 import Tweet from './Tweet.jsx';
+import Box from '../commonCSS/box.js';
+import Colors from '../commonCSS/colors.js';
 
 export default class Twitter extends TrackerReact(Component) {
   constructor() {

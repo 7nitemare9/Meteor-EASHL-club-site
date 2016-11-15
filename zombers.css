@@ -14,7 +14,7 @@ body {
 }
 
 a {
-    color: #FBB600 !important;
+    color: #FBB600;
 }
 
 /* overriding bootstrap .container and setting min-width for page */

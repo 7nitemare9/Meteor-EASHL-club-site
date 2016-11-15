@@ -4,6 +4,8 @@ import Splash from './Splash.jsx';
 import Tray from './Tray.jsx';
 import OldNews from './OldNews.jsx';
 import * as NewsHelper from '../helpers/NewsHelper.js';
+import Box from '../commonCSS/box.js';
+import Colors from '../commonCSS/colors.js';
 
 export default class News extends TrackerReact(Component) {
     constructor() {
@@ -15,6 +17,19 @@ export default class News extends TrackerReact(Component) {
         }
         this.state.subscription = {
           newsPosts: Meteor.subscribe('frontPageNews')
+        }
+        this.style = {
+          box: Box.box,
+          hiddenBox: {
+            background: Colors.darkestGrey,
+            width: '100%',
+            border: '0'
+          },
+          container: {
+            height: '435px',
+            overflow: 'hidden',
+            position: 'relative'
+          }
         }
     }
 
@@ -62,18 +77,16 @@ export default class News extends TrackerReact(Component) {
         this.newsData().forEach((data) => {
         })
         return (
-                 <div key={'news-page'} className="reset-box b_box" >
-                  <div className="b_box">
-                    <div className="news">
-                      <div className="post_image">
-                        <div onMouseEnter={this.pause.bind(this)} onMouseLeave={this.continue.bind(this)}>
-                          <Splash newsData={NewsHelper.getImage(this.newsData()[this.state.counter])}  />
-                          <Tray newsData={this.newsData()} counter={this.state.counter} setCounter={this.setCounter.bind(this)}/>
-                        </div>
-                      </div>
+                 <div key={'news-page'} style={this.style.hiddenBox}>
+                   <div style={this.style.box}>
+                     <div style={this.style.container}>
+                       <div onMouseEnter={this.pause.bind(this)} onMouseLeave={this.continue.bind(this)}>
+                         <Splash newsData={NewsHelper.getImage(this.newsData()[this.state.counter])}  />
+                         <Tray newsData={this.newsData()} counter={this.state.counter} setCounter={this.setCounter.bind(this)}/>
+                       </div>
                     </div>
-                   </div>
-                  <OldNews newsData={this.newsData()} />
+                 </div>
+                 <OldNews newsData={this.newsData()} />
                  </div>
         )
     }

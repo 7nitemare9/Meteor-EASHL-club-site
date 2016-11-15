@@ -11,10 +11,11 @@ export default class Twitter extends TrackerReact(Component) {
       tweets: Meteor.subscribe('tweets')
     }};
     this.style = {
-      box: Object.assign(Box.box, {
+      box: {
+        ...Box.box,
         width: '310px',
         margin: '10px 0'
-      }),
+      },
       ul: {
         margin: '0px'
       },

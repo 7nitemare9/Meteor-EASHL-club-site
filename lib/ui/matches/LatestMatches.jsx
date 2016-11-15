@@ -15,10 +15,11 @@ export default class LatestMatches extends TrackerReact(Component) {
     }
     this.state.subscription.settings = Meteor.subscribe('sharedSettings');
     this.style = {
-      box: Object.assign(Box.box, {
+      box: {
+        ...Box.box,
         width: '310px',
         margin: '10px 0'
-      }),
+      },
       ul: {
         margin: '0px'
       },

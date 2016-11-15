@@ -12,12 +12,13 @@ export default class Streaming extends TrackerReact(Component) {
     }}
     Session.set('active_stream', 'none');
     this.style = {
-      box: Object.assign({}, Box.box, {
+      box: {
+        ...Box.box,
         width: '310px',
         margin: '10px 0',
         display: 'flex',
         flexFlow: 'column'
-      }),
+      },
       showStream: {
         display: 'flex',
         justifyContent: 'center'

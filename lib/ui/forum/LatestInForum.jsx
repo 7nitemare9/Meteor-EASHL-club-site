@@ -8,10 +8,11 @@ export default class LatestInForum extends TrackerReact(Component) {
     super();
     this.state = {isClient: false};
     this.style = {
-      box: Object.assign(Box.box, {
+      box: {
+        ...Box.box,
         width: '310px',
         margin: '10px 0'
-      }),
+      },
       ul: {
         margin: '0px'
       },

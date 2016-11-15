@@ -12,10 +12,10 @@ export default class Calendar extends TrackerReact(Component) {
     this.state.calendarMonth = moment().startOf('month').format('MM-YYYY');
     Meteor.setTimeout(this.newDay, moment.duration(moment().add(1, 'day').startOf('day').diff(moment()))._milliseconds + 1000);
     this.style = {
-      box: Object.assign({}, Box.box, {
+      box: {...Box.box,
         width: '310px',
         margin: '10px 0'
-      })
+      }
     }
   }
 

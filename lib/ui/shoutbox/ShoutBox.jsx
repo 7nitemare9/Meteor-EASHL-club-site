@@ -12,10 +12,11 @@ export default class ShoutBox extends TrackerReact(Component) {
       shouts: Meteor.subscribe('allShouts')
     }}
     this.style = {
-      box: Object.assign(Box.box, {
+      box: {
+        ...Box.box,
         width: '310px',
         margin: '10px 0'
-      }),
+      },
       text: {
         width: '97%',
         height: '70px',

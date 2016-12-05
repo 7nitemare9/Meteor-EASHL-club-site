@@ -9,7 +9,10 @@ class SmallNewsBox extends Component {
   render() {
     let style = {
       box: {
-        ...Box.box        
+        ...Box.box,
+        ':hover': {
+          boxShadow: '0 2px 6px rgba(0,0,0,0.17), 0 4px 6px rgba(0,0,0,0.23)'
+        }
       },
       newsCard: {
         width: '200px',
@@ -23,30 +26,30 @@ class SmallNewsBox extends Component {
         width: '200px',
         height: '40px',
         display: 'flex',
-        background: Colors.darkGrey,
+        background: Colors.darkestGrey,
         opacity: '0.95'
       },
       titleText: {
-        margin: 'auto',
+        margin: '7px',
         fontSize: '10px',
-        fontWeight: '600',
-        textAlign: 'center'
+        fontFamily: 'Merriweather',
+        fontWeight: '400'
       }
     };
     if (this.props.news === undefined) {
       return (<div></div>)
     }
     return (
-      <div key={this.props.news._id} style={{...this.props.class, ...style.newsCard}}>
-          <div style={style.box} >
-              <img src={NewsHelper.getImage(this.props.news)} style={{width: '200px', height: '130px'}}/>
-          </div>
-          <a href={`/news/${this.props.news._id}`} >
-            <div style={style.newsTitle}>
-              <p style={style.titleText}>{this.props.news.title.toUpperCase()}</p>
+      <a href={`/news/${this.props.news._id}`} >
+        <div  style={{...this.props.class, ...style.newsCard}}>
+            <div key={this.props.news._id} style={style.box} >
+                <img src={NewsHelper.getImage(this.props.news)} style={{width: '200px', height: '130px'}}/>
             </div>
-          </a>
-      </div>
+              <div style={style.newsTitle}>
+                <p style={style.titleText}>{this.props.news.title}</p>
+              </div>
+        </div>
+      </a>
     )
   }
 }
